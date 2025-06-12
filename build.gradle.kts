@@ -24,6 +24,7 @@ val coreVersion = project.properties["pylon-core.version"] as String
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("io.github.pylonmc:pylon-core:$coreVersion")
+    compileOnly("org.bstats:bstats-bukkit:3.1.0")
 }
 
 idea {
@@ -43,6 +44,8 @@ tasks.shadowJar {
     fun doRelocate(lib: String) {
         relocate(lib, "io.github.pylonmc.pylon.base.shadowlibs.$lib")
     }
+
+    doRelocate("org.bstats")
 
     archiveBaseName = project.name
     archiveClassifier = null

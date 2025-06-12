@@ -7,6 +7,7 @@ import io.github.pylonmc.pylon.base.items.tools.watering.Sprinkler;
 import io.github.pylonmc.pylon.base.listeners.WitherProofObsidianListener;
 import io.github.pylonmc.pylon.core.addon.PylonAddon;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,6 +42,9 @@ public class PylonBase extends JavaPlugin implements PylonAddon {
         pm.registerEvents(new ConnectingService(), this);
         pm.registerEvents(new Immobilizer.FreezeListener(), this);
         new HealthTalisman.HealthTalismanTicker().runTaskTimer(this, 0, 40);
+
+        // 26154 is pluginID for PylonBase
+        final Metrics metrics = new Metrics(this, 26154);
     }
 
     @Override
