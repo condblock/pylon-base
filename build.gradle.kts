@@ -16,8 +16,15 @@ repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
         name = "papermc"
     }
-    maven("https://repo.xenondevs.xyz/releases")
-    maven("https://maven.evokegames.gg/snapshots")
+    maven("https://repo.xenondevs.xyz/releases") {
+        name = "InvUI"
+    }
+    maven("https://jitpack.io") {
+        name = "JitPack"
+    }
+    maven("https://repo.codemc.io/repository/maven-releases") {
+        name = "CodeMC"
+    }
 }
 
 val coreVersion = project.properties["pylon-core.version"] as String
