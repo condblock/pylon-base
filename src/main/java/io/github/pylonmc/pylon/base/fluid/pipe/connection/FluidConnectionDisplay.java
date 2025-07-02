@@ -2,8 +2,8 @@ package io.github.pylonmc.pylon.base.fluid.pipe.connection;
 
 import io.github.pylonmc.pylon.core.entity.EntityStorage;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
-import io.github.pylonmc.pylon.core.entity.display.ItemDisplayBuilder;
-import io.github.pylonmc.pylon.core.entity.display.transform.TransformBuilder;
+import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
+import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

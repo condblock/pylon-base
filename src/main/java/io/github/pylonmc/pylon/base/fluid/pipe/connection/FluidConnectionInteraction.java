@@ -7,7 +7,7 @@ import io.github.pylonmc.pylon.core.entity.EntityStorage;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
 import io.github.pylonmc.pylon.core.entity.base.PylonDeathEntity;
 import io.github.pylonmc.pylon.core.entity.base.PylonUnloadEntity;
-import io.github.pylonmc.pylon.core.entity.display.InteractionBuilder;
+import io.github.pylonmc.pylon.core.entity.display.builder.InteractionBuilder;
 import io.github.pylonmc.pylon.core.event.PylonEntityDeathEvent;
 import io.github.pylonmc.pylon.core.event.PylonEntityUnloadEvent;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;

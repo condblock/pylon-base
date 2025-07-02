@@ -11,7 +11,7 @@ import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.config.Settings;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
-import io.github.pylonmc.pylon.core.entity.display.transform.TransformUtil;
+import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformUtil;
 import io.github.pylonmc.pylon.core.event.PylonBlockUnloadEvent;
 import io.github.pylonmc.pylon.core.fluid.PylonFluid;
 import io.github.pylonmc.pylon.core.fluid.tags.FluidTemperature;
