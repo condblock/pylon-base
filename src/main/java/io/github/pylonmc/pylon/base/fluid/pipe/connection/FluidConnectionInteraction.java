@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import io.github.pylonmc.pylon.base.fluid.pipe.FluidPipeDisplay;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.EntityStorage;
-import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.RealPylonEntity;
 import io.github.pylonmc.pylon.core.entity.base.PylonDeathEntity;
 import io.github.pylonmc.pylon.core.entity.base.PylonUnloadEntity;
 import io.github.pylonmc.pylon.core.entity.display.builder.InteractionBuilder;
@@ -30,8 +30,7 @@ import java.util.UUID;
 
 import static io.github.pylonmc.pylon.base.util.KeyUtils.pylonKey;
 
-
-public class FluidConnectionInteraction extends PylonEntity<Interaction> implements PylonDeathEntity, PylonUnloadEntity {
+public class FluidConnectionInteraction extends RealPylonEntity<Interaction> implements PylonDeathEntity, PylonUnloadEntity {
 
     public static final float POINT_SIZE = 0.12F;
 

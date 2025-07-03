@@ -7,6 +7,7 @@ import io.github.pylonmc.pylon.core.block.base.PylonFluidBlock;
 import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.config.PylonConfig;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;
@@ -19,7 +20,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
@@ -54,6 +54,8 @@ public class FluidVoider extends PylonBlock implements PylonFluidIoBlock, PylonF
     public static final NamespacedKey FLUID_VOIDER_2_KEY= pylonKey("fluid_voider_2");
     public static final NamespacedKey FLUID_VOIDER_3_KEY= pylonKey("fluid_voider_3");
 
+    public static final NamespacedKey MAIN_DISPLAY_KEY = pylonKey("fluid_voider_main_display");
+
     private static final Material MAIN_MATERIAL = Material.BLACK_TERRACOTTA;
 
     public final double voidRate = getSettings().getOrThrow("fluid-voided-per-second", Double.class);
@@ -76,10 +78,15 @@ public class FluidVoider extends PylonBlock implements PylonFluidIoBlock, PylonF
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        Map<String, PylonEntity<?>> entities = PylonFluidIoBlock.super.createEntities(context);
-        @NotNull Block block = getBlock();
-        entities.put("main", new MainDisplay(block, mainDisplaySize));
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        Map<String, PylonEntity> entities = PylonFluidIoBlock.super.createEntities(context);
+
+        PylonItemDisplay mainDisplay = new ItemDisplayBuilder()
+                .material(MAIN_MATERIAL)
+                .transformation(new TransformBuilder().scale(mainDisplaySize))
+                .buildPacketBased(MAIN_DISPLAY_KEY, getBlock().getLocation().toCenterLocation());
+        entities.put("main", mainDisplay);
+
         return entities;
     }
 
@@ -88,30 +95,5 @@ public class FluidVoider extends PylonBlock implements PylonFluidIoBlock, PylonF
         return PylonRegistry.FLUIDS.getValues()
                 .stream()
                 .collect(Collectors.toMap(Function.identity(), key -> voidRate * deltaSeconds * PylonConfig.getFluidIntervalTicks()));
-    }
-
-    @Override
-    public void addFluid(@NotNull String connectionPoint, @NotNull PylonFluid fluid, double amount) {
-        // do nothing lol
-    }
-
-    public static class MainDisplay extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("fluid_voider_main_display");
-
-        @SuppressWarnings("unused")
-        public MainDisplay(@NotNull ItemDisplay entity) {
-            super(entity);
-        }
-
-        public MainDisplay(@NotNull Block block, double mainDisplaySize) {
-            super(KEY, new ItemDisplayBuilder()
-                    .material(MAIN_MATERIAL)
-                    .transformation(new TransformBuilder()
-                            .scale(mainDisplaySize)
-                    )
-                    .build(block.getLocation().toCenterLocation())
-            );
-        }
     }
 }

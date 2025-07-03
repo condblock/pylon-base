@@ -5,7 +5,6 @@ import io.github.pylonmc.pylon.base.PylonBase;
 import io.github.pylonmc.pylon.base.PylonFluids;
 import io.github.pylonmc.pylon.base.PylonItems;
 import io.github.pylonmc.pylon.base.util.ColorUtils;
-import io.github.pylonmc.pylon.base.util.EntityUtils;
 import io.github.pylonmc.pylon.base.util.HslColor;
 import io.github.pylonmc.pylon.core.block.BlockStorage;
 import io.github.pylonmc.pylon.core.block.base.*;
@@ -13,7 +12,9 @@ import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.config.Settings;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
-import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformUtil;
+import io.github.pylonmc.pylon.core.entity.display.PylonTextDisplay;
+import io.github.pylonmc.pylon.core.entity.display.builder.TextDisplayBuilder;
+import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.event.PylonBlockUnloadEvent;
 import io.github.pylonmc.pylon.core.fluid.PylonFluid;
 import io.github.pylonmc.pylon.core.fluid.tags.FluidTemperature;
@@ -44,7 +45,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -69,6 +69,8 @@ public final class SmelteryController extends SmelteryComponent
         implements PylonGuiBlock, PylonMultiblock, PylonTickingBlock, PylonUnloadBlock, PylonEntityHolderBlock {
 
     public static final NamespacedKey KEY = pylonKey("smeltery_controller");
+
+    public static final NamespacedKey FLUID_PIXEL_KEY = pylonKey("smeltery_fluid_pixel");
 
     public static final double FLUID_REACTION_PER_SECOND = Settings.get(KEY).getOrThrow("fluid-reaction-per-second", Double.class);
 
@@ -807,7 +809,7 @@ public final class SmelteryController extends SmelteryComponent
     // </editor-fold>
 
     // <editor-fold desc="Fluid display" defaultstate="collapsed">
-    private final List<FluidPixelEntity> pixels = new ArrayList<>();
+    private final List<PylonTextDisplay> pixels = new ArrayList<>();
     private static final int RESOLUTION = Settings.get(KEY).getOrThrow("display.resolution", Integer.class);
     private static final int PIXELS_PER_SIDE = 3 * RESOLUTION;
 
@@ -820,43 +822,36 @@ public final class SmelteryController extends SmelteryComponent
     private double cumulativeSeconds = 0;
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
         Location location = center.getLocation().add(-1, 0, -1);
-        Map<String, PylonEntity<?>> entities = new HashMap<>();
+        Map<String, PylonEntity> entities = new HashMap<>();
         int counter = 0;
         for (int x = 0; x < PIXELS_PER_SIDE; x++) {
             for (int z = 0; z < PIXELS_PER_SIDE; z++) {
                 Location relative = location.clone().add((double) x / RESOLUTION, 0, (double) z / RESOLUTION);
-                TextDisplay display = EntityUtils.spawnUnitSquareTextDisplay(relative, ColorUtils.METAL_GRAY);
-                display.setTransformationMatrix(
-                        TransformUtil.transformationToMatrix(display.getTransformation())
-                                .translateLocal(0, -1, 0) // move the origin so it will be correct after rotation
-                                .rotateLocalX((float) Math.toRadians(-90))
-                                .scaleLocal(1f / RESOLUTION)
-                );
-                display.setBrightness(new Display.Brightness(15, 15));
-                entities.put("pixel_" + counter++, new FluidPixelEntity(display));
+                PylonTextDisplay display = new TextDisplayBuilder()
+                        .transformToUnitSquare()
+                        .backgroundColor(ColorUtils.METAL_GRAY)
+                        .transformLocal(new TransformBuilder()
+                                .translate(0, -1, 0) // move the origin so it will be correct after rotation
+                                .rotate((float) Math.toRadians(-90), 0, 0)
+                                .scale(1f / RESOLUTION)
+                        )
+                        .brightness(new Display.Brightness(15, 15))
+                        .buildPacketBased(FLUID_PIXEL_KEY, relative);
+                entities.put("pixel_" + counter++, display);
             }
         }
         return entities;
     }
 
-    public @NotNull List<FluidPixelEntity> getPixels() {
+    public @NotNull List<PylonTextDisplay> getPixels() {
         if (pixels.isEmpty()) {
             for (int i = 0; i < PIXELS_PER_SIDE * PIXELS_PER_SIDE; i++) {
-                pixels.add(getHeldEntity(FluidPixelEntity.class, "pixel_" + i));
+                pixels.add(getHeldEntity(PylonTextDisplay.class, "pixel_" + i));
             }
         }
         return pixels;
-    }
-
-    public static final class FluidPixelEntity extends PylonEntity<TextDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("smeltery_fluid_pixel");
-
-        public FluidPixelEntity(@NotNull TextDisplay entity) {
-            super(KEY, entity);
-        }
     }
 
     private double lastHeight = 0;
@@ -870,11 +865,9 @@ public final class SmelteryController extends SmelteryComponent
         }
         double finalHeight = center.getY() + height * fill - 0.01;
 
-        List<FluidPixelEntity> pixels = getPixels();
+        List<PylonTextDisplay> pixels = getPixels();
         for (int i = 0; i < pixels.size(); i++) {
-            FluidPixelEntity pixel = pixels.get(i);
-            TextDisplay entity = pixel.getEntity();
-            if (!entity.isValid()) continue;
+            PylonTextDisplay pixel = pixels.get(i);
 
             int x = i % PIXELS_PER_SIDE;
             int z = (i / PIXELS_PER_SIDE) % PIXELS_PER_SIDE;
@@ -891,12 +884,12 @@ public final class SmelteryController extends SmelteryComponent
                     color.saturation(),
                     color.lightness() + value * LIGHTNESS_VARIATION
             );
-            entity.setBackgroundColor(newColor.toRgb());
+            pixel.setBackgroundColor(newColor.toRgb());
 
             if (lastHeight != finalHeight) {
-                Location location = entity.getLocation();
+                Location location = pixel.getLocation();
                 location.setY(finalHeight);
-                entity.teleportAsync(location);
+                pixel.setLocation(location);
             }
         }
         lastHeight = finalHeight;

@@ -43,7 +43,7 @@ public class FluidPipeConnector extends PylonBlock implements PylonEntityHolderB
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
         FluidConnectionPoint point = new FluidConnectionPoint(getBlock(), "connector", FluidConnectionPoint.Type.CONNECTOR);
         return Map.of(
                 "connector", FluidConnectionInteraction.make(point)

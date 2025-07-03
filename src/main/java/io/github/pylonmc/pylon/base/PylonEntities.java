@@ -8,9 +8,10 @@ import io.github.pylonmc.pylon.base.items.multiblocks.Grindstone;
 import io.github.pylonmc.pylon.base.items.multiblocks.Pedestal;
 import io.github.pylonmc.pylon.base.items.multiblocks.smelting.SmelteryController;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
+import io.github.pylonmc.pylon.core.entity.display.PylonTextDisplay;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Interaction;
-import org.bukkit.entity.ItemDisplay;
-import org.bukkit.entity.TextDisplay;
 
 public final class PylonEntities {
 
@@ -19,18 +20,18 @@ public final class PylonEntities {
     }
 
     public static void initialize() {
-        PylonEntity.register(Grindstone.GrindstoneItemEntity.KEY, ItemDisplay.class, Grindstone.GrindstoneItemEntity.class);
-        PylonEntity.register(Grindstone.GrindstoneBlockEntity.KEY, ItemDisplay.class, Grindstone.GrindstoneBlockEntity.class);
-        PylonEntity.register(FluidConnectionDisplay.KEY, ItemDisplay.class, FluidConnectionDisplay.class);
-        PylonEntity.register(FluidConnectionInteraction.KEY, Interaction.class, FluidConnectionInteraction.class);
-        PylonEntity.register(Pedestal.PedestalItemEntity.KEY, ItemDisplay.class, Pedestal.PedestalItemEntity.class);
-        PylonEntity.register(FluidFilter.FluidDisplay.KEY, ItemDisplay.class, FluidFilter.FluidDisplay.class);
-        PylonEntity.register(FluidFilter.MainDisplay.KEY, ItemDisplay.class, FluidFilter.MainDisplay.class);
-        PylonEntity.register(FluidPipeDisplay.KEY, ItemDisplay.class, FluidPipeDisplay.class);
-        PylonEntity.register(PortableFluidTank.FluidTankEntity.KEY, ItemDisplay.class, PortableFluidTank.FluidTankEntity.class);
-        PylonEntity.register(FluidValve.FluidValveDisplay.KEY, ItemDisplay.class, FluidValve.FluidValveDisplay.class);
-        PylonEntity.register(FluidMeter.FlowRateDisplay.KEY, TextDisplay.class, FluidMeter.FlowRateDisplay.class);
-        PylonEntity.register(FluidVoider.MainDisplay.KEY, ItemDisplay.class, FluidVoider.MainDisplay.class);
-        PylonEntity.register(SmelteryController.FluidPixelEntity.KEY, TextDisplay.class, SmelteryController.FluidPixelEntity.class);
+        PylonEntity.registerPacketBased(Grindstone.ITEM_ENTITY_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(Grindstone.BLOCK_ENTITY_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(FluidConnectionDisplay.KEY, EntityType.ITEM_DISPLAY, FluidConnectionDisplay.class);
+        PylonEntity.registerReal(FluidConnectionInteraction.KEY, Interaction.class, FluidConnectionInteraction.class);
+        PylonEntity.registerPacketBased(Pedestal.PEDESTAL_ITEM_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(FluidFilter.FluidDisplay.KEY, EntityType.ITEM_DISPLAY, FluidFilter.FluidDisplay.class);
+        PylonEntity.registerPacketBased(FluidFilter.MAIN_DISPLAY_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(FluidPipeDisplay.KEY, EntityType.ITEM_DISPLAY, FluidPipeDisplay.class);
+        PylonEntity.registerPacketBased(PortableFluidTank.FLUID_TANK_ENTITY_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(FluidValve.FluidValveDisplay.KEY, EntityType.ITEM_DISPLAY, FluidValve.FluidValveDisplay.class);
+        PylonEntity.registerPacketBased(FluidMeter.FlowRateDisplay.KEY, EntityType.TEXT_DISPLAY, FluidMeter.FlowRateDisplay.class);
+        PylonEntity.registerPacketBased(FluidVoider.MAIN_DISPLAY_KEY, EntityType.ITEM_DISPLAY, PylonItemDisplay.class);
+        PylonEntity.registerPacketBased(SmelteryController.FLUID_PIXEL_KEY, EntityType.TEXT_DISPLAY, PylonTextDisplay.class);
     }
 }

@@ -7,12 +7,12 @@ import io.github.pylonmc.pylon.core.block.context.BlockBreakContext;
 import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import lombok.Setter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -30,6 +30,8 @@ public class Pedestal extends PylonBlock implements PylonEntityHolderBlock, Pylo
 
     public static final NamespacedKey PEDESTAL_KEY = pylonKey("pedestal");
     public static final NamespacedKey MAGIC_PEDESTAL_KEY = pylonKey("magic_pedestal");
+
+    public static final NamespacedKey PEDESTAL_ITEM_KEY = pylonKey("pedestal_item");
 
     private static final NamespacedKey ROTATION_KEY = pylonKey("rotation");
     private static final NamespacedKey LOCKED_KEY = pylonKey("locked");
@@ -54,11 +56,11 @@ public class Pedestal extends PylonBlock implements PylonEntityHolderBlock, Pylo
     }
     
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        ItemDisplay display = new ItemDisplayBuilder()
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        PylonItemDisplay display = new ItemDisplayBuilder()
                 .transformation(transformBuilder().buildForItemDisplay())
-                .build(getBlock().getLocation().toCenterLocation());
-        return Map.of("item", new PedestalItemEntity(display));
+                .buildPacketBased(PEDESTAL_ITEM_KEY, getBlock().getLocation().toCenterLocation());
+        return Map.of("item", display);
     }
 
     public TransformBuilder transformBuilder() {
@@ -82,21 +84,21 @@ public class Pedestal extends PylonBlock implements PylonEntityHolderBlock, Pylo
 
         event.setCancelled(true);
 
-        ItemDisplay display = getHeldEntity(PedestalItemEntity.class, "item").getEntity();
+        PylonItemDisplay display = getItemDisplay();
 
         // rotate
         if (event.getPlayer().isSneaking()) {
             rotation += PI / 4;
-            display.setTransformationMatrix(transformBuilder().buildForItemDisplay());
+            display.setTransformation(transformBuilder().buildForItemDisplay());
             return;
         }
 
         // drop old item
-        ItemStack oldStack = display.getItemStack();
+        ItemStack oldStack = display.getItem();
         ItemStack newStack = event.getItem();
         if (!oldStack.getType().isAir()) {
-            display.getWorld().dropItem(display.getLocation().toCenterLocation().add(0, 0.7, 0), oldStack);
-            display.setItemStack(null);
+            display.getLocation().getWorld().dropItem(display.getLocation().toCenterLocation().add(0, 0.7, 0), oldStack);
+            display.setItem(ItemStack.empty());
             return;
         }
 
@@ -104,7 +106,7 @@ public class Pedestal extends PylonBlock implements PylonEntityHolderBlock, Pylo
         if (newStack != null) {
             ItemStack stackToInsert = newStack.clone();
             stackToInsert.setAmount(1);
-            display.setItemStack(stackToInsert);
+            display.setItem(stackToInsert);
             newStack.subtract();
         }
     }
@@ -112,19 +114,10 @@ public class Pedestal extends PylonBlock implements PylonEntityHolderBlock, Pylo
     @Override
     public void onBreak(@NotNull List<ItemStack> drops, @NotNull BlockBreakContext context) {
         PylonEntityHolderBlock.super.onBreak(drops, context);
-        drops.add(getItemDisplay().getItemStack());
+        drops.add(getItemDisplay().getItem());
     }
 
-    public ItemDisplay getItemDisplay() {
-        return getHeldEntity(PedestalItemEntity.class, "item").getEntity();
-    }
-
-    public static class PedestalItemEntity extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("pedestal_item");
-
-        public PedestalItemEntity(@NotNull ItemDisplay entity) {
-            super(KEY, entity);
-        }
+    public PylonItemDisplay getItemDisplay() {
+        return getHeldEntity(PylonItemDisplay.class, "item");
     }
 }

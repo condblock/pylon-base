@@ -69,7 +69,7 @@ public class ConnectingTask {
                 .brightness(15)
                 // transformation will be set later, make the block invisible now to prevent flash of white on place
                 .transformation(new TransformBuilder().scale(0))
-                .build(from.position().getLocation().toCenterLocation());
+                .buildReal(from.position().getLocation().toCenterLocation());
         this.to = from; // just in case recalculateTarget() in tick() does not get a new target, so target isn't null
         this.task = Bukkit.getScheduler().runTaskTimer(
                 PylonBase.getInstance(),

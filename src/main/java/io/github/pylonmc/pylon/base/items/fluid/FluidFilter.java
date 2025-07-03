@@ -13,6 +13,7 @@ import io.github.pylonmc.pylon.core.block.waila.WailaConfig;
 import io.github.pylonmc.pylon.core.config.PylonConfig;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;
@@ -20,12 +21,13 @@ import io.github.pylonmc.pylon.core.fluid.FluidManager;
 import io.github.pylonmc.pylon.core.fluid.PylonFluid;
 import io.github.pylonmc.pylon.core.util.PdcUtils;
 import io.github.pylonmc.pylon.core.util.PylonUtils;
+import me.tofaa.entitylib.wrapper.WrapperEntity;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -46,6 +48,8 @@ import static io.github.pylonmc.pylon.base.util.KeyUtils.pylonKey;
 public class FluidFilter extends PylonBlock implements PylonFluidIoBlock, PylonFluidBlock, PylonInteractableBlock {
 
     public static final NamespacedKey KEY = pylonKey("fluid_filter");
+
+    public static final NamespacedKey MAIN_DISPLAY_KEY = pylonKey("fluid_filter_main_display");
 
     public static final NamespacedKey FLUID_KEY = pylonKey("fluid");
     public static final NamespacedKey BUFFER_KEY = pylonKey("buffer");
@@ -87,15 +91,31 @@ public class FluidFilter extends PylonBlock implements PylonFluidIoBlock, PylonF
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        Map<String, PylonEntity<?>> entities = PylonFluidIoBlock.super.createEntities(context);
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        Map<String, PylonEntity> entities = PylonFluidIoBlock.super.createEntities(context);
 
         Preconditions.checkState(context instanceof BlockCreateContext.PlayerPlace, "Fluid valve can only be placed by a player");
         Player player = ((BlockCreateContext.PlayerPlace) context).getPlayer();
         Block block = context.getBlock();
 
-        entities.put("main", new MainDisplay(block, player));
-        entities.put("fluid", new FluidDisplay(block, player));
+        PylonItemDisplay mainDisplay = new ItemDisplayBuilder()
+                .material(MAIN_MATERIAL)
+                .transformation(new TransformBuilder()
+                        .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
+                        .scale(0.25, 0.25, 0.5)
+                )
+                .buildPacketBased(MAIN_DISPLAY_KEY, block.getLocation().toCenterLocation());
+
+        PylonItemDisplay fluidDisplay = new ItemDisplayBuilder()
+                .material(NO_FLUID_MATERIAL)
+                .transformation(new TransformBuilder()
+                        .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
+                        .scale(0.2, 0.3, 0.45)
+                )
+                .buildPacketBased(FluidDisplay.KEY, block.getLocation().toCenterLocation());
+
+        entities.put("main", mainDisplay);
+        entities.put("fluid", fluidDisplay);
 
         return entities;
     }
@@ -166,50 +186,22 @@ public class FluidFilter extends PylonBlock implements PylonFluidIoBlock, PylonF
         getFluidDisplay().setFluid(fluid);
     }
 
-    public static class MainDisplay extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("fluid_filter_main_display");
-
-        @SuppressWarnings("unused")
-        public MainDisplay(@NotNull ItemDisplay entity) {
-            super(entity);
-        }
-
-        public MainDisplay(@NotNull Block block, @NotNull Player player) {
-            super(KEY, new ItemDisplayBuilder()
-                    .material(MAIN_MATERIAL)
-                    .transformation(new TransformBuilder()
-                            .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
-                            .scale(0.25, 0.25, 0.5)
-                    )
-                    .build(block.getLocation().toCenterLocation())
-            );
-        }
-
-    }
-
-    public static class FluidDisplay extends PylonEntity<ItemDisplay> {
+    public static class FluidDisplay extends PylonItemDisplay {
 
         public static final NamespacedKey KEY = pylonKey("fluid_filter_fluid_display");
 
         @SuppressWarnings("unused")
-        public FluidDisplay(@NotNull ItemDisplay entity) {
-            super(entity);
+        public FluidDisplay(@NotNull WrapperEntity entity, @NotNull NamespacedKey key, @NotNull Location location) {
+            super(entity, key, location);
         }
 
-        public FluidDisplay(@NotNull Block block, @NotNull Player player) {
-            super(KEY, new ItemDisplayBuilder()
-                    .material(NO_FLUID_MATERIAL)
-                    .transformation(new TransformBuilder()
-                            .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
-                            .scale(0.2, 0.3, 0.45)
-                    )
-                    .build(block.getLocation().toCenterLocation())
-            );
+        @SuppressWarnings("unused")
+        public FluidDisplay(@NotNull WrapperEntity entity, @NotNull PersistentDataContainer pdc) {
+            super(entity, pdc);
         }
 
         public void setFluid(@Nullable PylonFluid fluid) {
-            getEntity().setItemStack(new ItemStack(fluid == null ? NO_FLUID_MATERIAL : fluid.getMaterial()));
+            setItem(new ItemStack(fluid == null ? NO_FLUID_MATERIAL : fluid.getMaterial()));
         }
     }
 }

@@ -10,6 +10,7 @@ import io.github.pylonmc.pylon.core.block.base.PylonSimpleMultiblock;
 import io.github.pylonmc.pylon.core.block.base.PylonTickingBlock;
 import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.event.PrePylonCraftEvent;
 import io.github.pylonmc.pylon.core.event.PylonCraftEvent;
 import io.github.pylonmc.pylon.core.guide.button.ItemButton;
@@ -23,7 +24,6 @@ import io.github.pylonmc.pylon.core.util.gui.GuiItems;
 import io.github.pylonmc.pylon.core.util.gui.unit.UnitFormat;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -101,14 +101,14 @@ public class MagicAltar extends PylonBlock implements PylonSimpleMultiblock, Pyl
 
         event.setCancelled(true);
 
-        ItemDisplay itemDisplay = getHeldEntity(Pedestal.PedestalItemEntity.class, "item").getEntity();
+        PylonItemDisplay itemDisplay = getHeldEntity(PylonItemDisplay.class, "item");
 
         // drop item if not processing and an item is already on the altar
-        ItemStack displayItem = itemDisplay.getItemStack();
+        ItemStack displayItem = itemDisplay.getItem();
         if (processingRecipe == null && !displayItem.getType().isAir()) {
             Location location = itemDisplay.getLocation().add(0, 0.5, 0);
             location.getWorld().dropItemNaturally(location, displayItem);
-            itemDisplay.setItemStack(new ItemStack(Material.AIR));
+            itemDisplay.setItem(new ItemStack(Material.AIR));
             return;
         }
 
@@ -121,7 +121,7 @@ public class MagicAltar extends PylonBlock implements PylonSimpleMultiblock, Pyl
         if (catalyst != null && processingRecipe == null) {
             List<ItemStack> ingredients = new ArrayList<>();
             for (Pedestal pedestal : getPedestals()) {
-                ingredients.add(pedestal.getItemDisplay().getItemStack());
+                ingredients.add(pedestal.getItemDisplay().getItem());
             }
 
             for (Recipe recipe : Recipe.RECIPE_TYPE.getRecipes()) {
@@ -132,7 +132,7 @@ public class MagicAltar extends PylonBlock implements PylonSimpleMultiblock, Pyl
 
                     ItemStack stackToInsert = catalyst.clone();
                     stackToInsert.setAmount(1);
-                    itemDisplay.setItemStack(stackToInsert);
+                    itemDisplay.setItem(stackToInsert);
                     catalyst.subtract();
                     startRecipe(recipe);
                     break;
@@ -193,7 +193,7 @@ public class MagicAltar extends PylonBlock implements PylonSimpleMultiblock, Pyl
 
         List<Pedestal> usedPedestals = getPedestals()
                 .stream()
-                .filter(pedestal -> !pedestal.getItemDisplay().getItemStack().getType().isAir())
+                .filter(pedestal -> !pedestal.getItemDisplay().getItem().getType().isAir())
                 .toList();
 
         // dust line animation
@@ -231,16 +231,16 @@ public class MagicAltar extends PylonBlock implements PylonSimpleMultiblock, Pyl
     }
 
     public void finishRecipe() {
-        ItemDisplay itemDisplay = getHeldEntity(Pedestal.PedestalItemEntity.class, "item").getEntity();
+        PylonItemDisplay itemDisplay = getHeldEntity(PylonItemDisplay.class, "item");
 
         for (Pedestal pedestal : getPedestals()) {
-            pedestal.getItemDisplay().setItemStack(null);
+            pedestal.getItemDisplay().setItem(null);
             pedestal.setLocked(false);
         }
 
         new PylonCraftEvent<>(Recipe.RECIPE_TYPE, getCurrentRecipe(), this).callEvent();
 
-        itemDisplay.setItemStack(getCurrentRecipe().result);
+        itemDisplay.setItem(getCurrentRecipe().result);
         processingRecipe = null;
 
         new ParticleBuilder(Particle.CAMPFIRE_COSY_SMOKE)

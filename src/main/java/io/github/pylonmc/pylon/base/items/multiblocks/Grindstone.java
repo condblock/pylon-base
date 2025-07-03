@@ -12,8 +12,9 @@ import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.config.Settings;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
-import io.github.pylonmc.pylon.core.entity.display.ItemDisplayBuilder;
-import io.github.pylonmc.pylon.core.entity.display.transform.TransformBuilder;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
+import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
+import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.event.PrePylonCraftEvent;
 import io.github.pylonmc.pylon.core.event.PylonCraftEvent;
 import io.github.pylonmc.pylon.core.guide.button.ItemButton;
@@ -31,7 +32,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -50,10 +50,11 @@ import java.util.Map;
 import static io.github.pylonmc.pylon.base.util.KeyUtils.pylonKey;
 import static io.github.pylonmc.pylon.core.util.ItemUtils.isPylonSimilar;
 
-
 public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, PylonInteractableBlock, PylonTickingBlock {
 
     public static final NamespacedKey KEY = pylonKey("grindstone");
+    public static final NamespacedKey ITEM_ENTITY_KEY = pylonKey("grindstone_item");
+    public static final NamespacedKey BLOCK_ENTITY_KEY = pylonKey("grindstone_block");
 
     public static final int TICK_RATE = Settings.get(KEY).getOrThrow("tick-rate", Integer.class);
     public static final int CYCLE_TIME_TICKS = Settings.get(KEY).getOrThrow("cycle-time-ticks", Integer.class);
@@ -91,23 +92,23 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        ItemDisplay itemDisplay = new ItemDisplayBuilder()
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        PylonItemDisplay itemDisplay = new ItemDisplayBuilder()
                 .transformation(new TransformBuilder()
                         .scale(0.3)
                         .translate(0, 0.15, 0)
                         .rotate(Math.PI / 2, 0, 0))
-                .build(getBlock().getLocation().toCenterLocation());
+                .buildPacketBased(ITEM_ENTITY_KEY, getBlock().getLocation().toCenterLocation());
 
-        ItemDisplay stoneDisplay = new ItemDisplayBuilder()
+        PylonItemDisplay stoneDisplay = new ItemDisplayBuilder()
                 .material(Material.SMOOTH_STONE_SLAB)
                 .transformation(new TransformBuilder()
                         .translate(0, 0.8, 0))
-                .build(getBlock().getLocation().toCenterLocation());
+                .buildPacketBased(BLOCK_ENTITY_KEY, getBlock().getLocation().toCenterLocation());
 
         return Map.of(
-                "item", new GrindstoneItemEntity(itemDisplay),
-                "block", new GrindstoneBlockEntity(stoneDisplay)
+                "item", itemDisplay,
+                "block", stoneDisplay
         );
     }
 
@@ -132,21 +133,21 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
             return;
         }
 
-        ItemDisplay itemDisplay = getItemDisplay();
-        ItemStack oldStack = itemDisplay.getItemStack();
+        PylonItemDisplay itemDisplay = getItemDisplay();
+        ItemStack oldStack = itemDisplay.getItem();
         ItemStack newStack = event.getItem();
 
         // drop old item
         if (!oldStack.getType().isAir()) {
             getBlock().getWorld().dropItem(getBlock().getLocation().toCenterLocation().add(0, 0.25, 0), oldStack);
-            itemDisplay.setItemStack(null);
+            itemDisplay.setItem(ItemStack.empty());
             return;
         }
 
         // insert new item
         if (newStack != null) {
             ItemStack stackToInsert = newStack.clone();
-            itemDisplay.setItemStack(stackToInsert);
+            itemDisplay.setItem(stackToInsert);
             newStack.setAmount(0);
         }
     }
@@ -154,7 +155,7 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
     @Override
     public void onBreak(@NotNull List<ItemStack> drops, @NotNull BlockBreakContext context) {
         PylonSimpleMultiblock.super.onBreak(drops, context);
-        drops.add(getItemDisplay().getItemStack());
+        drops.add(getItemDisplay().getItem());
     }
 
     @Override
@@ -177,7 +178,7 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
             if (cyclesRemaining <= 0) {
 
                 // rotate stone back to starting rotation
-                getStoneDisplay().setTransformationMatrix(new TransformBuilder()
+                getStoneDisplay().setTransformation(new TransformBuilder()
                         .translate(0, 0.5, 0)
                         .buildForItemDisplay());
                 getStoneDisplay().setInterpolationDelay(0);
@@ -195,12 +196,12 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
 
         if (cycleTicksRemaining == CYCLE_TIME_TICKS) {
             // put top stone down
-            getStoneDisplay().setTransformationMatrix(new TransformBuilder()
+            getStoneDisplay().setTransformation(new TransformBuilder()
                     .translate(0, 0.5, 0)
                     .buildForItemDisplay());
         } else {
             // rotate stone
-            getStoneDisplay().setTransformationMatrix(new TransformBuilder()
+            getStoneDisplay().setTransformation(new TransformBuilder()
                     .translate(0, 0.5, 0)
                     .rotate(0, 2 * Math.PI * ((double) cycleTicksRemaining / CYCLE_TIME_TICKS), 0)
                     .buildForItemDisplay());
@@ -224,7 +225,7 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
             return;
         }
 
-        ItemStack input = getItemDisplay().getItemStack();
+        ItemStack input = getItemDisplay().getItem();
         if (input.getType().isAir()) {
             return;
         }
@@ -235,7 +236,7 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
                     continue;
                 }
 
-                getItemDisplay().setItemStack(input.subtract(recipe.input.getAmount()));
+                getItemDisplay().setItem(input.subtract(recipe.input.getAmount()));
                 this.recipe = recipe.key;
                 cyclesRemaining = recipe.cycles;
                 cycleTicksRemaining = CYCLE_TIME_TICKS;
@@ -253,7 +254,7 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
         new PylonCraftEvent<>(Recipe.RECIPE_TYPE, recipe, this).callEvent();
 
         // lift stone up
-        getStoneDisplay().setTransformationMatrix(new TransformBuilder()
+        getStoneDisplay().setTransformation(new TransformBuilder()
                 .translate(0, 0.8, 0)
                 .buildForItemDisplay());
         getStoneDisplay().setInterpolationDelay(0);
@@ -262,30 +263,12 @@ public class Grindstone extends PylonBlock implements PylonSimpleMultiblock, Pyl
         this.recipe = null;
     }
 
-    public ItemDisplay getItemDisplay() {
-        return getHeldEntity(GrindstoneItemEntity.class, "item").getEntity();
+    public PylonItemDisplay getItemDisplay() {
+        return getHeldEntity(PylonItemDisplay.class, "item");
     }
 
-    public ItemDisplay getStoneDisplay() {
-        return getHeldEntity(GrindstoneBlockEntity.class, "block").getEntity();
-    }
-
-    public static class GrindstoneItemEntity extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("grindstone_item");
-
-        public GrindstoneItemEntity(@NotNull ItemDisplay entity) {
-            super(KEY, entity);
-        }
-    }
-
-    public static class GrindstoneBlockEntity extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("grindstone_block");
-
-        public GrindstoneBlockEntity(@NotNull ItemDisplay entity) {
-            super(KEY, entity);
-        }
+    public PylonItemDisplay getStoneDisplay() {
+        return getHeldEntity(PylonItemDisplay.class, "block");
     }
 
     public record Recipe(

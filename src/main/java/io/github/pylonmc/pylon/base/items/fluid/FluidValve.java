@@ -11,19 +11,22 @@ import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.block.waila.WailaConfig;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.EntityStorage;
+import io.github.pylonmc.pylon.core.entity.PacketPylonEntity;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;
 import io.github.pylonmc.pylon.core.fluid.FluidManager;
 import io.github.pylonmc.pylon.core.util.PylonUtils;
+import me.tofaa.entitylib.wrapper.WrapperEntity;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Display;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
@@ -91,14 +94,23 @@ public class FluidValve extends PylonBlock implements PylonFluidIoBlock, PylonFl
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        Map<String, PylonEntity<?>> entities = PylonFluidIoBlock.super.createEntities(context);
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        Map<String, PylonEntity> entities = PylonFluidIoBlock.super.createEntities(context);
 
         Block block = context.getBlock();
         Preconditions.checkState(context instanceof BlockCreateContext.PlayerPlace, "Fluid valve can only be placed by a player");
         Player player = ((BlockCreateContext.PlayerPlace) context).getPlayer();
 
-        entities.put("main", new FluidValveDisplay(block, player));
+        PacketPylonEntity display = new ItemDisplayBuilder()
+                .material(MAIN_MATERIAL)
+                .brightness(BRIGHTNESS_OFF)
+                .transformation(new TransformBuilder()
+                        .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
+                        .scale(0.25, 0.25, 0.5)
+                )
+                .buildPacketBased(FluidValveDisplay.KEY, block.getLocation().toCenterLocation());
+
+        entities.put("main", display);
 
         return entities;
     }
@@ -143,29 +155,22 @@ public class FluidValve extends PylonBlock implements PylonFluidIoBlock, PylonFl
         return getHeldEntity(FluidConnectionInteraction.class, "west").getPoint();
     }
 
-    public static class FluidValveDisplay extends PylonEntity<ItemDisplay> {
+    public static class FluidValveDisplay extends PylonItemDisplay {
 
         public static final NamespacedKey KEY = pylonKey("fluid_valve_display");
 
         @SuppressWarnings("unused")
-        public FluidValveDisplay(@NotNull ItemDisplay entity) {
-            super(entity);
+        public FluidValveDisplay(@NotNull WrapperEntity entity, @NotNull NamespacedKey key, @NotNull Location location) {
+            super(entity, key, location);
         }
 
-        public FluidValveDisplay(@NotNull Block block, @NotNull Player player) {
-            super(KEY, new ItemDisplayBuilder()
-                    .material(MAIN_MATERIAL)
-                    .brightness(BRIGHTNESS_OFF)
-                    .transformation(new TransformBuilder()
-                            .lookAlong(PylonUtils.rotateToPlayerFacing(player, BlockFace.EAST, false).getDirection().toVector3d())
-                            .scale(0.25, 0.25, 0.5)
-                    )
-                    .build(block.getLocation().toCenterLocation())
-            );
+        @SuppressWarnings("unused")
+        public FluidValveDisplay(@NotNull WrapperEntity entity, @NotNull PersistentDataContainer pdc) {
+            super(entity, pdc);
         }
 
         public void setEnabled(boolean enabled) {
-            getEntity().setBrightness(new Display.Brightness(0, enabled ? BRIGHTNESS_ON : BRIGHTNESS_OFF));
+            setBrightness(new Display.Brightness(0, enabled ? BRIGHTNESS_ON : BRIGHTNESS_OFF));
         }
     }
 }

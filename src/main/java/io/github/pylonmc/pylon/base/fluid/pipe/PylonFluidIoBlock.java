@@ -24,9 +24,9 @@ public interface PylonFluidIoBlock extends PylonEntityHolderBlock, PylonFluidBlo
 
     @Override
     @MustBeInvokedByOverriders
-    default @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
+    default @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
         List<SimpleFluidConnectionPoint> connectionPoints = createFluidConnectionPoints(context);
-        Map<String, PylonEntity<?>> entities = new HashMap<>(connectionPoints.size());
+        Map<String, PylonEntity> entities = new HashMap<>(connectionPoints.size());
         Player player = null;
         if (context instanceof BlockCreateContext.PlayerPlace ctx) {
             player = ctx.getPlayer();

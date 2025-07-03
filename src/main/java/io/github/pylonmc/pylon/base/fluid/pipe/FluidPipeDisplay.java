@@ -6,16 +6,16 @@ import io.github.pylonmc.pylon.base.fluid.pipe.connection.connecting.ConnectingS
 import io.github.pylonmc.pylon.base.items.fluid.FluidPipe;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
 import io.github.pylonmc.pylon.core.entity.EntityStorage;
-import io.github.pylonmc.pylon.core.entity.PylonEntity;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.LineBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidManager;
 import io.github.pylonmc.pylon.core.item.PylonItem;
 import lombok.Getter;
+import me.tofaa.entitylib.wrapper.WrapperEntity;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -28,7 +28,7 @@ import java.util.UUID;
 import static io.github.pylonmc.pylon.base.util.KeyUtils.pylonKey;
 
 
-public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
+public class FluidPipeDisplay extends PylonItemDisplay {
 
     public static final NamespacedKey KEY = pylonKey("fluid_pipe_display");
 
@@ -37,15 +37,20 @@ public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
     private static final NamespacedKey FROM_KEY = pylonKey("from");
     private static final NamespacedKey TO_KEY = pylonKey("to");
 
-    @Getter private final FluidPipe pipe;
-    private final int amount;
-    private final UUID from;
-    private final UUID to;
+    @Getter private FluidPipe pipe;
+    private int amount;
+    private UUID from;
+    private UUID to;
+
+    @SuppressWarnings("unused")
+    public FluidPipeDisplay(@NotNull WrapperEntity entity, @NotNull NamespacedKey key, @NotNull Location location) {
+        super(entity, key, location);
+    }
 
     @SuppressWarnings({"unused", "DataFlowIssue"})
-    public FluidPipeDisplay(@NotNull ItemDisplay entity) {
-        super(entity);
-        PersistentDataContainer pdc = entity.getPersistentDataContainer();
+    public FluidPipeDisplay(@NotNull WrapperEntity entity, @NotNull PersistentDataContainer pdc) {
+        super(entity, pdc);
+
         // will fail to load if schema not found; no way around this
         pipe = (FluidPipe) PylonItem.fromStack(pdc.get(PIPE_KEY, PylonSerializers.ITEM_STACK));
         this.amount = pdc.get(AMOUNT_KEY, PylonSerializers.INTEGER);
@@ -67,28 +72,16 @@ public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
         });
     }
 
-    public FluidPipeDisplay(
-            @NotNull FluidPipe pipe,
-            int amount,
-            @NotNull FluidConnectionInteraction from,
-            @NotNull FluidConnectionInteraction to
-    ) {
-        super(KEY, makeDisplay(pipe, from, to));
-        this.pipe = pipe;
-        this.amount = amount;
-        this.from = from.getUuid();
-        this.to = to.getUuid();
-    }
-
     @Override
     public void write(@NotNull PersistentDataContainer pdc) {
+        super.write(pdc);
         pdc.set(PIPE_KEY, PylonSerializers.ITEM_STACK, pipe.getStack());
         pdc.set(AMOUNT_KEY, PylonSerializers.INTEGER, amount);
         pdc.set(FROM_KEY, PylonSerializers.UUID, from);
         pdc.set(TO_KEY, PylonSerializers.UUID, to);
     }
 
-    private static @NotNull ItemDisplay makeDisplay(
+    private static @NotNull FluidPipeDisplay makeDisplay(
             @NotNull FluidPipe pipe,
             @NotNull FluidConnectionInteraction from,
             @NotNull FluidConnectionInteraction to
@@ -102,7 +95,7 @@ public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
         Vector3f fromOffset = centerLocation.clone().subtract(fromLocation).toVector().toVector3f();
         Vector3f toOffset = centerLocation.clone().subtract(toLocation).toVector().toVector3f();
 
-        return new ItemDisplayBuilder()
+        return (FluidPipeDisplay) new ItemDisplayBuilder()
                 .transformation(new LineBuilder()
                         .from(fromOffset)
                         .to(toOffset)
@@ -111,7 +104,7 @@ public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
                         .buildForItemDisplay()
                 )
                 .material(pipe.material)
-                .build(centerLocation);
+                .buildPacketBased(KEY, centerLocation);
     }
 
     /**
@@ -123,7 +116,11 @@ public class FluidPipeDisplay extends PylonEntity<ItemDisplay> {
             @NotNull FluidConnectionInteraction from,
             @NotNull FluidConnectionInteraction to
     ) {
-        FluidPipeDisplay display = new FluidPipeDisplay(pipe, amount, from, to);
+        FluidPipeDisplay display = makeDisplay(pipe, from, to);
+        display.pipe = pipe;
+        display.amount = amount;
+        display.from = from.getUuid();
+        display.to = to.getUuid();
         EntityStorage.add(display);
         return display;
     }

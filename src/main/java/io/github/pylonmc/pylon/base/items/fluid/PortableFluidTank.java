@@ -11,8 +11,9 @@ import io.github.pylonmc.pylon.core.block.context.BlockCreateContext;
 import io.github.pylonmc.pylon.core.block.context.BlockItemContext;
 import io.github.pylonmc.pylon.core.block.waila.WailaConfig;
 import io.github.pylonmc.pylon.core.datatypes.PylonSerializers;
+import io.github.pylonmc.pylon.core.entity.PacketPylonEntity;
 import io.github.pylonmc.pylon.core.entity.PylonEntity;
-import io.github.pylonmc.pylon.core.entity.display.builder.ItemDisplayBuilder;
+import io.github.pylonmc.pylon.core.entity.display.PylonItemDisplay;
 import io.github.pylonmc.pylon.core.entity.display.builder.transform.TransformBuilder;
 import io.github.pylonmc.pylon.core.fluid.FluidConnectionPoint;
 import io.github.pylonmc.pylon.core.fluid.PylonFluid;
@@ -33,7 +34,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -124,6 +124,8 @@ public class PortableFluidTank extends PylonBlock implements PylonFluidIoBlock, 
     public static final NamespacedKey PORTABLE_FLUID_TANK_WOOD_KEY =  pylonKey("portable_fluid_tank_wood");
     public static final NamespacedKey PORTABLE_FLUID_TANK_COPPER_KEY =  pylonKey("portable_fluid_tank_copper");
 
+    public static final NamespacedKey FLUID_TANK_ENTITY_KEY = pylonKey("portable_fluid_tank_entity");
+
     private static final NamespacedKey FLUID_AMOUNT_KEY = pylonKey("fluid_amount");
     private static final NamespacedKey FLUID_TYPE_KEY = pylonKey("fluid_type");
 
@@ -164,11 +166,14 @@ public class PortableFluidTank extends PylonBlock implements PylonFluidIoBlock, 
     }
 
     @Override
-    public @NotNull Map<String, PylonEntity<?>> createEntities(@NotNull BlockCreateContext context) {
-        Map<String, PylonEntity<?>> entities = PylonFluidIoBlock.super.createEntities(context);
+    public @NotNull Map<String, PylonEntity> createEntities(@NotNull BlockCreateContext context) {
+        Map<String, PylonEntity> entities = PylonFluidIoBlock.super.createEntities(context);
 
-        ItemDisplay fluidDisplay = new ItemDisplayBuilder().build(getBlock().getLocation().toCenterLocation());
-        entities.put("fluid", new FluidTankEntity(fluidDisplay));
+        PylonEntity fluidDisplay = PacketPylonEntity.spawn(
+                FLUID_TANK_ENTITY_KEY,
+                getBlock().getLocation().toCenterLocation()
+        );
+        entities.put("fluid", fluidDisplay);
 
         return entities;
     }
@@ -215,9 +220,9 @@ public class PortableFluidTank extends PylonBlock implements PylonFluidIoBlock, 
     public void setFluid(@Nullable PylonFluid fluid) {
         this.fluidType = fluid;
 
-        ItemDisplay display = getFluidDisplay();
+        PylonItemDisplay display = getFluidDisplay();
         if (display != null) {
-            display.setItemStack(fluid == null ? null : new ItemStack(fluid.getMaterial()));
+            display.setItem(fluid == null ? ItemStack.empty() : new ItemStack(fluid.getMaterial()));
         }
     }
 
@@ -234,21 +239,17 @@ public class PortableFluidTank extends PylonBlock implements PylonFluidIoBlock, 
 
     public void updateFluidDisplayHeight() {
         float scale = (float) (0.9F * fluidAmount / capacity);
-        ItemDisplay display = getFluidDisplay();
+        PylonItemDisplay display = getFluidDisplay();
         if (display != null) {
-            display.setTransformationMatrix(new TransformBuilder()
+            display.setTransformation(new TransformBuilder()
                     .translate(0.0, -0.45 + scale / 2, 0.0)
                     .scale(0.9, scale, 0.9)
                     .buildForItemDisplay());
         }
     }
 
-    private @Nullable ItemDisplay getFluidDisplay() {
-        FluidTankEntity fluidTankEntity = getHeldEntity(FluidTankEntity.class, "fluid");
-        if (fluidTankEntity == null) {
-            return null;
-        }
-        return fluidTankEntity.getEntity();
+    private @Nullable PylonItemDisplay getFluidDisplay() {
+        return getHeldEntity(PylonItemDisplay.class, "fluid");
     }
 
     @Override
@@ -354,15 +355,6 @@ public class PortableFluidTank extends PylonBlock implements PylonFluidIoBlock, 
                 item.subtract();
                 event.getPlayer().give(finalNewItemStack);
             }, 0);
-        }
-    }
-
-    public static class FluidTankEntity extends PylonEntity<ItemDisplay> {
-
-        public static final NamespacedKey KEY = pylonKey("fluid_tank_entity");
-
-        public FluidTankEntity(@NotNull ItemDisplay entity) {
-            super(KEY, entity);
         }
     }
 }
