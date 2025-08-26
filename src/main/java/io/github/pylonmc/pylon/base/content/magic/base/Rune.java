@@ -80,19 +80,15 @@ public abstract class Rune extends PylonItem {
                 return;
             }
 
-            // Fix #155 - Fireproof rune only checks proximity at the moment it's dropped
             // Force run synchronously for entity handling
-            PylonBase.runSyncTimer(task -> {
-                if (runeEntity.isDead() || !runeEntity.isValid()) {
-                    task.cancel();
+            PylonBase.runSync(() -> {
+                Block lookingAt = player.getTargetBlockExact((int) Math.ceil(BaseConfig.RUNE_CHECK_RANGE), FluidCollisionMode.NEVER);
+                if (lookingAt == null) {
+                    // The player may drop runes in the sky, skip it.
                     return;
                 }
 
-                if (!runeEntity.isOnGround()) {
-                    return;
-                }
-
-                Collection<Item> nearbyEntities = player.getWorld().getNearbyEntitiesByType(Item.class, runeEntity.getLocation(), BaseConfig.RUNE_CHECK_RANGE, item -> rune.isApplicableToTarget(event, runeStack, item.getItemStack()));
+                Collection<Item> nearbyEntities = player.getWorld().getNearbyEntitiesByType(Item.class, lookingAt.getLocation(), BaseConfig.RUNE_CHECK_RANGE, item -> rune.isApplicableToTarget(event, runeStack, item.getItemStack()));
                 Item targetEntity = nearbyEntities
                         .stream()
                         .findFirst()
@@ -109,7 +105,7 @@ public abstract class Rune extends PylonItem {
                 rune.onContactItem(event, runeStack, target);
                 runeEntity.setItemStack(runeStack);
                 targetEntity.setItemStack(target);
-            }, 1, 2);
+            });
         }
     }
 }

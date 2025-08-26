@@ -11,7 +11,6 @@ import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -19,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 import java.util.Set;
-import java.util.function.Consumer;
 
 @SuppressWarnings("UnstableApiUsage")
 public class PylonBase extends JavaPlugin implements PylonAddon {
@@ -70,7 +68,8 @@ public class PylonBase extends JavaPlugin implements PylonAddon {
         return Material.COPPER_INGOT;
     }
 
-    public static void runSyncTimer(@NotNull Consumer<BukkitTask> task, long delay, long period) {
-        Bukkit.getScheduler().runTaskTimer(instance, task, delay, period);
+    @NotNull
+    public static BukkitTask runSync(@NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTask(instance, runnable);
     }
 }

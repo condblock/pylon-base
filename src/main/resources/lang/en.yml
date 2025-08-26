@@ -1309,8 +1309,7 @@ message:
     working_with_reduced_efficiency: "<green>Working with reduced efficiency"
     no_sunlight: "<red>No sunlight"
   fireproof_result:
-    tooltip: "<red><bold>Fire-proofed"
-    success: "<red>Your item has been fire-proofed"
+    success: "Your item has been fire-proofed"
 
 gui:
   fluid-selector-title: "Select Fluid"
