@@ -1766,10 +1766,11 @@ public final class BaseItems {
     }
 
 
-    public static final ItemStack CLEANSING_POTION = ItemStackBuilder.pylonItem(Material.SPLASH_POTION, BaseKeys.CLEANSING_POTION)
+    public static final ItemStack CLEANSING_POTION = ItemStackBuilder.pylonItem(Material.GLASS_BOTTLE, BaseKeys.CLEANSING_POTION)
+            .set(DataComponentTypes.ITEM_MODEL, Material.SPLASH_POTION.getKey())
             .set(DataComponentTypes.POTION_CONTENTS, PotionContents.potionContents()
-                    .customColor(Color.FUCHSIA)
-                    .build())
+                    .customColor(Color.FUCHSIA))
+            .set(DataComponentTypes.MAX_STACK_SIZE, 1)
             .build();
     static {
         PylonItem.register(CleansingPotion.class, CLEANSING_POTION);
