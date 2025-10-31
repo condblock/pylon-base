@@ -528,11 +528,13 @@ item:
     lore: <arrow> 화려하지만 투박한 금색과 붉은색의 혼합물입니다
   shimmer_dust_3:
     name: 광채 가루 III
-    lore: <arrow> 어떤 종류의 힘이 입자들을 결합시킵니다.
+    lore: |-
+      <arrow> 어떤 종류의 힘이 입자들을 결합시킵니다.
       <arrow> 입자가 다른 입자들로부터 멀어질수록, 결합력이 강해집니다...
   shimmer_skull:
     name: <white>광채 해골
-    lore: <arrow> 광채가 위더 스켈레톤 해골에 주입되었습니다.
+    lore: |-
+      <arrow> 광채가 위더 스켈레톤 해골에 주입되었습니다.
       <arrow> 단순히 반짝이기만 하는 것이 아닌 것 같습니다...
   smeltery_burner:
     name: 제련소 가열기
