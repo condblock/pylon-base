@@ -139,6 +139,41 @@ item:
       <arrow> 맞으면 강력하게 폭발하고 주변을 불태웁니다
       <arrow> <attr>폭발 세기:</attr> %explosive-power%
 
+  iron_bloom:
+    name: "철 블룸"
+
+  wrought_iron:
+    name: "연철"
+
+  tongs:
+    name: "집게"
+    lore: |-
+      <arrow> 철 블룸을 수로에서 안전하게 꺼내는 데 사용됩니다
+      <arrow> 또한 철 블룸 작업에도 사용됩니다
+
+  bloomery:
+    name: "수로"
+    lore: |-
+      <arrow> 강철을 녹여 해면철을 만드는 장치입니다
+      <arrow> <insn>석고 가루를 뿌린 석탄 블록에 불을 붙여</insn> 만듭니다
+      <arrow> <insn>오른쪽 클릭</insn>으로 아이템을 삽입합니다
+      <arrow> <insn>집게를 들고 오른쪽 클릭</insn>으로 아이템을 안전하게 꺼냅니다
+      
+      <u>구성 요소</u>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.bloomery.name></yellow>
+      <diamond> 4x <yellow><lang:pylon.pylonbase.item.refractory_bricks.name></yellow>
+
+  bronze_anvil:
+    name: "청동 모루"
+    lore: |-
+      <arrow> 철 블룸으로 연철을 만드는 데 사용됩니다
+      <arrow> 목표는 블룸을 "일반적인" 모양으로 두드리는 것입니다
+      <arrow> <insn>오른쪽 클릭</insn>으로 모루에 아이템을 놓습니다
+      <arrow> 망치를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 짧게/넓게 만듭니다
+      <arrow> <lang:pylon.pylonbase.item.tongs.name>를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 더 길게/좁게 만듭니다
+      <arrow> 모양의 변화 정도는 온도에 비례합니다
+      <arrow> 온도가 0이고 블룸의 모양이 충분히 잡히면 <lang:pylon.pylonbase.item.wrought_iron>이 튀어나옵니다
+
   bronze_axe:
     name: 청동 도끼
 
@@ -344,7 +379,7 @@ item:
       <arrow> 유체에서 아이템을 분리할 수 있습니다
       <arrow> <insn>오른쪽 클릭</insn>으로 보관함 열기
     waila: 여과기%info%
-    
+
   fluid_voider_1:
     name: 유체 제거기 <light_purple>I
     lore: |-
@@ -476,6 +511,9 @@ item:
 
   iron_sheet:
     name: 철 판
+
+  sponge_iron:
+    name: "해면철"
 
   loupe:
     name: 루페
@@ -651,7 +689,8 @@ item:
 
   shimmer_dust_1:
     name: 광채 가루 I
-    lore: <arrow> 달빛에 노출되면 부자연스럽게 반짝입니다
+    lore: |-
+      <arrow> 달빛에 노출되면 부자연스럽게 반짝입니다
 
   shimmer_dust_2:
     name: 광채 가루 II
@@ -661,8 +700,7 @@ item:
   shimmer_dust_3:
     name: 광채 가루 III
     lore: |-
-      <arrow> 어떤 종류의 힘이 입자들을 결합시킵니다.
-      <arrow> 입자가 다른 입자들로부터 멀어질수록, 결합력이 강해집니다...
+      <arrow> 어떤 종류의 힘이 입자들을 결합시킵니다. 입자가 다른 입자들로부터 멀어질수록, 결합력이 강해집니다...
 
   shimmer_skull:
     name: <white>광채 해골
@@ -829,7 +867,7 @@ item:
       <arrow> 건설된 맷돌 밑에 설치하세요
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
-      
+
   hydraulic_mixing_attachment:
     name: 유압 혼합 장치
     lore: |-
@@ -1013,51 +1051,58 @@ item:
   fluid_tank_casing_wood:
     name: 나무 유체 탱크 케이싱
     lore: |-
-      <star> 멀티블록 구성 요소
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "나무 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_copper:
     name: 구리 유체 탱크 케이싱
     lore: |-
-      <star> 멀티블록 구성 요소
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "구리 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_tin:
     name: 주석 유체 탱크 케이싱
     lore: |-
-      <star> Fluid Tank multiblock component
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "주석 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_iron:
     name: 철 유체 탱크 케이싱
     lore: |-
-      <star> Fluid Tank component
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "철 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_bronze:
     name: Bronze 유체 탱크 케이싱
     lore: |-
-      <star> Fluid Tank multiblock component
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "청동 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_igneous_composite:
     name: 내열 유체 탱크 케이싱
     lore: |-
-      <star> Fluid Tank multiblock component
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    waila: "내열 유체 탱크 케이싱 %info%"
 
   fluid_tank_casing_steel:
     name: 강철 유체 탱크 케이싱
     lore: |-
-      <star> Fluid Tank multiblock component
+      <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
       <arrow> <attr>한계 온도:</attr> %temperatures%
+    
 
   manual_core_drill_lever:
     name: 수동 코어 드릴 레버
@@ -1296,6 +1341,7 @@ fluid:
   slurry: <gray>슬러리
   slurry_coal: <gray>석탄 슬러리
   slurry_carbon: <gray>탄소 슬러리
+  slurry_sponge_iron: "<gray>해면철 슬러리"
   slurry_redstone: <red>레드스톤 슬러리
   slurry_raw_copper: <#b5591b>구리 원석 슬러리
   slurry_raw_gold: <gold>금 원석 슬러리
@@ -1354,6 +1400,7 @@ research:
   bronze_equipment: <#bc7f4d>청동 장비
   fireproofing: <#ad2e2e>내화
   hydraulic_automation: <#446be2>유압유 자동화
+  hydraulic_combat: "<#5297ff>유압 전투"
   hydraulic_purification: <#2e7df4>유압유 정화
   large_scale_hydraulic_purification: <#77a9f4>대규모 유압유 정화
   hydraulic_drilling: <#96d4e0>유압 드릴
@@ -1393,6 +1440,7 @@ guide:
     smelting: 제련
     machines: 기계
     building: 건축
+    creative_items: "크리에이티브 아이템"
     magic: 마법
   recipe:
     grindstone:
@@ -1433,8 +1481,8 @@ message:
     disabled: 비활성화
   elevator:
     none_within_range:
-      above: <red>범위 내에 엘리베이터가 없습니다
-      below: <red>범위 내에 엘리베이터가 없습니다
+      above: <red>위쪽 범위 내에 엘리베이터가 없습니다
+      below: <red>아래쪽 범위 내에 엘리베이터가 없습니다
   hydraulic_status:
     not_enough_hydraulic_fluid: <red>유압유가 모자랍니다
     dirty_hydraulic_fluid_buffer_full: <red>오염된 윤활윺가 가득 찼습니다
