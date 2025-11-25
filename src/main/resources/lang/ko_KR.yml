@@ -110,8 +110,8 @@ item:
   dough:
     name: "반죽"
 
-  enriched_netherrack:
-    name: 농축된 네더랙
+  enriched_soul_soil:
+    name: 농축된 영혼 흙
     lore: |-
       <arrow> 네더랙보다 더 밝고 뜨겁게 타오릅니다
 
@@ -154,20 +154,21 @@ item:
   bloomery:
     name: "수로"
     lore: |-
+      <star> 멀티블록
       <arrow> 강철을 녹여 해면철을 만드는 장치입니다
       <arrow> <insn>석고 가루를 뿌린 석탄 블록에 불을 붙여</insn> 만듭니다
       <arrow> <insn>오른쪽 클릭</insn>으로 아이템을 삽입합니다
       <arrow> <insn>집게를 들고 오른쪽 클릭</insn>으로 아이템을 안전하게 꺼냅니다
       
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.bloomery.name></yellow>
-      <diamond> 4x <yellow><lang:pylon.pylonbase.item.refractory_bricks.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.bloomery.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.pylonbase.item.refractory_bricks.name/></yellow>
 
   bronze_anvil:
     name: "청동 모루"
     lore: |-
       <arrow> 철 블룸으로 연철을 만드는 데 사용됩니다
-      <arrow> 목표는 블룸을 "일반적인" 모양으로 두드리는 것입니다
+      <arrow> 목표는 블룸을 "일반적인" 모양이 되도록 두드리는 것입니다
       <arrow> <insn>오른쪽 클릭</insn>으로 모루에 아이템을 놓습니다
       <arrow> 망치를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 짧게/넓게 만듭니다
       <arrow> <lang:pylon.pylonbase.item.tongs.name>를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 더 길게/좁게 만듭니다
@@ -559,8 +560,7 @@ item:
     lore: |-
       <arrow> 가마솥에 아이템을 넣고 <insn>오른쪽 클릭</insn>하여 섞을 수 있습니다
       <arrow> 작동하려면 밑에 불이 필요합니다
-      <arrow> 일부 조합법은 <white>농축된 네더랙</white> 위의 불이 필요합니다
-      <arrow> 일반 가마솥처럼 사용할 수 있습니다
+      <arrow> 일부 조합법은 <white><lang:pylon.pylonbase.item.enriched_soul_soil.name></white> 위의 불이 필요합니다
     waila: 혼합용 가마솥 %info%
 
   monster_jerky:
@@ -668,6 +668,7 @@ item:
     name: 내화 벽돌
     lore: |-
       <star> 제련소 멀티블록 구성 요소
+      <star> 수로 멀티블록 구성 요소
       <arrow> 가장 저렴하고 기본적인 제련소 구성 요소입니다
 
   research_pack_1:
@@ -1032,7 +1033,7 @@ item:
   fireproof_rune:
     name: 내화의 룬
     lore: |-
-      <arrow> 농축된 네더랙의 원리를 반대로 적용해서 아이템이 타지 않게 합니다
+      <arrow> <lang:pylon.pylonbase.item.enriched_soul_soil.name>의 원리를 반대로 적용해서 아이템이 타지 않게 합니다
       <arrow> <insn>룬과 아이템을 떨어뜨려서</insn> 룬을 아이템에 적용합니다
 
   fluid_tank:
@@ -1508,6 +1509,7 @@ message:
 
 gui:
   fluid-selector-title: 유체를 선택하세요
+  portable-dustbin: "휴대용 쓰레기통"
   status:
     name: 상태
     toggle: <insn>클릭</insn>해서 전환
