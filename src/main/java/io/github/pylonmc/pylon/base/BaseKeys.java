@@ -12,6 +12,7 @@ public class BaseKeys {
 
     public static final NamespacedKey COAL_DUST = baseKey("coal_dust");
     public static final NamespacedKey CARBON = baseKey("carbon");
+    public static final NamespacedKey CHARCOAL_BLOCK = baseKey("charcoal_block");
 
     public static final NamespacedKey SULFUR = baseKey("sulfur");
 
@@ -294,4 +295,9 @@ public class BaseKeys {
     public static final NamespacedKey SOULBOUND_RUNE = baseKey("soulbound_rune");
 
     public static final NamespacedKey DIESEL_PIPE_BENDER = baseKey("diesel_pipe_bender");
+
+    public static final NamespacedKey CARGO_BUFFER = baseKey("cargo_buffer");
+    public static final NamespacedKey CARGO_DUCT = baseKey("cargo_duct");
+    public static final NamespacedKey CARGO_EXTRACTOR = baseKey("cargo_extractor");
+    public static final NamespacedKey CARGO_INSERTER = baseKey("cargo_inserter");
 }
