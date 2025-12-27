@@ -792,6 +792,9 @@ item:
 
   steel_sheet:
     name: 강철 판
+    
+  charcoal_block:
+    name: "숯 블록"
 
   sulfur:
     name: 황
@@ -1327,9 +1330,34 @@ item:
       <arrow> <attr>속도:</attr> %speed%
     waila: "디젤 파이프 밴딩기 | %diesel-bar%"
 
+  cargo_duct:
+    name: "<white>물류 도관"
+    lore: |-
+      <arrow> 물류 블록들을 연결합니다
+      <arrow> 인접한 물류 도관은 자동으로 연결됩니다
+
+  cargo_buffer:
+    name: "<white>물류 버퍼"
+    lore: |-
+      <arrow> 한 스택 크기의 아이템 버퍼입니다
+      <arrow> 물류 도관으로 연결
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_extractor:
+    name: "<white>물류 추출기"
+    lore: |-
+      <arrow> 상자, 화로, 기계 등 호환 가능한 블록에서 아이템을 추출합니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_inserter:
+    name: "<white>물류 삽입기"
+    lore: |-
+      <arrow> 상자, 화로, 기계 등 호환 가능한 블록에 아이템을 삽입합니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
 fluid:
   castable:
-    display-text: <arrow> <white>%result%<gray>으로 주조 가능
+    display-text: <arrow> <white>%result%<gray>(으)로 주조 가능
   bronze: <#8d6f64>청동
   cobalt: <gray>코발트
   copper: <#b5591b>구리
@@ -1437,6 +1465,7 @@ guide:
     fluid_pipes_and_tanks: 유체 파이프와 탱크
     fluid_machines: 유체 기계
     hydraulics: 유압 기계
+    cargo: "물류"
     diesel_machines: "디젤 기계"
     smelting: 제련
     machines: 기계
