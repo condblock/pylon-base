@@ -298,6 +298,7 @@ item:
       <arrow> <attr>한계 온도:</attr> %temperatures%
     waila: "구리 휴대용 유체 탱크 %info%"
 
+
   portable_fluid_tank_tin:
     name: "주석 휴대용 유체 탱크"
     lore: |-
@@ -370,8 +371,8 @@ item:
       <arrow> 유체 필터의 역할을 하며, 통과하는 유체의 양을 표시합니다
       <arrow> <insn>오른쪽 클릭</insn>으로 필터링할 유체를 선택할 수 있습니다
       <arrow> <attr>버퍼:</attr> %buffer%
+      <arrow> <attr>측정 범위:</attr> %min-measurement-time% ~ %max-measurement-time%
     waila: "유량계 | %bars% (%fluid%)"
-    gui: "유량계"
 
   fluid_strainer:
     name: "여과기"
@@ -542,7 +543,7 @@ item:
       <star> 멀티블록
       <arrow> 광채 의식을 실행하기 위한 구조물입니다
       <arrow> 받침대에 아이템을 추가하고 촉매로 오른쪽 클릭하여 의식을 시작할 수 있습니다
-
+      
       <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.magic_altar.name></yellow>
       <diamond> 8x <yellow><lang:pylon.pylonbase.item.magic_pedestal.name></yellow>
@@ -571,6 +572,15 @@ item:
       <arrow> 일반 가마솥처럼 사용할 수 있습니다
       <arrow> <attr>용량:</attr> %capacity%
     waila: "혼합용 가마솥 | %bar% (%fluid%)"
+
+  crucible:
+    name: "도가니"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 도가나에 아이템을 넣을 수 있습니다
+      <arrow> 한 번에 한 종류의 아이템만 넣을 수 있습니다
+      <arrow> 아래 블록에서 생성된 열로 아이템을 녹입니다
+      <arrow> 작동하려면 아래에 열원이 필요합니다
+    waila: "도가니 %item_info% %liquid_info%"
 
   monster_jerky:
     name: "몬스터 육포"
@@ -610,17 +620,18 @@ item:
       <arrow> 멀티블록을 완성하고 올바른 아이템을 입력하면 제련이 시작됩니다
       <arrow> <attr>용량:</attr> %capacity% 아이템
       <arrow> <attr>제련 시간:</attr> %smelting_time%
-
+      
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.pit_kiln.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.pit_kiln.name/></yellow>
       <diamond> 8x <yellow>석탄 블록</yellow>
-      <diamond> 20x <yellow>거친 흙</yellow>      
-      <diamond> 1x <yellow>모닥불</yellow> (%campfire%x <attr>제련 속도</attr>)
+      <diamond> 20x <yellow>거친 흙</yellow>
+      <diamond> 1x <yellow>모닥불</yellow> (%campfire%x <attr>제련 속도</attr>) 
       ...또는 1x <yellow>불</yellow> (%fire%x <attr>제련 속도</attr>) 
-      ...또는 1x <yellow>영혼 모닥불</yellow> (%soul_campfire%x <attr>제련 속도</attr>)
+      ...또는 1x <yellow>영혼 모닥불</yellow> (%soul_campfire%x <attr>제련 속도</attr>) 
       ...또는 1x <yellow>영혼 불</yellow> (%soul_fire%x <attr>제련 속도</attr>) 
-      <diamond> 9x <yellow>회백토</yellow> (%podzol%x <attr>생산량</attr>)
+      <diamond> 9x <yellow>회백토</yellow> (%podzol%x <attr>생산량</attr>) 
       ...또는 9x <yellow>거친 흙</yellow> (%coarse_dirt%x <attr>생산량</attr>)
+    waila: "가마 | %info%"
 
   portability_catalyst:
     name: "휴대성 촉매"
@@ -722,6 +733,16 @@ item:
     lore: |-
       <star> 제련소 멀티블록 구성 요소
       <arrow> 연료를 태워 제련소의 온도를 높입니다
+
+  diesel_smeltery_heater:
+    name: "디젤 제련소 가열기"
+    lore: |-
+      <star> 제련소 멀티블록 구성 요소
+      <arrow> 디젤을 태워 제련소의 온도를 높입니다
+      <arrow> <attr>디젤 소비량:</attr> %diesel-usage%
+      <arrow> <attr>디젤 버퍼:</attr> %diesel-buffer%
+      <arrow> <attr>온도:</attr> %temperature%
+    waila: "디젤 제련소 가열기 | %bar%"
 
   smeltery_caster:
     name: "제련소 주조기"
@@ -835,22 +856,25 @@ item:
   health_talisman_simple:
     name: "단순한 체력 부적"
     lore: |-
-      <arrow> 인벤토리에 있을 때 최대 체력이 증가합니다
+      <arrow> 최대 체력이 증가합니다
       <arrow> 중첩되지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>최대 체력 증가량:</attr> %health-boost%
 
   health_talisman_advanced:
     name: "고급 체력 부적"
     lore: |-
-      <arrow> 인벤토리에 있을 때 최대 체력이 증가합니다
+      <arrow> 최대 체력이 증가합니다
       <arrow> 중첩되지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>최대 체력 증가량:</attr> %health-boost%
 
   health_talisman_ultimate:
     name: "궁극 체력 부적"
     lore: |-
-      <arrow> 인벤토리에 있을 때 최대 체력이 증가합니다
+      <arrow> 최대 체력이 증가합니다
       <arrow> 중첩되지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>최대 체력 증가량:</attr> %health-boost%
 
   item_magnet:
@@ -912,6 +936,7 @@ item:
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <insn>오른쪽 클릭</insn>으로 망치 입력
       <arrow> <insn>오른쪽 클릭</insn> 으로 망치 회수
+      <arrow> <attr>속도:</attr> %speed%
       <arrow> <attr>유압유 사용량:</attr> 제작당 %hydraulic-fluid-per-craft%
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 망치 머리 | %input-bar% | %output-bar%"
@@ -935,6 +960,16 @@ item:
       <arrow> <attr>유압유 사용량:</attr> 제작당 %hydraulic-fluid-usage%
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 테이블 쏘 | %input-bar% | %output-bar%"
+
+  hydraulic_breaker:
+    name: "유압 파괴기"
+    lore: |-
+      <arrow> 저장된 도구를 사용하여 바로 앞의 블록을 파괴합니다
+      <arrow> 저장된 도구로 파괴할 수 있는 블록만 파괴합니다
+      <arrow> <attr>속도:</attr> %speed%
+      <arrow> <attr>유압유 소비량:</attr> %hydraulic-fluid-per-block% per block
+      <arrow> <attr>버퍼:</attr> %buffer%
+    waila: "유압 파괴기 | %input-bar% | %output-bar%"
 
   quartz_dust:
     name: "석영 가루"
@@ -1185,7 +1220,6 @@ item:
       <diamond> 1x <yellow>Chest</yellow>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill_input_hatch.name></yellow>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill_output_hatch.name></yellow>
-      <diamond> 2x <yellow><lang:pylon.pylonbase.item.fluid_tank_casing_copper.name></yellow>
       <diamond> 6x <yellow>철 창살</yellow>
       <diamond> 12x <yellow>윤나는 심층암 담장</yellow>
 
@@ -1193,13 +1227,31 @@ item:
     name: "유압 코어 드릴 입력 해치"
     lore: |-
       <star> 유압 코어 드릴 멀티블록 구성 요소
+      <arrow> 멀티블록 기계의 유체 입력부입니다
+      <arrow> 위에 유체 케이싱이 필요합니다
     waila: "유압 코어 드릴 입력 해치 | %bars%"
 
   hydraulic_core_drill_output_hatch:
     name: "유압 코어 드릴 출력 해치"
     lore: |-
       <star> 유압 코어 드릴 멀티블록 구성 요소
+      <arrow> 멀티블록 기계의 유체 출력부입니다
+      <arrow> 위에 유체 케이싱이 필요합니다
     waila: "유압 코어 드릴 출력 해치 | %bars%"
+
+    item_input_hatch:
+    name: "아이템 입력 해치"
+    lore: |-
+      <star> 멀티블록 구성 요소
+      <arrow> 멀티블록 기계의 아이템 입력부입니다
+    waila: "아이템 입력 해치"
+
+  item_output_hatch:
+    name: "아이템 출력 해치"
+    lore: |-
+      <star> 멀티블록 구성 요소
+      <arrow> 멀티블록 기계의 아이템 출력부입니다
+    waila: "아이템 출력 해치"
 
   shallow_core_chunk:
     name: "표층 코어 덩어리"
@@ -1345,13 +1397,11 @@ item:
   hydraulic_excavator:
     name: "유압 굴착기"
     lore: |-
-      <arrow> 반경 내 하단의 흙, 모래, 자갈 등을 굴착합니다
-      <arrow> 돌 등의 단단한 블록은 굴착할 수 없습니다
+      <arrow> 저장된 도구로 범위 내 블록을 굴착합니다
+      <arrow> 저장된 도구로 부술 수 있는 블록만 파괴합니다
       <arrow> 오염된 유압유를 출력합니다
-      <arrow> <insn>오른쪽 클릭</insn>으로 굴착 시작
-      <arrow> <attr>범위:</attr> %radius%
-      <arrow> <attr>깊이:</attr> %depth%
-      <arrow> <attr>굴착 속도:</attr> %time-per-block%
+      <arrow> <attr>속도:</attr> %speed%
+      <arrow> <attr>굴착 범위:</attr> %mining-area%
       <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 굴착기 | %input-bar% | %output-bar%"
@@ -1401,44 +1451,390 @@ item:
       <arrow> <attr>성형 사이클:</attr> %molding-cycles%
     waila: "디젤 벽돌 성형기 | %diesel-bar%"
 
-  diesel_fired_purification_tower:
-    name: "디젤 정화탑"
+  diesel_hammer_head:
+    name: "디젤 망치 머리"
     lore: |-
-      <star> Multiblock
-      <arrow> 오염된 유압유를 유압유로 변환합니다
-      <arrow> 디젤유를 사용합니다
-      <arrow> <attr>정화 속도:</attr> %purification_speed%
-      <arrow> <attr>정화 효율:</attr> %purification_efficiency%
+      <arrow> 망치의 기반 블록 위에 두 칸 간격을 두고 설치하세요
+      <arrow> <attr>속도:</attr> %speed%
+      <arrow> <attr>디젤유 사용량:</attr> %diesel-per-craft% per craft
+      <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
+    waila: "디젤 망치 머리 | %bar%"
 
-      <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.diesel_fired_purification_tower.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 5x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
+  diesel_mixing_attachment:
+    name: "디젤 혼합 부착물"
+    lore: |-
+      <arrow> 혼합기 위에 배치하고, 한 블록 간격을 유지하세요
+      <arrow> <attr>대기 시간:</attr> %cooldown%
+      <arrow> <attr>디젤유 사용량:</attr> %diesel-per-craft% per craft
+      <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
+    waila: "디젤 혼합 부착물 | %bar%"
+
+  diesel_breaker:
+    name: "디젤 파괴기"
+    lore: |-
+      <arrow> 저장된 도구를 사용하여 바로 앞의 블록을 파괴합니다
+      <arrow> 저장된 도구로 파괴할 수 있는 블록만 파괴합니다
+      <arrow> <attr>속도:</attr> %speed%
+      <arrow> <attr>디젤유 사용량:</attr> %diesel-per-block% per block
+      <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
+    waila: "디젤 파괴기 | %bar%"
+
+  diesel_furnace:
+    name: "디젤 화로"
+    lore: |-
+      <arrow> 아이템을 제련합니다
+      <arrow> <attr>디젤유 사용량:</attr> %diesel-usage%
+      <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
+      <arrow> <attr>속도:</attr> %speed%
+    waila: "디젤 화로 | %bar%"
+
+  diesel_miner:
+    name: "디젤 채굴기"
+    lore: |-
+      <arrow> 저장된 도구를 사용하여 블록을 채굴합니다
+      <arrow> 저장된 도구로 파괴할 수 있는 블록만 파괴합니다
+      <arrow> <attr>속도:</attr> %speed%
+      <arrow> <attr>채굴 범위:</attr> %mining-area%
+      <arrow> <attr>디젤유 사용량:</attr> %diesel-per-block% per block
+      <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
+    waila: "디젤 채굴기 | %bar%"
+
+  fermenter:
+    name: "발효기"
+    lore: |-
+      <star> 멀티블록
+      <arrow> 사탕수수를 발효시켜 에탄올을 생산합니다
+      <arrow> 발효 속도는 사탕수수의 양에 비례합니다
+      <arrow> <attr>사탕수수당 에탄올:</attr> %ethanol-per-sugarcane%
+      <arrow> <attr>사탕수수 용량:</attr> %sugarcane-capacity%
+      <arrow> <attr>최대 에탄올 출력 속도:</attr> %max-ethanol-output-rate%
+
+      <u>Components</u>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fermenter.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
+      <diamond> 2x <yellow>철 블록</yellow>
+      <diamond> 4x <yellow>윤나는 심층암 담장</yellow>
+      <diamond> 4x <yellow><lang:pylon.pylonbase.item.fermenter_core.name/></yellow>
+      <diamond> 31x <yellow><lang:pylon.pylonbase.item.fermenter_casing.name/></yellow>
+    waila: "발효기 | %sugarcane-bar% %sugarcane-amount% sugarcane"
+
+  fermenter_core:
+    name: "발효기 코어"
+    lore: |-
+      <star> 발효기 멀티블록 구성 요소
+
+  fermenter_casing:
+    name: "발효기 케이싱"
+    lore: |-
+      <star> 발효기 멀티블록 구성 요소
+
+  biorefinery:
+    name: "바이오 정제소"
+    lore: |-
+      <star> 멀티블록
+      <arrow> 식물성 기름과 에탄올을 바이오디젤로 정제합니다
+      <arrow> 작동하려면 연료가 필요합니다
+      <arrow> 바이오디젤을 생산하지 않더라도 지속적으로 연료를 소모합니다
+      <arrow> <attr>바이오디젤 생산 속도:</attr> %biodiesel-per-second%
+      <arrow> <attr>바이오디젤 1mb당 에탄올:</attr> %ethanol-per-mb-of-biodiesel%
+      <arrow> <attr>바이오디젤 1mb당 식물성 기름:</attr> %plant-oil-per-mb-of-biodiesel%
+      
+      <u>Components</u>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.pylonbase.item.fluid_input_hatch.name/></yellow>
+      <diamond> 6x <yellow><lang:pylon.pylonbase.item.biorefinery_foundation.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.pylonbase.item.biorefinery_tower_ring.name/></yellow>
+      <diamond> 9x <yellow><lang:pylon.pylonbase.item.biorefinery_smokestack_ring.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.pylonbase.item.biorefinery_smokestack_cap.name/></yellow>
+      <diamond> 24x <yellow><lang:pylon.pylonbase.item.biorefinery_plating.name/></yellow>
+    waila: "바이오 정제소 | %info%"
+
+  biorefinery_foundation:
+    name: "바이오 정제소 토대"
+    lore: |-
+      <star> 바이오 정제소 멀티블록 구성 요소
+
+  biorefinery_plating:
+    name: "바이오 정제소 판금"
+    lore: |-
+      <star> 바이오 정제소 멀티블록 구성 요소
+
+  biorefinery_tower_ring:
+    name: "바이오 정제소 탑 고리"
+    lore: |-
+      <star> 바이오 정제소 멀티블록 구성 요소
+
+  biorefinery_smokestack_ring:
+    name: "바이오 정제소 굴뚝 고리"
+    lore: |-
+      <star> 바이오 정제소 멀티블록 구성 요소
+
+  biorefinery_smokestack_cap:
+    name: "바이오 정제소 굴뚝 덮개"
+    lore: |-
+      <star> 바이오 정제소 멀티블록 구성 요소
 
   cargo_duct:
-    name: "<white>물류 도관"
+    name: "<white>화물 도관"
     lore: |-
-      <arrow> 물류 블록들을 연결합니다
-      <arrow> 인접한 물류 도관은 자동으로 연결됩니다
+      <arrow> 화물 블록들을 연결합니다
+      <arrow> 인접한 화물 도관은 자동으로 연결됩니다
 
   cargo_buffer:
-    name: "<white>물류 버퍼"
+    name: "<white>화물 버퍼"
     lore: |-
       <arrow> 한 스택 크기의 아이템 버퍼입니다
-      <arrow> 물류 도관으로 연결
       <arrow> <attr>전송 속도:</attr> %transfer-rate%
 
   cargo_extractor:
-    name: "<white>물류 추출기"
+    name: "<white>화물 추출기"
     lore: |-
       <arrow> 상자, 화로, 기계 등 호환 가능한 블록에서 아이템을 추출합니다
       <arrow> <attr>전송 속도:</attr> %transfer-rate%
 
   cargo_inserter:
-    name: "<white>물류 삽입기"
+    name: "<white>화물 삽입기"
     lore: |-
       <arrow> 상자, 화로, 기계 등 호환 가능한 블록에 아이템을 삽입합니다
       <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_splitter:
+    name: "<white>화물 분배기"
+    lore: |-
+      <arrow> 설정된 비율로 아이템을 두 개의 출력으로 분배합니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+    waila: "화물 분배기 | <#efae15>%left%<white>-<#2386c4>%right% <white>| %side%"
+
+  cargo_merger:
+    name: "<white>화물 병합기"
+    lore: |-
+      <arrow> 들어오는 아이템을 하나의 출력으로 병합합니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_valve:
+    name: "<white>화물 밸브"
+    lore: |-
+      <arrow> <insn>쉬프트 오른쪽 클릭</insn>으로 전환 가능
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+    waila: "화물 밸브 | %status%"
+
+  cargo_filter:
+    name: "<white>화물 필터"
+    lore: |-
+      <arrow> 필터와 일치하는 아이템을 왼쪽으로 보냅니다
+      <arrow> 필터와 일치하지 않는 아이템을 오른쪽으로 보냅니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_monitor:
+    name: "<white>화물 모니터"
+    lore: |-
+      <arrow> 내용물을 홀로그램으로 표시합니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+
+  cargo_meter:
+    name: "<white>화물 계량기"
+    lore: |-
+      <arrow> 통과하는 아이템 수를 측정하고 표시합니다
+      <arrow> <attr>측정 범위:</attr> %min-measurement-time% ~ %max-measurement-time%
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+    waila: "화물 계량기 | %duration%"
+
+  cargo_gate:
+    name: "<white>화물 게이트"
+    lore: |-
+      <arrow> 왼쪽에서 지정된 수량의 아이템이 도착하면 오른쪽으로 하나의 아이템을 보냅니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+    waila: "화물 게이트 | <light_purple>%threshold% <white>| %side%"
+
+  cargo_accumulator:
+    name: "<white>화물 축적기"
+    lore: |-
+      <arrow> 특정 수량의 아이템이 도착할 때까지 대기한 후 한꺼번에 내보냅니다
+      <arrow> 출력부에 아이템이 남아 있는 동안 새로운 아이템이 들어올 수 없습니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+    waila: "화물 축적기 | <light_purple>%threshold%"
+
+  cargo_fluid_accumulator:
+    name: "<white>화물 유체 축적기"
+    lore: |-
+      <arrow> 특정 수량의 아이템이 도착할 때까지 대기한 후 한꺼번에 내보냅니다
+      <arrow> 출력부에 아이템이 남아 있는 동안 새로운 아이템이 들어올 수 없습니다
+      <arrow> <attr>전송 속도:</attr> %transfer-rate%
+      <arrow> <attr>유체 버퍼:</attr> %fluid-buffer%
+    waila: "화물 유체 축적기 | <light_purple>%item-threshold%</light_purple> <white>| <light_purple>%fluid-threshold%</light_purple> <white>| %bars%"
+
+  hunger_talisman_simple:
+    name: "간단한 허기 부적"
+    lore: |-
+      <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
+      <arrow> <attr>허기 증가량:</attr> %hunger_increase%
+
+  hunger_talisman_advanced:
+    name: "고급 허기 부적"
+    lore: |-
+      <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
+      <arrow> <attr>허기 증가량:</attr> %hunger_increase%
+
+  hunger_talisman_ultimate:
+    name: "궁극 허기 부적"
+    lore: |-
+      <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
+      <arrow> <attr>허기 증가량:</attr> %hunger_increase%
+
+  farmer_talisman_simple:
+    name: "간단한 농부 부적"
+    lore: |-
+      <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %extra_crop_chance%
+
+  farmer_talisman_advanced:
+    name: "고급 농부 부적"
+    lore: |-
+      <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %extra_crop_chance%
+
+  farmer_talisman_ultimate:
+    name: "궁극 농부 부적"
+    lore: |-
+      <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %extra_crop_chance%
+
+  bartering_talisman_simple:
+    name: "간단한 교환 부적"
+    lore: |-
+      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
+
+  bartering_talisman_advanced:
+    name: "고급 교환 부적"
+    lore: |-
+      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
+
+  bartering_talisman_ultimate:
+    name: "궁극 교환 부적"
+    lore: |-
+      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
+
+  water_breathing_talisman_simple:
+    name: "<white>간단한 수중 호흡 부적"
+    lore: |-
+      <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
+
+  water_breathing_talisman_advanced:
+    name: "<white>고급 수중 호흡 부적"
+    lore: |-
+      <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
+
+  water_breathing_talisman_ultimate:
+    name: "<white>궁극 수중 호흡 부적"
+    lore: |-
+      <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
+
+  luck_talisman_simple:
+    name: "간단한 행운 부적"
+    lore: |-
+      <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 행운:</attr> %bonus_luck%
+
+  luck_talisman_advanced:
+    name: "고급 행운 부적"
+    lore: |-
+      <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 행운:</attr> %bonus_luck%
+
+  luck_talisman_ultimate:
+    name: "궁극 행운 부적"
+    lore: |-
+      <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 행운:</attr> %bonus_luck%
+
+  breeding_talisman_simple:
+    name: "간단한 번식 부적"
+    lore: |-
+      <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %adult_chance%
+
+  breeding_talisman_advanced:
+    name: "고급 번식 부적"
+    lore: |-
+      <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %adult_chance%
+
+  breeding_talisman_ultimate:
+    name: "궁극 번식 부적"
+    lore: |-
+      <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %adult_chance%
+
+  enchanting_talisman_simple:
+    name: "<white>간단한 마법 부여 부적"
+    lore: |-
+      <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_level_chance%
+
+  enchanting_talisman_advanced:
+    name: "<white>고급 마법 부여 부적"
+    lore: |-
+      <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_level_chance%
+
+  enchanting_talisman_ultimate:
+    name: "<white>궁극 마법 부여 부적"
+    lore: |-
+      <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_level_chance%
+
+  hunting_talisman_simple:
+    name: "<white>간단한 사냥 부적"
+    lore: |-
+      <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_item_chance%
+
+  hunting_talisman_advanced:
+    name: "<white>고급 사냥 부적"
+    lore: |-
+      <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_item_chance%
+
+  hunting_talisman_ultimate:
+    name: "<white>궁극 사냥 부적"
+    lore: |-
+      <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
 fluid:
   castable:
@@ -1470,15 +1866,29 @@ fluid:
   dirty_hydraulic_fluid: "<#212d99>유압유 <#48459b>(오염됨)"
   obscyra: "<#5c4a66>흑요액"
   reflector_fluid: "<#d1c9ab>반사제"
+  sugarcane: "<#a3ed2d>사탕수수"
+  ethanol: "<#d8d8d8>에탄올"
   biodiesel: "<#eaa627>바이오디젤"
 
 waila:
   fluid_tank:
     empty: "(empty)"
     filled: "| %fluid% %amount%/%capacity%"
+  crucible:
+    item:
+      empty: "| 비어 있음 |"
+      stored: "| %type% x%amount%  |"
+    liquid:
+      empty: "비어 있음"
+      filled: "%bar% (%fluid%)"
   fluid_strainer:
     straining: " | 여과 중 %item%: %progress%"
-  pit_kiln: "가마 | %time% 남음"
+  cargo_splitter:
+    left: "<#efae15>왼쪽"
+    right: "<#2386c4>오른쪽"
+  pit_kiln:
+    invalid_recipe: "<red>잘못된 레시피"
+    smelting: "<green>%time% 남음"
 
 research:
   baking: "<#e2b42b>제빵"
@@ -1533,6 +1943,14 @@ research:
   advanced_vacuum_hoppers: "<#54536d>더 나은 진공 호퍼"
   reactivated_skulls: "<#000000>활성화된 위더 해골"
   soul_attachment: "<dark_purple>영혼 결속"
+  diet: "<green>강한 식단"
+  farming_aids: "<green>농업 개선"
+  negotiation_tactics: "<#ffde59>협상 수단"
+  optimal_breathing: "<#5f26b6>완벽한 호흡법"
+  lucky_ducky: "<#ffde59>행운의 편지"
+  advanced_breeding: "<#e4080a>고급 번식"
+  portable_enchanting_books: "<#060270>휴대용 마법책"
+  lucky_hunting_charms: "<#bfd641>섬세한 도축"
 
 guide:
   page:
@@ -1542,13 +1960,15 @@ guide:
     tools: "도구"
     food: "음식"
     combat: "전투"
+    talismans: "부적"
     armour: "갑옷"
     simple_machines: "간단한 기계"
     fluid_pipes_and_tanks: "유체 파이프와 탱크"
     fluid_machines: "유체 기계"
     hydraulics: "유압 기계"
-    cargo: "물류"
+    cargo: "화물"
     diesel_machines: "디젤 기계"
+    diesel_production: "디젤 생산"
     smelting: "제련"
     machines: "기계"
     building: "건축"
@@ -1564,16 +1984,25 @@ guide:
     casting: "<attr>온도:</attr> %temperature%"
     drilling: "<attr>주기 횟수:</attr> %time%"
     molding: "<attr>성형 주기:</attr> %molding-cycles%"
+    hammer: "<attr>확률:</attr> %chance%"
 
 message:
   fluid_selector:
     current_fluid: "<white>현재 유체: %fluid%"
     clear: "<white>초기화"
+  fluid_hatch:
+    no_casing: "<red>케이싱 없음"
+    no_multiblock: "<red>멀티블록 없음"
+    working: "%bars% (%fluid%)"
+  biorefinery:
+    no_fuel: "<red>연료 없음"
+    has_fuel: "%fuel-bar% %remaining-time%"
   hammer_cant_use: "<red>이 망치를 이 블록에 사용할 수 없습니다"
   sprinkler_too_close: "<red>스프링클러를 서로 %radius%블록 내에 둘 수 없습니다"
   gained_research_points: "<green>+%points% 연구 포인트 (총 %total%포인트)"
   loupe:
     nothing: "<red>맨손은 그다지 흥미롭지 않습니다"
+    invalid_block: "<red>아무리 시도해도 이 블록을 분석할 수 없습니다"
     already_examined: "<red>더 이상 이것에 대해 분석할 것이 없습니다"
     is_pylon: "<red>만들어 낸 것이라 그다지 흥미롭지 않습니다"
     examined: "<green>%item%에 대해 분석하며 통찰력이 늘었습니다"
@@ -1586,8 +2015,8 @@ message:
       2: "을 열었더니 괴상하고 반짝이는 액체가 흘러나왔습니다"
       3: "을 열어 보니, 예상대로 아무 일도 일어나지 않아 실망했습니다"
   item_magnet:
-    enabled: "<gray>아이템 자석 <green>enabled"
-    disabled: "<gray>아이템 자석<red>disabled"
+    enabled: "아이템 자석 <green>활성화"
+    disabled: "아이템 자석 <red>비활성화"
   valve:
     enabled: "활성화"
     disabled: "비활성화"
@@ -1599,13 +2028,59 @@ message:
     tooltip: "<red><bold>내화"
     success: "<red>아이템이 내화 처리되었습니다"
   hydraulic_refueling_station:
-    extra: "<gray>[<white>입력: %hydraulic-fluid-bar%<gray>] <white>- <gray>[<white>출력: %dirty-hydraulic-fluid-bar%<gray>]"
+    extra: "| %hydraulic-fluid-bar% | %dirty-hydraulic-fluid-bar%"
   soulbound_rune:
     tooltip: "<dark_purple>영혼 결속"
     soulbind-message: "<dark_purple>아이템이 영혼에 결속되었습니다"
 
 gui:
   fluid-selector-title: "유체를 선택하세요"
+  hammer: "망치"
+  pickaxe: "곡괭이"
+  tool: "도구"
+  filtered: "필터링됨"
+  unfiltered: "필터링되지 않음"
+  filter: "필터링할 아이템"
+  left: "왼쪽"
+  right: "오른쪽"
+  left_button:
+    name: "왼쪽 비율 변경"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 감소
+  right_button:
+    name: "오른쪽 비율 변경"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 감소
+  threshold_button:
+    name: "임곗값: <light_purple>%threshold%"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 감소
+  item_threshold_button:
+    name: "아이템 임곗값: <light_purple>%threshold%"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 감소
+  fluid_threshold_button:
+    name: "유체 임곗값: <light_purple>%threshold%"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 <unit:milli:buckets>10</unit> 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 <unit:milli:buckets>10</unit> 감소
+      <arrow> <insn>Shift 왼쪽 클릭</insn>으로 <unit:milli:buckets>100</unit> 증가
+      <arrow> <insn>Shift 오른쪽 클릭</insn>으로 <unit:milli:buckets>100</unit> 감소
+  whitelist-blacklist-toggle:
+    whitelist:
+      name: "화이트리스트 모드"
+      lore: |-
+        <arrow> <insn>클릭</insn>으로 전환
+    blacklist:
+      name: "블랙리스트 모드"
+      lore: |-
+        <arrow> <insn>클릭</insn>으로 전환
+  no-target-logistic-group: "보관함 없음"
+  ratio: "비율: <#efae15>%left%<white>-<#2386c4>%right% <white>(<#efae15>left<white>-<#2386c4>right<white>)"
   portable-dustbin: "휴대용 쓰레기통"
   status:
     name: "상태"
@@ -1636,3 +2111,26 @@ gui:
     text: "%filled_bars%<dark_gray>%empty_bars% <gray>%progress%"
   fluid_amount_bar:
     text: "%filled_bars%<dark_gray>%empty_bars% <gray>%amount%/%capacity%"
+  logistic-group-cycle-item:
+    name: "선택된 보관함: <yellow>%inventory%"
+    lore: |-
+      <arrow> <insn>클릭</insn>으로 전환
+  fluid_meter:
+    name: "<attr>측정 기간:</attr> %measurement-duration%"
+    lore: |-
+      <arrow> <insn>왼쪽 클릭</insn>으로 증가
+      <arrow> <insn>오른쪽 클릭</insn>으로 감소
+      <arrow> <insn>Shift 왼쪽 클릭</insn>으로 증가 <yellow>(10x)</yellow>
+      <arrow> <insn>Shift 오른쪽 클릭</insn>으로 감소 <yellow>(10x)</yellow>
+
+inventory:
+  fuel: "연료"
+  input: "입력"
+  output: "출력"
+  inventory: "인벤토리"
+  hammer: "망치"
+  tool: "도구"
+  left: "왼쪽"
+  right: "오른쪽"
+  filtered: "필터링됨"
+  unfiltered: "필터링되지 않음"
