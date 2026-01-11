@@ -778,13 +778,13 @@ item:
     name: "제련소 입력 해치"
     lore: |-
       <star> 제련소 멀티블록 구성 요소
-      <arrow> 제련소의 액체 입력부입니다
+      <arrow> 제련소의 유체 입력부입니다
 
   smeltery_output_hatch:
     name: "제련소 출력 해치"
     lore: |-
       <star> 제련소 멀티블록 구성 요소
-      <arrow> 제련소의 액체 출력부입니다
+      <arrow> 제련소의 유체 출력부입니다
 
   soulbound_rune:
     name: "영혼 결속의 룬"
@@ -1223,21 +1223,21 @@ item:
       <diamond> 6x <yellow>철 창살</yellow>
       <diamond> 12x <yellow>윤나는 심층암 담장</yellow>
 
-  hydraulic_core_drill_input_hatch:
-    name: "유압 코어 드릴 입력 해치"
+  fluid_input_hatch:
+    name: "유체 입력 해치"
     lore: |-
-      <star> 유압 코어 드릴 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
       <arrow> 멀티블록 기계의 유체 입력부입니다
       <arrow> 위에 유체 케이싱이 필요합니다
-    waila: "유압 코어 드릴 입력 해치 | %bars%"
+    waila: "유체 입력 해치 | %bars%"
 
-  hydraulic_core_drill_output_hatch:
-    name: "유압 코어 드릴 출력 해치"
+  fluid_output_hatch:
+    name: "유체 출력 해치"
     lore: |-
-      <star> 유압 코어 드릴 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
       <arrow> 멀티블록 기계의 유체 출력부입니다
       <arrow> 위에 유체 케이싱이 필요합니다
-    waila: "유압 코어 드릴 출력 해치 | %bars%"
+    waila: "유체 출력 해치 | %bars%"
 
     item_input_hatch:
     name: "아이템 입력 해치"
@@ -2012,7 +2012,7 @@ message:
     happening:
       0: "을 열어 보았지만 놀랍게도 얼굴에서 폭발하지 않았습니다"
       1: "을 열어 보니 살아 움직이는 끈적한 물질이 보입니다"
-      2: "을 열었더니 괴상하고 반짝이는 액체가 흘러나왔습니다"
+      2: "을 열었더니 괴상하고 반짝이는 유체가 흘러나왔습니다"
       3: "을 열어 보니, 예상대로 아무 일도 일어나지 않아 실망했습니다"
   item_magnet:
     enabled: "아이템 자석 <green>활성화"
