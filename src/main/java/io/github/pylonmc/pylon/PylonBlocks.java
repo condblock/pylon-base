@@ -1,9 +1,11 @@
 package io.github.pylonmc.pylon;
 
+import io.github.pylonmc.pylon.content.assembling.AssemblyTable;
 import io.github.pylonmc.pylon.content.building.Elevator;
 import io.github.pylonmc.pylon.content.building.ExplosiveTarget;
 import io.github.pylonmc.pylon.content.building.Immobilizer;
 import io.github.pylonmc.pylon.content.building.Pedestal;
+import io.github.pylonmc.pylon.content.building.WitherProofBlock;
 import io.github.pylonmc.pylon.content.components.*;
 import io.github.pylonmc.pylon.content.machines.cargo.*;
 import io.github.pylonmc.pylon.content.machines.diesel.machines.*;
@@ -29,9 +31,8 @@ public final class PylonBlocks {
     public static void initialize() {
         RebarBlock.register(PylonKeys.TIN_BLOCK, Material.IRON_BLOCK, RebarBlock.class);
         RebarBlock.register(PylonKeys.BRONZE_BLOCK, Material.COPPER_BLOCK, RebarBlock.class);
-        RebarBlock.register(PylonKeys.NICKEL_BLOCK, Material.IRON_BLOCK, RebarBlock.class);
-        RebarBlock.register(PylonKeys.COBALT_BLOCK, Material.IRON_BLOCK, RebarBlock.class);
         RebarBlock.register(PylonKeys.STEEL_BLOCK, Material.NETHERITE_BLOCK, RebarBlock.class);
+        RebarBlock.register(PylonKeys.PALLADIUM_BLOCK, Material.IRON_BLOCK, RebarBlock.class);
         RebarBlock.register(PylonKeys.CHARCOAL_BLOCK, Material.COAL_BLOCK, RebarBlock.class);
         RebarBlock.register(PylonKeys.SPRINKLER, Material.FLOWER_POT, Sprinkler.class);
         RebarBlock.register(PylonKeys.SHIMMER_PEDESTAL, Material.MOSSY_STONE_BRICK_WALL, Pedestal.class);
@@ -42,7 +43,7 @@ public final class PylonBlocks {
         RebarBlock.register(PylonKeys.ENRICHED_SOUL_SOIL, Material.SOUL_SOIL, EnrichedSoulSoil.class);
         RebarBlock.register(PylonKeys.MIXING_POT, Material.CAULDRON, MixingPot.class);
         RebarBlock.register(PylonKeys.CRUCIBLE, Material.CAULDRON, Crucible.class);
-        RebarBlock.register(PylonKeys.IGNEOUS_COMPOSITE, Material.OBSIDIAN, RebarBlock.class);
+        RebarBlock.register(PylonKeys.IGNEOUS_COMPOSITE, Material.OBSIDIAN, WitherProofBlock.class);
         RebarBlock.register(PylonKeys.PORTABLE_FLUID_TANK_WOOD, Material.BROWN_STAINED_GLASS, PortableFluidTank.class);
         RebarBlock.register(PylonKeys.PORTABLE_FLUID_TANK_COPPER, Material.ORANGE_STAINED_GLASS, PortableFluidTank.class);
         RebarBlock.register(PylonKeys.PORTABLE_FLUID_TANK_TIN, Material.GREEN_STAINED_GLASS, PortableFluidTank.class);
@@ -105,7 +106,7 @@ public final class PylonBlocks {
         RebarBlock.register(PylonKeys.HYDRAULIC_HAMMER_HEAD, Material.STONE_BRICKS, HydraulicHammerHead.class);
         RebarBlock.register(PylonKeys.HYDRAULIC_PIPE_BENDER, Material.WAXED_CHISELED_COPPER, HydraulicPipeBender.class);
         RebarBlock.register(PylonKeys.HYDRAULIC_TABLE_SAW, Material.WAXED_CUT_COPPER, HydraulicTableSaw.class);
-        RebarBlock.register(PylonKeys.SOLAR_LENS, Material.GLASS_PANE, SolarLens.class);
+        RebarBlock.register(PylonKeys.SOLAR_LENS, Material.GLASS_PANE, RebarBlock.class);
         RebarBlock.register(PylonKeys.PURIFICATION_TOWER_GLASS, Material.LIGHT_GRAY_STAINED_GLASS, RebarBlock.class);
         RebarBlock.register(PylonKeys.PURIFICATION_TOWER_CAP, Material.QUARTZ_SLAB, RebarBlock.class);
         RebarBlock.register(PylonKeys.SOLAR_PURIFICATION_TOWER_1, Material.WAXED_COPPER_BLOCK, SolarPurificationTower.class);
@@ -159,6 +160,7 @@ public final class PylonBlocks {
         RebarBlock.register(PylonKeys.CARGO_ACCUMULATOR, Material.STRUCTURE_VOID, CargoAccumulator.class);
         RebarBlock.register(PylonKeys.CARGO_FLUID_ACCUMULATOR, Material.STRUCTURE_VOID, CargoFluidAccumulator.class);
         RebarBlock.register(PylonKeys.CARGO_OVERFLOW_GATE, Material.STRUCTURE_VOID, CargoOverflowGate.class);
+        RebarBlock.register(PylonKeys.ASSEMBLY_TABLE, Material.ANVIL, AssemblyTable.class);
         RebarBlock.register(PylonKeys.CREATIVE_ITEM_SOURCE, Material.STRUCTURE_VOID, CreativeItemSource.class);
         RebarBlock.register(PylonKeys.CREATIVE_ITEM_VOIDER, Material.STRUCTURE_VOID, CreativeItemVoider.class);
     }

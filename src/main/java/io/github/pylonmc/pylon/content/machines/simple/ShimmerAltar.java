@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import io.github.pylonmc.pylon.PylonKeys;
 import io.github.pylonmc.pylon.content.building.Pedestal;
 import io.github.pylonmc.pylon.recipes.ShimmerAltarRecipe;
+import io.github.pylonmc.pylon.util.PylonUtils;
 import io.github.pylonmc.rebar.block.BlockStorage;
 import io.github.pylonmc.rebar.block.RebarBlock;
 import io.github.pylonmc.rebar.block.base.RebarInteractBlock;
@@ -15,12 +16,15 @@ import io.github.pylonmc.rebar.block.context.BlockCreateContext;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.entity.display.ItemDisplayBuilder;
 import io.github.pylonmc.rebar.entity.display.transform.TransformBuilder;
+import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ItemDisplay;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -42,7 +46,7 @@ public class ShimmerAltar extends RebarBlock
 
     private static final MultiblockComponent SHIMMER_PEDESTAL_COMPONENT = new RebarSimpleMultiblock.RebarMultiblockComponent(PylonKeys.SHIMMER_PEDESTAL);
 
-    private final int tickInterval = getSettings().getOrThrow("tick-interval", ConfigAdapter.INT);
+    private final int tickInterval = getSettings().getOrThrow("tick-interval", ConfigAdapter.INTEGER);
 
     @SuppressWarnings("unused")
     public ShimmerAltar(Block block, BlockCreateContext context) {
@@ -82,23 +86,26 @@ public class ShimmerAltar extends RebarBlock
         return map;
     }
 
-    @Override
-    public void onInteract(PlayerInteractEvent event) {
+    @Override @MultiHandler(priorities = { EventPriority.NORMAL, EventPriority.MONITOR })
+    public void onInteract(PlayerInteractEvent event, @NotNull EventPriority priority) {
         if (event.getPlayer().isSneaking()
                 || event.getHand() != EquipmentSlot.HAND
                 || event.getAction() != Action.RIGHT_CLICK_BLOCK
+                || event.useInteractedBlock() == Event.Result.DENY
         ) {
             return;
         }
 
-        event.setCancelled(true);
+        if (priority == EventPriority.NORMAL) {
+            event.setUseItemInHand(Event.Result.DENY);
+            return;
+        }
 
         // drop item if not processing and an item is already on the altar
         ItemDisplay itemDisplay = getItemDisplay();
         ItemStack displayItem = itemDisplay.getItemStack();
-        if (!isProcessingRecipe() && !displayItem.getType().isAir()) {
-            Location location = itemDisplay.getLocation().add(0, 0.5, 0);
-            location.getWorld().dropItemNaturally(location, displayItem);
+        if (!isProcessingRecipe() && !displayItem.isEmpty()) {
+            event.getPlayer().give(displayItem);
             itemDisplay.setItemStack(new ItemStack(Material.AIR));
             return;
         }
@@ -144,12 +151,12 @@ public class ShimmerAltar extends RebarBlock
 
         List<Pedestal> usedPedestals = getPedestals()
                 .stream()
-                .filter(pedestal -> !pedestal.getItemDisplay().getItemStack().getType().isAir())
+                .filter(pedestal -> !pedestal.getItemDisplay().getItemStack().isEmpty())
                 .toList();
 
         // dust line animation
         for (Pedestal pedestal : usedPedestals) {
-            drawLine(
+            PylonUtils.drawParticleLine(
                     pedestal.getBlock().getLocation().toCenterLocation().add(0.0, 0.7, 0.0),
                     getBlock().getLocation().toCenterLocation().subtract(0.0, 0.3, 0.0),
                     0.25,
@@ -169,7 +176,7 @@ public class ShimmerAltar extends RebarBlock
         while (to == from) {
             to = random.nextInt(usedPedestals.size());
         }
-        drawLine(
+        PylonUtils.drawParticleLine(
                 usedPedestals.get(from).getBlock().getLocation().toCenterLocation(),
                 usedPedestals.get(to).getBlock().getLocation().toCenterLocation(),
                 0.25,
@@ -224,24 +231,5 @@ public class ShimmerAltar extends RebarBlock
                 .extra(0.05)
                 .location(getBlock().getLocation().toCenterLocation())
                 .spawn();
-    }
-
-    public static void drawLine(
-            Location start,
-            @NotNull Location end,
-            double spacing,
-            Consumer<Location> spawnParticle
-    ) {
-        double currentPoint = 0;
-        Vector startToEnd = end.clone().subtract(start).toVector();
-        Vector step = startToEnd.clone().normalize().multiply(spacing);
-        double length = startToEnd.length();
-        Location current = start.clone();
-
-        while (currentPoint < length) {
-            spawnParticle.accept(current);
-            currentPoint += spacing;
-            current.add(step);
-        }
     }
 }

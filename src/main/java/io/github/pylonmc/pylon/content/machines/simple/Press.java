@@ -13,6 +13,7 @@ import io.github.pylonmc.rebar.config.Settings;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.entity.display.ItemDisplayBuilder;
 import io.github.pylonmc.rebar.entity.display.transform.TransformBuilder;
+import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import io.github.pylonmc.rebar.fluid.FluidPointType;
 import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.RebarItem;
@@ -28,6 +29,8 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -47,9 +50,9 @@ public class Press extends RebarBlock implements
         RebarRecipeProcessor<PressRecipe> {
 
     private static final Config settings = Settings.get(PylonKeys.PRESS);
-    public static final int TIME_PER_ITEM_TICKS = settings.getOrThrow("time-per-item-ticks", ConfigAdapter.INT);
-    public static final int RETURN_TO_START_TIME_TICKS = settings.getOrThrow("return-to-start-time-ticks", ConfigAdapter.INT);
-    public static final int CAPACITY_MB = settings.getOrThrow("capacity-mb", ConfigAdapter.INT);
+    public static final int TIME_PER_ITEM_TICKS = settings.getOrThrow("time-per-item-ticks", ConfigAdapter.INTEGER);
+    public static final int RETURN_TO_START_TIME_TICKS = settings.getOrThrow("return-to-start-time-ticks", ConfigAdapter.INTEGER);
+    public static final int CAPACITY_MB = settings.getOrThrow("capacity-mb", ConfigAdapter.INTEGER);
 
     public static class PressItem extends RebarItem {
 
@@ -105,19 +108,23 @@ public class Press extends RebarBlock implements
         ));
     }
 
-    @Override
-    public void onInteract(@NotNull PlayerInteractEvent event) {
-        if (!event.getAction().isRightClick() || event.getHand() != EquipmentSlot.HAND || event.getPlayer().isSneaking()) {
+    @Override  @MultiHandler(priorities = { EventPriority.NORMAL, EventPriority.MONITOR })
+    public void onInteract(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
+        if (!event.getAction().isRightClick() || event.getHand() != EquipmentSlot.HAND || event.getPlayer().isSneaking()
+                || event.useInteractedBlock() == Event.Result.DENY) {
             return;
         }
 
-        event.setCancelled(true);
+        if (priority == EventPriority.NORMAL) {
+            event.setUseItemInHand(Event.Result.DENY);
+            return;
+        }
 
         tryStartRecipe();
     }
 
-    @Override
-    public void onCompostByEntity(EntityCompostItemEvent event) {
+    @Override @MultiHandler(priorities = EventPriority.LOWEST)
+    public void onCompostByEntity(EntityCompostItemEvent event, @NotNull EventPriority priority) {
         event.setCancelled(true);
     }
 

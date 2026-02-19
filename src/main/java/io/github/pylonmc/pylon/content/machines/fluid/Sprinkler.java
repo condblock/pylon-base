@@ -16,6 +16,7 @@ import io.github.pylonmc.rebar.config.RebarConfig;
 import io.github.pylonmc.rebar.config.Settings;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.event.PreRebarBlockPlaceEvent;
+import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import io.github.pylonmc.rebar.fluid.FluidPointType;
 import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.RebarItem;
@@ -28,6 +29,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -42,9 +44,9 @@ public class Sprinkler extends RebarBlock
 
     private static final Config settings = Settings.get(PylonKeys.SPRINKLER);
     public static final WateringSettings SETTINGS = WateringSettings.fromConfig(settings);
-    public static final int TICK_INTERVAL = settings.getOrThrow("tick-interval", ConfigAdapter.INT);
-    public static final double WATER_PER_SECOND = settings.getOrThrow("water-per-second", ConfigAdapter.INT);
-    public static final double BUFFER = settings.getOrThrow("buffer", ConfigAdapter.INT);
+    public static final int TICK_INTERVAL = settings.getOrThrow("tick-interval", ConfigAdapter.INTEGER);
+    public static final double WATER_PER_SECOND = settings.getOrThrow("water-per-second", ConfigAdapter.INTEGER);
+    public static final double BUFFER = settings.getOrThrow("buffer", ConfigAdapter.INTEGER);
 
     public static class Item extends RebarItem {
 
@@ -75,8 +77,8 @@ public class Sprinkler extends RebarBlock
         super(block);
     }
 
-    @Override
-    public void onFlowerPotManipulated(@NotNull PlayerFlowerPotManipulateEvent event) {
+    @Override @MultiHandler(priorities = EventPriority.LOWEST)
+    public void onFlowerPotManipulated(@NotNull PlayerFlowerPotManipulateEvent event, @NotNull EventPriority priority) {
         event.setCancelled(true);
     }
 

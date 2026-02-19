@@ -2,6 +2,7 @@ package io.github.pylonmc.pylon.content.machines.cargo;
 
 import io.github.pylonmc.rebar.block.BlockStorage;
 import io.github.pylonmc.rebar.block.base.RebarCargoBlock;
+import io.github.pylonmc.rebar.block.base.RebarEntityCulledBlock;
 import io.github.pylonmc.rebar.block.base.RebarGuiBlock;
 import io.github.pylonmc.rebar.block.context.BlockCreateContext;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
@@ -10,6 +11,7 @@ import io.github.pylonmc.rebar.entity.display.ItemDisplayBuilder;
 import io.github.pylonmc.rebar.entity.display.transform.TransformBuilder;
 import io.github.pylonmc.rebar.event.RebarCargoConnectEvent;
 import io.github.pylonmc.rebar.event.RebarCargoDisconnectEvent;
+import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.RebarItem;
 import io.github.pylonmc.rebar.item.builder.ItemStackBuilder;
@@ -21,6 +23,7 @@ import io.github.pylonmc.rebar.util.gui.unit.UnitFormat;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.event.EventPriority;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
@@ -29,13 +32,16 @@ import xyz.xenondevs.invui.gui.Gui;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class CargoInserter extends CargoInteractor implements
         RebarCargoBlock,
-        RebarGuiBlock {
+        RebarGuiBlock,
+        RebarEntityCulledBlock
+{
 
-    public final int transferRate = getSettings().getOrThrow("transfer-rate", ConfigAdapter.INT);
+    public final int transferRate = getSettings().getOrThrow("transfer-rate", ConfigAdapter.INTEGER);
 
     public final ItemStackBuilder mainStack = ItemStackBuilder.of(Material.LIGHT_GRAY_CONCRETE)
             .addCustomModelDataString(getKey() + ":main");
@@ -46,7 +52,7 @@ public class CargoInserter extends CargoInteractor implements
 
     public static class Item extends RebarItem {
 
-        public final int transferRate = getSettings().getOrThrow("transfer-rate", ConfigAdapter.INT);
+        public final int transferRate = getSettings().getOrThrow("transfer-rate", ConfigAdapter.INTEGER);
 
         public Item(@NotNull ItemStack stack) {
             super(stack);
@@ -90,7 +96,7 @@ public class CargoInserter extends CargoInteractor implements
                 .transformation(new TransformBuilder()
                         .lookAlong(getFacing())
                         .translate(0, 0, -0.3)
-                        .scale(0.4, 0.4, 0.05)
+                        .scale(0.45, 0.45, 0.05)
                 )
                 .build(block.getLocation().toCenterLocation())
         );
@@ -112,7 +118,12 @@ public class CargoInserter extends CargoInteractor implements
     }
 
     @Override
-    public void onDuctConnected(@NotNull RebarCargoConnectEvent event) {
+    public void postInitialise() {
+        setDisableBlockTextureEntity(true);
+    }
+
+    @Override @MultiHandler(priorities = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onDuctConnected(@NotNull RebarCargoConnectEvent event, @NotNull EventPriority priority) {
         // Remove all faces that aren't to the connected block - this will make sure only
         // one duct is connected at a time
         for (BlockFace face : getCargoLogisticGroups().keySet()) {
@@ -122,8 +133,8 @@ public class CargoInserter extends CargoInteractor implements
         }
     }
 
-    @Override
-    public void onDuctDisconnected(@NotNull RebarCargoDisconnectEvent event) {
+    @Override @MultiHandler(priorities = EventPriority.MONITOR)
+    public void onDuctDisconnected(@NotNull RebarCargoDisconnectEvent event, @NotNull EventPriority priority) {
         // Allow connecting to all faces now that there are zero connections
         List<BlockFace> faces = RebarUtils.perpendicularImmediateFaces(getFacing());
         faces.add(getFacing());
@@ -164,5 +175,10 @@ public class CargoInserter extends CargoInteractor implements
     @Override
     public boolean isValidGroup(@NotNull LogisticGroup group) {
         return group.getSlotType() == LogisticGroupType.BOTH || group.getSlotType() == LogisticGroupType.INPUT;
+    }
+
+    @Override
+    public @NotNull Iterable<UUID> getCulledEntityIds() {
+        return getHeldEntities().values();
     }
 }
