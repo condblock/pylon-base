@@ -49,18 +49,6 @@ item:
   coal_dust:
     name: "석탄 가루"
 
-  cobalt_dust:
-    name: "코발트 가루"
-
-  cobalt_ingot:
-    name: "코발트 주괴"
-
-  cobalt_nugget:
-    name: "코발트 조각"
-
-  cobalt_block:
-    name: "코발트 블록"
-
   carbon:
     name: "탄소"
 
@@ -264,6 +252,14 @@ item:
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
 
+  fluid_pipe_palladium:
+    name: "팔라듐 유체 파이프"
+    lore: |-
+      <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
+      <arrow> <attr>유량:</attr> %fluid_per_second%
+      <arrow> <attr>온도:</attr> %temperatures%
+
   fluid_pipe_creative:
     name: "<#ff00ff>크리에이티브 유체 파이프"
     lore: |-
@@ -347,6 +343,16 @@ item:
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
     waila: "강철 휴대용 유체 탱크 %info%"
+
+  portable_fluid_tank_palladium:
+    name: "팔라듐 휴대용 유체 탱크"
+    lore: |-
+      <arrow> 설치하고 파이프와 연결할 수 있습니다
+      <arrow> 파괴해도 내용물을 유지합니다
+      <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
+      <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
+      <arrow> <attr>허용 온도:</attr> %temperatures%
+    waila: "팔라듐 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   fluid_valve:
     name: "<white>유체 밸브"
@@ -517,18 +523,21 @@ item:
     lore: |-
       <arrow> 설치된 <white>다이아몬드 블록</white> 위의 아이템을 <insn>오른쪽 클릭</insn>하여 망치질할 수 있습니다
       <arrow> 망치의 등급이 높을수록 성공할 가능성이 높아집니다
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   iron_hammer:
     name: "철 망치"
     lore: |-
       <arrow> 설치된 <white>철 블록</white> 위의 아이템을 <insn>오른쪽 클릭</insn>하여 망치질할 수 있습니다
       <arrow> 망치의 등급이 높을수록 성공할 가능성이 높아집니다
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   stone_hammer:
     name: "돌 망치"
     lore: |-
       <arrow> 설치된 <white>돌</white> 위의 아이템을 <insn>오른쪽 클릭</insn>하여 망치질할 수 있습니다
       <arrow> 망치의 등급이 높을수록 성공할 가능성이 높아집니다
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   immobilizer:
     name: "이모빌라이저"
@@ -609,18 +618,6 @@ item:
     lore: |-
       <arrow> 썩은 살점에 비하면 먹을 만 하지만, 그 나물에 그 밥입니다.
       <arrow> 가죽으로 가공할 수 있습니다.
-
-  nickel_dust:
-    name: "니켈 가루"
-
-  nickel_ingot:
-    name: "니켈 주괴"
-
-  nickel_nugget:
-    name: "니켈 조각"
-
-  nickel_block:
-    name: "니켈 블록"
 
   obsidian_chip:
     name: "흑요석 조각"
@@ -727,6 +724,20 @@ item:
       <arrow> <attr>연구 포인트:</attr> %points%
       <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
+  research_pack_3:
+    name: "연구 팩 III"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 열기
+      <arrow> <attr>연구 포인트:</attr> %points%
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  research_pack_4:
+    name: "연구 팩 IV"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 열기
+      <arrow> <attr>연구 포인트:</attr> %points%
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
   rock_dust:
     name: "돌가루"
 
@@ -744,6 +755,11 @@ item:
     name: "광채 가루 III"
     lore: |-
       <arrow> 어떤 종류의 힘이 입자들을 결합시킵니다. 입자가 다른 입자들로부터 멀어질수록, 결합력이 강해집니다...
+
+  shimmer_bronze:
+    name: "<white>광채 청동"
+    lore: |-
+      <arrow> 일반 청동보다 단단하지만 빠르게 부식됩니다
 
   shimmer_skull:
     name: "<white>광채 해골"
@@ -847,6 +863,21 @@ item:
   steel_sheet:
     name: "강철 판"
 
+  palladium_dust:
+    name: "팔라듐 가루"
+
+  palladium_ingot:
+    name: "팔라듐 주괴"
+
+  palladium_nugget:
+    name: "팔라듐 조각"
+
+  palladium_block:
+    name: "팔라듐 블록"
+
+  palladium_sheet:
+    name: "팔라듐 판"
+
   charcoal_block:
     name: "숯 블록"
 
@@ -895,6 +926,14 @@ item:
     name: "궁극 체력 부적"
     lore: |-
       <arrow> 최대 체력이 증가합니다
+      <arrow> 중첩되지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>최대 체력 증가량:</attr> %health-boost%
+
+  health_talisman_palladium:
+    name: "팔라듐 체력 부적"
+    lore: |-
+      <arrow> 최대 체력을 증가시킵니다
       <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>최대 체력 증가량:</attr> %health-boost%
@@ -1174,7 +1213,7 @@ item:
       <arrow> <attr>한계 온도:</attr> %temperatures%
 
   fluid_tank_casing_bronze:
-    name: "Bronze 유체 탱크 케이싱"
+    name: "청동 유체 탱크 케이싱"
     lore: |-
       <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
@@ -1189,6 +1228,13 @@ item:
 
   fluid_tank_casing_steel:
     name: "강철 유체 탱크 케이싱"
+    lore: |-
+      <star> 유체 탱크 멀티블록 구성 요소
+      <arrow> <attr>용량:</attr> %capacity%
+      <arrow> <attr>한계 온도:</attr> %temperatures%
+
+  fluid_tank_casing_palladium:
+    name: "팔라듐 유체 탱크 케이싱"
     lore: |-
       <star> 유체 탱크 멀티블록 구성 요소
       <arrow> <attr>용량:</attr> %capacity%
@@ -1302,6 +1348,8 @@ item:
       <arrow> 이해할 수 없는 힘에 의해 결합된, 단단하고 내구성 있는 재료입니다
       <arrow> 매우 높은 온도에도 견딜 수 있습니다
       <arrow> 위더 폭발 면역
+
+      <story>When obscyra is mixed with covalent binder and nether bricks, it solidifies into a remarkably durable material. The obscyra residue helps create contours in the shimmer field along the solids, contributing to the material's strength, but little more than that is known.
 
   rotor:
     name: "로터"
@@ -1735,43 +1783,65 @@ item:
       <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
 
-  farmer_talisman_simple:
+  hunger_talisman_palladium:
+    name: "팔라듐 허기 부적"
+    lore: |-
+      <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
+      <arrow> <attr>허기 증가량:</attr> %hunger_increase%
+
+  farming_talisman_simple:
     name: "간단한 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
-  farmer_talisman_advanced:
+  farming_talisman_advanced:
     name: "고급 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
-  farmer_talisman_ultimate:
+  farming_talisman_ultimate:
     name: "궁극 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
+  farming_talisman_palladium:
+    name: "팔라듐 농부 부적"
+    lore: |-
+      <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %extra_crop_chance%
+
   bartering_talisman_simple:
-    name: "간단한 교환 부적"
+    name: "간단한 거래 부적"
     lore: |-
       <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   bartering_talisman_advanced:
-    name: "고급 교환 부적"
+    name: "고급 거래 부적"
     lore: |-
       <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   bartering_talisman_ultimate:
-    name: "궁극 교환 부적"
+    name: "궁극 거래 부적"
+    lore: |-
+      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
+
+  bartering_talisman_palladium:
+    name: "팔라듐 거래 부적"
     lore: |-
       <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1798,6 +1868,13 @@ item:
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
+  water_breathing_talisman_palladium:
+    name: "<white>팔라듐 수중 호흡 부적"
+    lore: |-
+      <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
+
   luck_talisman_simple:
     name: "간단한 행운 부적"
     lore: |-
@@ -1814,6 +1891,13 @@ item:
 
   luck_talisman_ultimate:
     name: "궁극 행운 부적"
+    lore: |-
+      <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 행운:</attr> %bonus_luck%
+
+  luck_talisman_palladium:
+    name: "팔라듐 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1840,6 +1924,13 @@ item:
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %adult_chance%
 
+  breeding_talisman_palladium:
+    name: "팔라듐 번식 부적"
+    lore: |-
+      <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %adult_chance%
+
   enchanting_talisman_simple:
     name: "<white>간단한 마법 부여 부적"
     lore: |-
@@ -1856,6 +1947,13 @@ item:
 
   enchanting_talisman_ultimate:
     name: "<white>궁극 마법 부여 부적"
+    lore: |-
+      <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_level_chance%
+
+  enchanting_talisman_palladium:
+    name: "<white>팔라듐 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1882,17 +1980,139 @@ item:
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
+  hunting_talisman_palladium:
+    name: "<white>팔라듐 사냥 부적"
+    lore: |-
+      <arrow> 몹을 죽일 때마다 추가 전리품을 얻습니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>성공률:</attr> %bonus_item_chance%
+
+  assembly_table:
+    name: "<white>조립대"
+    lore: |-
+      <arrow> 복잡한 부품들을 조립할 수 있습니다
+      <arrow> <insn>아이템을 삽입</insn>하여 조합 시작
+      <arrow> <insn>도구를 사용</insn>하여 조합 진행
+
+  copper_screwdriver:
+    name: "구리 드라이버"
+    lore: |-
+      <arrow> 조립대에 <insn>왼쪽 클릭</insn>으로 사용
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  iron_screwdriver:
+    name: "철 드라이버"
+    lore: |-
+      <arrow> 조립대에 <insn>왼쪽 클릭</insn>으로 사용
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  bronze_screwdriver:
+    name: "청동 드라이버"
+    lore: |-
+      <arrow> 조립대에 <insn>왼쪽 클릭</insn>으로 사용
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  steel_screwdriver:
+    name: "<white>강철 드라이버"
+    lore: |-
+      <arrow> 조립대에 <insn>왼쪽 클릭</insn>으로 사용
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  redstone_soldering_iron:
+    name: "<white>레드스톤 인두"
+    lore: |-
+      <arrow> 조립대에 <insn>왼쪽 클릭</insn>으로 사용
+      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
+
+  steel_cylinder:
+    name: "<white>강철 실린더"
+
+  steel_crankshaft:
+    name: "<white>강철 크랭크축"
+
+  kinetic_control_mechanism:
+    name: "<white>운동 제어 장치"
+
+  internal_combustion_engine:
+    name: "<white>내연 기관"
+
+  collimator:
+    name: "시준기"
+    lore: |-
+      <arrow> 천천히 응집성 유닛을 합성합니다
+      <arrow> <white>y = 0</white> 아래에서만 작동합니다
+      <arrow> <attr>응집성 유닛당 흑요액:</attr> %obscyra-per-cohesive-unit%
+      <arrow> <attr>응집성 유닛당 소요 시간:</attr> %time-per-cohesive-unit%
+
+      <story>쇼드레스커의 14번째 실험이 마침내 결과물을 냈지만 그 결과물은 예상치 못하게 라이버 모델의 남은 부분을 붕괴시켰습니다. 그 이후로 몇 가지 개선을 통해 시준기가 등장했고, 이는 쇼드레스커 반응의 조건을 크게 단순화시켰습니다.
+    waila: "시준기 | %fluid-bar% <white>| %time-remaining%"
+
+  collimator_pillar:
+    name: "시준기 기둥"
+    lore: |-
+      <story>리젤렛은 광채 청동 실린더(또는 '기둥')를 통해 광채장을 약하게 정렬할 수 있다는 사실을 발견하며 광채의 시대를 열었습니다. 광채장은 실린더 바닥에 부딛쳐 실린더를 따라 고르게 형성됩니다. 이 조잡한 방법은 광채장이 더 강한 지하 깊은 곳에서만 작동합니다.
+
+  cohesive_unit:
+    name: "응집성 유닛"
+    lore: |-
+      <arrow> 시준기를 사용하여 합성됩니다
+
+      <story>자연에서 흑요액은 광채장과 불안정하게 공명합니다. 응집성 유닛은 지속적으로 조정되어 형성된 광채장으로 인해 압축된 흑요액이 쇼드레스커 반응으로 인해 붕괴된 결과물입니다.
+
+  liselette_cathode:
+    name: "리젤렛 음극"
+    lore: |-
+      <story>리젤렛 양극 및 적절한 도체와 결합하여 리젤렛 준위를 형성합니다.
+
+  liselette_conductor:
+    name: "리젤렛 전도체"
+    lore: |-
+      <story>전선이 음극에서 양극으로 전자를 전달하는 것처럼 리젤렛 준위 형성을 촉진합니다. 라이바 보존 법칙 하에 리젤렛 음극에서 리젤렛 양극으로 물질을 전달합니다.
+
+  liselette_anode:
+    name: "리젤렛 양극"
+    lore: |-
+      <story>리젤렛 음극과 적절한 도체와 결합하여 리젤렛 준위를 형성합니다.
+
+  cargo_controller:
+    name: "화물 제어기"
+
+  palladium_helmet:
+    name: "팔라듐 투구"
+
+  palladium_chestplate:
+    name: "팔라듐 흉갑"
+
+  palladium_leggings:
+    name: "팔라듐 레깅스"
+
+  palladium_boots:
+    name: "팔라듐 부츠"
+
+  palladium_sword:
+    name: "팔라듐 검"
+
+  palladium_axe:
+    name: "팔라듐 도끼"
+
+  palladium_pickaxe:
+    name: "팔라듐 곡괭이"
+
+  palladium_shovel:
+    name: "팔라듐 삽"
+
+  palladium_hoe:
+    name: "팔라듐 괭이"
+
 fluid:
   castable:
     display-text: "<arrow> <white>%result%<gray>(으)로 주조 가능"
-  bronze: "<#8d6f64>청동"
-  cobalt: "<gray>코발트"
-  copper: "<#b5591b>구리"
-  gold: "<gold>금"
-  iron: "<gray>철"
+  bronze: "<#8d6f64>액체 청동"
+  copper: "<#b5591b>액체 구리"
+  gold: "<gold>액체 금"
+  iron: "<gray>액체 철"
   lava: "<#fc4e03>용암"
   mercury: "<#dedede>수은"
-  nickel: "<gray>니켈"
   none: "없음"
   slurry: "<gray>슬러리"
   slurry_coal: "<gray>석탄 슬러리"
@@ -1907,6 +2127,7 @@ fluid:
   sulfur: "<yellow>황"
   tin: "<gray>주석"
   water: "<blue>물"
+  palladium: "<#b642f5>액체 팔라듐"
   plant_oil: "<#c4b352>식물성 기름"
   hydraulic_fluid: "<#212d99>유압유"
   dirty_hydraulic_fluid: "<#212d99>유압유 <#48459b>(오염됨)"
@@ -1944,20 +2165,23 @@ research:
   medicine_2: "<#cc2e2e>의약품 II"
   medicine_3: "<#cc2e2e>의약품 III"
   french_revolution: "<gradient:#0055a4:white:#ef4135>프랑스 혁명"
-  shimmer_manipulation: "<#efd44a>광채 조작"
+  shimmer_magic_1: "<#efd44a>광채 마법 I"
+  shimmer_magic_2: "<#efd44a>광채 마법 II"
+  shimmer_magic_3: "<#efd44a>광채 마법 III"
   deforestation: "<#d67d2a>삼림 벌채"
-  rituals: "<#5b0baa>의식"
-  elevation: "<#db79e0>수직 이동"
-  medicine: "<#cc2e2e>의약품"
-  better_hammers: "<#77d17e>더 나은 망치"
+  elevators: "<#db79e0>엘리베이터"
+  improved_hammers: "<#77d17e>더 나은 망치"
   fletching: "<#d66db8>화살 개조"
   irrigation: "<#77a7d1>관개"
   portable_workstations: "<#9b816c>휴대용 작업대"
   showing_off: "<rainbow>아이템 전시"
   combat_engineering: "<#ef8c4a>전투 공학"
-  igneous_shimmer: "<#45336d>내열 마법"
+  igneous_magic: "<#45336d>내열 마법"
+  shimmer_field_manipulation: "<#e5c4ef>광채장 조작"
   scientific_revolution_1: "<#5bfc05>과학 혁명 I"
   scientific_revolution_2: "<#5bfc05>과학 혁명 II"
+  scientific_revolution_3: "<#5bfc05>과학 혁명 III"
+  scientific_revolution_4: "<#5bfc05>과학 혁명 IV"
   talismans_1: "<#ce6625>부적 I"
   talismans_2: "<#ce6625>부적 II"
   talismans_3: "<#ce6625>부적 III"
@@ -1986,7 +2210,9 @@ research:
   fluid_handling_2: "<#58e2d2>유체 처리 II"
   fluid_handling_3: "<#58e2d2>유체 처리 III"
   fluid_handling_4: "<#58e2d2>유체 처리 IV"
-  simple_components: "<#c1c1c1>간단한 재료"
+  fluid_handling_5: "<#2937e3>유체 처리 V"
+  components_1: "<#c1c1c1>구성 요소 I"
+  components_2: "<#c1c1c1>구성 요소 II"
   straining: "<#c99fa1>여과"
   climbing_equipment: "<#a6b579>등반 장비"
   vacuum_hoppers_1: "<#54536d>진공 호퍼 I"
@@ -1997,6 +2223,9 @@ research:
   cargo_3: "<#e89888>화물 III"
   diesel_machines: "<#e8c888>디젤 기계"
   diesel_production: "<#ce8c77>디젤유 생산"
+  assembling: "<#846e5a>조립"
+  palladium_tools: "<#2937e3>팔라듐 도구"
+  palladium_armor: "<#2937e3>팔라듐 도구"
 
 guide:
   page:
@@ -2022,6 +2251,7 @@ guide:
     machines_diesel_production: "<white>디젤유 생산"
     machines_smelting: "<white>제련"
     machines: "<white>기계"
+    assembling: "<white>조립"
     building: "<white>건축"
     creative_items: "<light_purple>크리에이티브 아이템 <#ff0000>(관리자 전용)</#ff0000>"
     magic: "<white>마법"
@@ -2038,6 +2268,8 @@ guide:
     hammer: "<attr>확률:</attr> %chance%"
 
 message:
+  assembly_table:
+    full: "<red>출력부가 가득 찼습니다!"
   fluid_selector:
     current_fluid: "<white>현재 유체: %fluid%"
     clear: "<white>초기화"
@@ -2071,8 +2303,8 @@ message:
     enabled: "광채 자석 <green>활성화"
     disabled: "광채 자석 <red>비활성화"
   valve:
-    enabled: "활성화"
-    disabled: "비활성화"
+    open: "<green>열림"
+    closed: "<red>닫힘"
   elevator:
     none_within_range:
       above: "<red>위쪽 범위 내에 엘리베이터가 없습니다"
@@ -2167,8 +2399,11 @@ gui:
     too_cold: "<red>온도가 너무 낮습니다 (필요 온도: %temperature%)"
     not_enough: "<red>주조할 %fluid%가 모자랍니다 (%amount%/%needed%)"
     click_to_cast: "<insn>클릭</insn>해서 주조 (%amount%/%needed%)"
+    auto_cast: "자동 주조: %status%"
   progress_bar:
     text: "%filled_bars%<dark_gray>%empty_bars% <gray>%progress%"
+  discrete_progress_bar:
+    text: "%filled_bars%<dark_gray>%empty_bars% <gray>%stage%/%max_stage%"
   vacuum_hopper:
     blacklist: "<white>블랙리스트"
     whitelist: "<white>화이트리스트"
@@ -2199,6 +2434,14 @@ gui:
       <arrow> <insn>오른쪽 클릭</insn>으로 감소
       <arrow> <insn>Shift 왼쪽 클릭</insn>으로 증가 <yellow>(10x)</yellow>
       <arrow> <insn>Shift 오른쪽 클릭</insn>으로 감소 <yellow>(10x)</yellow>
+  assembly_table:
+    step: "<#adc5ce>%step_index%단계: <white>%tool% <gray>(x%clicks%)"
+    no_recipe: "<red>레시피 없음"
+    clicks_remaining: "<yellow>%clicks%<white>x"
+    tools:
+      hammer: "망치"
+      screwdriver: "드라이버"
+      redstone_soldering_iron: "레드스톤 솔더링 아이언"
 
 inventory:
   fuel: "연료"
