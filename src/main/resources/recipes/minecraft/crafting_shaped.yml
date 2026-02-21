@@ -400,12 +400,13 @@ pylon:shimmer_altar:
   pattern:
     - " I "
     - "DPD"
-    - "DSD"
+    - "BSB"
   key:
     P: pylon:pedestal
     S: minecraft:smooth_stone_slab
     D: pylon:shimmer_dust_2
     I: pylon:diamond_dust
+    B: pylon:shimmer_bronze
   result: pylon:shimmer_altar
   category: building
 
@@ -487,6 +488,17 @@ pylon:fluid_pipe_steel:
     pylon:fluid_pipe_steel: 8
   category: building
 
+pylon:fluid_pipe_palladium:
+  pattern:
+    - "PPP"
+    - "   "
+    - "PPP"
+  key:
+    P: pylon:palladium_sheet
+  result:
+    pylon:fluid_pipe_palladium: 8
+  category: building
+
 pylon:portable_fluid_tank_wood:
   pattern:
     - "CGC"
@@ -563,6 +575,17 @@ pylon:portable_fluid_tank_steel:
     C: pylon:steel_sheet
     G: minecraft:glass
   result: pylon:portable_fluid_tank_steel
+  category: building
+
+pylon:portable_fluid_tank_palladium:
+  pattern:
+    - "PGP"
+    - "P P"
+    - "PGP"
+  key:
+    P: pylon:palladium_sheet
+    G: minecraft:glass
+  result: pylon:portable_fluid_tank_palladium
   category: building
 
 pylon:fluid_tank:
@@ -652,6 +675,17 @@ pylon:fluid_tank_casing_steel:
     C: pylon:steel_sheet
     G: minecraft:glass
   result: pylon:fluid_tank_casing_steel
+  category: building
+
+pylon:fluid_tank_casing_palladium:
+  pattern:
+    - "P P"
+    - "G G"
+    - "P P"
+  key:
+    P: pylon:palladium_sheet
+    G: minecraft:glass
+  result: pylon:fluid_tank_casing_palladium
   category: building
 
 pylon:rotor:
@@ -1069,9 +1103,9 @@ pylon:explosive_target:
 
 pylon:immobilizer:
   pattern:
-    - "DSD"
+    - " S "
     - "DGD"
-    - "DRD"
+    - " R "
   key:
     S: minecraft:daylight_detector
     D: pylon:shimmer_dust_3
@@ -1216,6 +1250,34 @@ pylon:hydraulic_farmer:
     P: pylon:fluid_pipe_bronze
     H: pylon:bronze_hoe
   result: pylon:hydraulic_farmer
+  category: building
+
+pylon:hydraulic_miner:
+  pattern:
+    - "CDC"
+    - "PEP"
+    - "CSC"
+  key:
+    C: minecraft:copper_block
+    S: pylon:copper_sheet
+    E: pylon:hydraulic_motor
+    P: pylon:fluid_pipe_bronze
+    D: pylon:bronze_drill_bit
+  result: pylon:hydraulic_miner
+  category: building
+
+pylon:hydraulic_breaker:
+  pattern:
+    - "SSS"
+    - "PEP"
+    - "CDC"
+  key:
+    C: minecraft:copper_block
+    S: pylon:copper_sheet
+    E: pylon:hydraulic_motor
+    P: pylon:fluid_pipe_bronze
+    D: pylon:bronze_drill_bit
+  result: pylon:hydraulic_breaker
   category: building
 
 pylon:purification_tower_glass:
@@ -1712,6 +1774,621 @@ pylon:steel_crankshaft:
   key:
     N: pylon:steel_nugget
     I: pylon:steel_ingot
+  result: pylon:steel_crankshaft
+  category: equipment
+
+pylon:assembly_table:
+  pattern:
+    - "BCB"
+    - " W "
+    - "WWW"
+  key:
+    W: "#minecraft:planks"
+    B: pylon:bronze_sheet
+    C: minecraft:crafting_table
+  result: pylon:assembly_table
+  category: building
+
+pylon:fluid_input_hatch:
+  pattern:
+    - "B B"
+    - "CCV"
+    - "B B"
+  key:
+    B: pylon:bronze_sheet
+    C: pylon:fluid_pipe_copper
+    V: pylon:backflow_valve
+  result: pylon:fluid_input_hatch
+  category: building
+
+pylon:fluid_output_hatch:
+  pattern:
+    - "B B"
+    - "VCC"
+    - "B B"
+  key:
+    B: pylon:bronze_sheet
+    C: pylon:fluid_pipe_copper
+    V: pylon:backflow_valve
+  result: pylon:fluid_output_hatch
+  category: building
+
+pylon:item_input_hatch:
+  pattern:
+    - "B B"
+    - "HCB"
+    - "B B"
+  key:
+    B: pylon:bronze_sheet
+    C: minecraft:chest
+    H: minecraft:hopper
+  result: pylon:item_input_hatch
+  category: building
+
+pylon:item_output_hatch:
+  pattern:
+    - "B B"
+    - "BCH"
+    - "B B"
+  key:
+    B: pylon:bronze_sheet
+    C: minecraft:chest
+    H: minecraft:hopper
+  result: pylon:item_output_hatch
+  category: building
+
+pylon:diesel_grindstone:
+  pattern:
+    - "SHS"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    E: pylon:internal_combustion_engine
+    S: minecraft:smooth_stone
+    H: pylon:grindstone_handle
+  result: pylon:diesel_grindstone
+  category: building
+
+pylon:diesel_mixing_attachment:
+  pattern:
+    - "SHS"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    H: pylon:grindstone_handle
+  result: pylon:diesel_mixing_attachment
+  category: building
+
+pylon:diesel_press:
+  pattern:
+    - "IRI"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    I: minecraft:piston
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    R: pylon:press
+  result: pylon:diesel_press
+  category: building
+
+pylon:diesel_hammer_head:
+  pattern:
+    - "SWS"
+    - "PEP"
+    - "SWS"
+  key:
+    P: pylon:fluid_pipe_steel
+    W: pylon:weighted_shaft
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+  result: pylon:diesel_hammer_head
+  category: building
+
+pylon:diesel_pipe_bender:
+  pattern:
+    - "LSL"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    L: minecraft:lever
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+  result: pylon:diesel_pipe_bender
+  category: building
+
+pylon:diesel_table_saw:
+  pattern:
+    - "SAS"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    A: pylon:sawblade
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+  result: pylon:diesel_table_saw
+  category: building
+
+pylon:diesel_miner:
+  pattern:
+    - "BDB"
+    - "PEP"
+    - "BSB"
+  key:
+    P: pylon:fluid_pipe_steel
+    D: pylon:bronze_drill_bit
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    B: minecraft:iron_block
+  result: pylon:diesel_miner
+  category: building
+
+pylon:diesel_breaker:
+  pattern:
+    - "SSS"
+    - "PEP"
+    - "BDB"
+  key:
+    P: pylon:fluid_pipe_steel
+    D: pylon:bronze_drill_bit
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    B: minecraft:iron_block
+  result: pylon:diesel_breaker
+  category: building
+
+pylon:diesel_furnace:
+  pattern:
+    - "SFS"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    F: minecraft:furnace
+  result: pylon:diesel_furnace
+  category: building
+
+pylon:diesel_brick_molder:
+  pattern:
+    - "SBS"
+    - "PEP"
+    - "SSS"
+  key:
+    P: pylon:fluid_pipe_steel
+    E: pylon:internal_combustion_engine
+    S: pylon:iron_sheet
+    B: pylon:brick_mold
+  result: pylon:diesel_brick_molder
+  category: building
+
+pylon:fermenter:
+  pattern:
+    - "ICI"
+    - "VCP"
+    - "IBI"
+  key:
+    B: pylon:bronze_sheet
+    I: pylon:iron_sheet
+    P: pylon:fluid_pipe_bronze
+    C: pylon:fermenter_core
+    V: pylon:backflow_valve
+  result: pylon:fermenter
+  category: building
+
+pylon:fermenter_core:
+  pattern:
+    - "   "
+    - "SGS"
+    - "   "
+  key:
+    S: pylon:steel_sheet
+    G: minecraft:glass
+  result: pylon:fermenter_core
+  category: building
+
+pylon:fermenter_casing:
+  pattern:
+    - " P "
+    - "PSP"
+    - " P "
+  key:
+    S: pylon:steel_sheet
+    P: minecraft:glass_pane
   result:
-    pylon:steel_crankshaft: 1
+    pylon:fermenter_casing: 4
+  category: building
+
+pylon:biorefinery:
+  pattern:
+    - "SAS"
+    - "KCK"
+    - "SSS"
+  key:
+    S: pylon:steel_sheet
+    K: pylon:kinetic_control_mechanism
+    A: pylon:analogue_display
+    C: pylon:steel_crankshaft
+  result: pylon:biorefinery
+  category: building
+
+pylon:biorefinery_foundation:
+  pattern:
+    - "   "
+    - "SSS"
+    - "BIB"
+  key:
+    S: pylon:bronze_sheet
+    I: minecraft:iron_ingot
+    B: minecraft:bricks
+  result:
+    pylon:biorefinery_foundation: 3
+  category: building
+
+
+pylon:biorefinery_plating:
+  pattern:
+    - "   "
+    - "IS "
+    - "SI "
+  key:
+    I: pylon:iron_sheet
+    S: pylon:steel_sheet
+  result:
+    pylon:biorefinery_plating: 4
+  category: building
+
+pylon:biorefinery_tower_ring:
+  pattern:
+    - "R R"
+    - "I I"
+    - "R R"
+  key:
+    R: pylon:refractory_brick
+    I: pylon:steel_ingot
+  result: pylon:biorefinery_tower_ring
+  category: building
+
+pylon:biorefinery_smokestack_ring:
+  pattern:
+    - "B B"
+    - "I I"
+    - "B B"
+  key:
+    I: pylon:bronze_ingot
+    B: minecraft:brick
+  result:
+    pylon:biorefinery_smokestack_ring: 2
+  category: building
+
+pylon:biorefinery_smokestack_cap:
+  pattern:
+    - "   "
+    - "B B"
+    - "BFB"
+  key:
+    F: pylon:filter_mesh
+    B: minecraft:brick
+  result: pylon:biorefinery_smokestack_cap
+  category: building
+
+pylon:collimator:
+  pattern:
+    - " S "
+    - "POP"
+    - "BBB"
+  key:
+    O: minecraft:obsidian
+    S: pylon:shimmer_dust_2
+    P: pylon:fluid_pipe_bronze
+    B: pylon:shimmer_bronze
+  result: pylon:collimator
+  category: building
+
+pylon:collimator_pillar:
+  pattern:
+    - "BSB"
+    - " S "
+    - "BSB"
+  key:
+    S: pylon:shimmer_bronze
+    B: minecraft:brick
+  result: pylon:collimator_pillar
+  category: building
+
+pylon:cargo_duct:
+  pattern:
+    - "SSS"
+    - "CCC"
+    - "SSS"
+  key:
+    S: pylon:copper_sheet
+    C: pylon:liselette_conductor
+  result:
+    pylon:cargo_duct: 6
+  category: building
+
+pylon:cargo_extractor:
+  pattern:
+    - "S  "
+    - "SDC"
+    - "S  "
+  key:
+    S: pylon:copper_sheet
+    D: pylon:cargo_duct
+    C: pylon:liselette_cathode
+  result: pylon:cargo_extractor
+  category: building
+
+pylon:cargo_inserter:
+  pattern:
+    - "S  "
+    - "SDA"
+    - "S  "
+  key:
+    S: pylon:copper_sheet
+    D: pylon:cargo_duct
+    A: pylon:liselette_anode
+  result: pylon:cargo_inserter
+  category: building
+
+pylon:cargo_valve:
+  pattern:
+    - "SCS"
+    - " BL"
+    - "SAS"
+  key:
+    S: pylon:copper_sheet
+    A: pylon:liselette_anode
+    C: pylon:liselette_cathode
+    L: minecraft:lever
+    B: minecraft:chest
+  result: pylon:cargo_valve
+  category: building
+
+pylon:cargo_buffer:
+  pattern:
+    - "SCS"
+    - " B "
+    - "SAS"
+  key:
+    S: pylon:copper_sheet
+    A: pylon:liselette_anode
+    C: pylon:liselette_cathode
+    B: minecraft:barrel
+  result: pylon:cargo_buffer
+  category: building
+
+pylon:cargo_monitor:
+  pattern:
+    - " I "
+    - "RBC"
+    - "   "
+  key:
+    I: pylon:analogue_display
+    B: pylon:cargo_buffer
+    R: minecraft:redstone
+    C: minecraft:comparator
+  result: pylon:cargo_monitor
+  category: building
+
+pylon:cargo_meter:
+  pattern:
+    - " E "
+    - "RMC"
+    - "   "
+  key:
+    M: pylon:cargo_monitor
+    R: minecraft:redstone
+    E: minecraft:repeater
+    C: minecraft:comparator
+  result: pylon:cargo_meter
+  category: building
+
+pylon:cargo_splitter:
+  pattern:
+    - "S S"
+    - "COC"
+    - "SAS"
+  key:
+    S: pylon:iron_sheet
+    O: pylon:cargo_controller
+    C: pylon:liselette_cathode
+    A: pylon:liselette_anode
+  result: pylon:cargo_splitter
+  category: building
+
+pylon:cargo_merger:
+  pattern:
+    - "SCS"
+    - "AOA"
+    - "S S"
+  key:
+    S: pylon:iron_sheet
+    O: pylon:cargo_controller
+    C: pylon:liselette_cathode
+    A: pylon:liselette_anode
+  result: pylon:cargo_merger
+  category: building
+
+pylon:cargo_filter:
+  pattern:
+    - "SFS"
+    - "COC"
+    - "SAS"
+  key:
+    S: pylon:iron_sheet
+    O: pylon:cargo_controller
+    C: pylon:liselette_cathode
+    A: pylon:liselette_anode
+    F: pylon:filter_mesh
+  result: pylon:cargo_filter
+  category: building
+
+pylon:cargo_overflow_gate:
+  pattern:
+    - "SRS"
+    - "COC"
+    - "SAS"
+  key:
+    S: pylon:iron_sheet
+    O: pylon:cargo_controller
+    C: pylon:liselette_cathode
+    A: pylon:liselette_anode
+    R: minecraft:comparator
+  result: pylon:cargo_overflow_gate
+  category: building
+
+pylon:cargo_gate:
+  pattern:
+    - "SCS"
+    - "AOA"
+    - "SRS"
+  key:
+    S: pylon:steel_sheet
+    O: pylon:cargo_controller
+    C: pylon:liselette_cathode
+    A: pylon:liselette_anode
+    R: minecraft:comparator
+  result: pylon:cargo_gate
+  category: building
+
+pylon:cargo_accumulator:
+  pattern:
+    - "SCS"
+    - "DOR"
+    - "SAS"
+  key:
+    S: pylon:steel_sheet
+    O: pylon:cargo_controller
+    A: pylon:liselette_anode
+    C: pylon:liselette_cathode
+    R: minecraft:repeater
+    D: minecraft:redstone
+  result: pylon:cargo_accumulator
+  category: building
+
+pylon:cargo_fluid_accumulator:
+  pattern:
+    - " P "
+    - "DAR"
+    - " P "
+  key:
+    A: pylon:cargo_accumulator
+    P: pylon:fluid_pipe_steel
+    R: minecraft:repeater
+    D: minecraft:redstone
+  result: pylon:cargo_fluid_accumulator
+  category: building
+
+pylon:palladium_helmet:
+  pattern:
+    - "PPP"
+    - "P P"
+    - "   "
+  key:
+    P: pylon:palladium_ingot
+  result:
+    pylon:palladium_helmet: 1
+  category: equipment
+
+pylon:palladium_chestplate:
+  pattern:
+    - "P P"
+    - "PPP"
+    - "PPP"
+  key:
+    P: pylon:palladium_ingot
+  result:
+    pylon:palladium_chestplate: 1
+  category: equipment
+
+pylon:palladium_leggings:
+  pattern:
+    - "PPP"
+    - "P P"
+    - "P P"
+  key:
+    P: pylon:palladium_ingot
+  result:
+    pylon:palladium_leggings: 1
+  category: equipment
+
+pylon:palladium_boots:
+  pattern:
+    - "P P"
+    - "P P"
+    - "   "
+  key:
+    P: pylon:palladium_ingot
+  result:
+    pylon:palladium_boots: 1
+  category: equipment
+
+pylon:palladium_sword:
+  pattern:
+    - " P "
+    - " P "
+    - " S "
+  key:
+    P: pylon:palladium_ingot
+    S: minecraft:stick
+  result:
+    pylon:palladium_sword: 1
+  category: equipment
+
+pylon:palladium_axe:
+  pattern:
+    - "PP "
+    - "PS "
+    - " S "
+  key:
+    P: pylon:palladium_ingot
+    S: minecraft:stick
+  result:
+    pylon:palladium_axe: 1
+  category: equipment
+
+pylon:palladium_pickaxe:
+  pattern:
+    - "PPP"
+    - " S "
+    - " S "
+  key:
+    P: pylon:palladium_ingot
+    S: minecraft:stick
+  result:
+    pylon:palladium_pickaxe: 1
+  category: equipment
+
+pylon:palladium_shovel:
+  pattern:
+    - " P "
+    - " S "
+    - " S "
+  key:
+    P: pylon:palladium_ingot
+    S: minecraft:stick
+  result:
+    pylon:palladium_shovel: 1
+  category: equipment
+
+pylon:palladium_hoe:
+  pattern:
+    - "PP "
+    - " S "
+    - " S "
+  key:
+    P: pylon:palladium_ingot
+    S: minecraft:stick
+  result:
+    pylon:palladium_hoe: 1
   category: equipment

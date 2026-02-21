@@ -69,6 +69,12 @@ pylon:steel_sheet:
   mining-level: diamond
   chance: 0.25
 
+pylon:palladium_sheet:
+  input: pylon:palladium_ingot
+  result: pylon:palladium_sheet
+  mining-level: diamond
+  chance: 0.25
+
 pylon:gravel_from_rocks:
   input: "#rebar:rocks"
   result: minecraft:gravel
@@ -79,4 +85,11 @@ pylon:flint_from_gravel:
   input: minecraft:gravel
   result: minecraft:flint
   mining-level: stone
+  chance: 0.5
+
+pylon:liselette_conductor:
+  input: pylon:cohesive_unit
+  result:
+    pylon:liselette_conductor: 2
+  mining-level: iron
   chance: 0.5

@@ -116,9 +116,11 @@ public class PylonKeys {
     public static final NamespacedKey FLOUR = pylonKey("flour");
     public static final NamespacedKey DOUGH = pylonKey("dough");
 
+    public static final NamespacedKey HAMMER = pylonKey("hammer");
     public static final NamespacedKey STONE_HAMMER = pylonKey("stone_hammer");
     public static final NamespacedKey IRON_HAMMER = pylonKey("iron_hammer");
     public static final NamespacedKey DIAMOND_HAMMER = pylonKey("diamond_hammer");
+    public static final NamespacedKey NETHERITE_HAMMER = pylonKey("netherite_hammer");
 
     public static final NamespacedKey WATERING_CAN = pylonKey("watering_can");
     public static final NamespacedKey SPRINKLER = pylonKey("sprinkler");
@@ -139,6 +141,8 @@ public class PylonKeys {
     public static final NamespacedKey SHIMMER_MAGNET = pylonKey("shimmer_magnet");
 
     public static final NamespacedKey ENRICHED_SOUL_SOIL = pylonKey("enriched_soul_soil");
+
+    public static final NamespacedKey SHIMMER_BRONZE = pylonKey("shimmer_bronze");
 
     public static final NamespacedKey PEDESTAL = pylonKey("pedestal");
     public static final NamespacedKey SHIMMER_PEDESTAL = pylonKey("shimmer_pedestal");
@@ -187,6 +191,7 @@ public class PylonKeys {
     public static final NamespacedKey STEEL_CRANKSHAFT = pylonKey("steel_crankshaft");
     public static final NamespacedKey KINETIC_CONTROL_MECHANISM = pylonKey("kinetic_control_mechanism");
     public static final NamespacedKey INTERNAL_COMBUSTION_ENGINE = pylonKey("internal_combustion_engine");
+    public static final NamespacedKey CARGO_CONTROLLER = pylonKey("cargo_controller");
 
     public static final NamespacedKey WATER_PUMP = pylonKey("water_pump");
 
@@ -212,8 +217,11 @@ public class PylonKeys {
     public static final NamespacedKey CREATIVE_FLUID_SOURCE = pylonKey("creative_fluid_source");
 
     public static final NamespacedKey LOUPE = pylonKey("loupe");
+
     public static final NamespacedKey RESEARCH_PACK_1 = pylonKey("research_pack_1");
     public static final NamespacedKey RESEARCH_PACK_2 = pylonKey("research_pack_2");
+    public static final NamespacedKey RESEARCH_PACK_3 = pylonKey("research_pack_3");
+    public static final NamespacedKey RESEARCH_PACK_4 = pylonKey("research_pack_4");
 
     public static final NamespacedKey REFRACTORY_MIX = pylonKey("refractory_mix");
     public static final NamespacedKey UNFIRED_REFRACTORY_BRICK = pylonKey("unfired_refractory_brick");
@@ -386,7 +394,30 @@ public class PylonKeys {
     public static final NamespacedKey STEEL_SCREWDRIVER = pylonKey("steel_screwdriver");
     public static final NamespacedKey REDSTONE_SOLDERING_IRON = pylonKey("redstone_soldering_iron");
 
+    public static final NamespacedKey COHESIVE_UNIT = pylonKey("cohesive_unit");
+    public static final NamespacedKey COLLIMATOR = pylonKey("collimator");
+    public static final NamespacedKey COLLIMATOR_PILLAR = pylonKey("collimator_pillar");
+
+    public static final NamespacedKey LISELETTE_CATHODE = pylonKey("liselette_cathode");
+    public static final NamespacedKey LISELETTE_CONDUCTOR = pylonKey("liselette_conductor");
+    public static final NamespacedKey LISELETTE_ANODE = pylonKey("liselette_anode");
+
     public static final NamespacedKey DISPLAY_PROJECTILE = pylonKey("display_projectile");
 
     public static final NamespacedKey SCREWDRIVER = pylonKey("screwdriver");
+
+    public static final NamespacedKey PALLADIUM_HELMET = pylonKey("palladium_helmet");
+    public static final NamespacedKey PALLADIUM_CHESTPLATE = pylonKey("palladium_chestplate");
+    public static final NamespacedKey PALLADIUM_LEGGINGS = pylonKey("palladium_leggings");
+    public static final NamespacedKey PALLADIUM_BOOTS = pylonKey("palladium_boots");
+
+    public static final NamespacedKey PALLADIUM_SWORD = pylonKey("palladium_sword");
+    public static final NamespacedKey PALLADIUM_AXE = pylonKey("palladium_axe");
+    public static final NamespacedKey PALLADIUM_PICKAXE = pylonKey("palladium_pickaxe");
+    public static final NamespacedKey PALLADIUM_SHOVEL = pylonKey("palladium_shovel");
+    public static final NamespacedKey PALLADIUM_HOE = pylonKey("palladium_hoe");
+
+    public static final NamespacedKey FLUID_PIPE_PALLADIUM = pylonKey("fluid_pipe_palladium");
+    public static final NamespacedKey FLUID_TANK_CASING_PALLADIUM = pylonKey("fluid_tank_casing_palladium");
+    public static final NamespacedKey PORTABLE_FLUID_TANK_PALLADIUM = pylonKey("portable_fluid_tank_palladium");
 }
