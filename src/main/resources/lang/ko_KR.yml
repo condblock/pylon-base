@@ -574,7 +574,7 @@ item:
       <star> 멀티블록
       <arrow> 광채 의식을 실행하기 위한 구조물입니다
       <arrow> 받침대에 아이템을 추가하고 촉매로 오른쪽 클릭하여 의식을 시작할 수 있습니다
-
+      
       <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.shimmer_altar.name></yellow>
       <diamond> 8x <yellow><lang:pylon.pylonbase.item.shimmer_pedestal.name></yellow>
@@ -1285,7 +1285,7 @@ item:
       <arrow> <attr>채굴 주기:</attr> %cycle-time%
       <arrow> <attr>출력물:</attr> %cycle-output%
       <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
-
+      
       <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill.name></yellow>
       <diamond> 1x <yellow>Cauldron</yellow>
@@ -1349,7 +1349,7 @@ item:
       <arrow> 매우 높은 온도에도 견딜 수 있습니다
       <arrow> 위더 폭발 면역
 
-      <story>When obscyra is mixed with covalent binder and nether bricks, it solidifies into a remarkably durable material. The obscyra residue helps create contours in the shimmer field along the solids, contributing to the material's strength, but little more than that is known.
+      <story>흑요액을 공유 결합체, 네더 벽돌과 혼합하면 아주 단단한 물질로 응고됩니다. 잔여 흑요액이 광채장에 따라 고체에 막을 형성하여 재료의 강도에 기여하지만, 그 외엔 밝혀진 바가 없습니다.
 
   rotor:
     name: "로터"
@@ -1585,7 +1585,7 @@ item:
       <arrow> <attr>사탕수수 용량:</attr> %sugarcane-capacity%
       <arrow> <attr>최대 에탄올 출력 속도:</attr> %max-ethanol-output-rate%
 
-      <u>Components</u>
+      <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.fermenter.name/></yellow>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
@@ -1616,7 +1616,7 @@ item:
       <arrow> <attr>바이오디젤 1mb당 에탄올:</attr> %ethanol-per-mb-of-biodiesel%
       <arrow> <attr>바이오디젤 1mb당 식물성 기름:</attr> %plant-oil-per-mb-of-biodiesel%
 
-      <u>Components</u>
+      <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
       <diamond> 2x <yellow><lang:pylon.pylonbase.item.fluid_input_hatch.name/></yellow>
@@ -1987,6 +1987,11 @@ item:
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
+  palladium_flight_ring:
+    name: "<white>팔라듐 비행 반지"
+    lore: |-
+      <arrow> 크리에이티브 모드처럼 비행할 수 있습니다
+
   assembly_table:
     name: "<white>조립대"
     lore: |-
@@ -2043,7 +2048,7 @@ item:
       <arrow> <white>y = 0</white> 아래에서만 작동합니다
       <arrow> <attr>응집성 유닛당 흑요액:</attr> %obscyra-per-cohesive-unit%
       <arrow> <attr>응집성 유닛당 소요 시간:</attr> %time-per-cohesive-unit%
-
+      
       <story>쇼드레스커의 14번째 실험이 마침내 결과물을 냈지만 그 결과물은 예상치 못하게 라이버 모델의 남은 부분을 붕괴시켰습니다. 그 이후로 몇 가지 개선을 통해 시준기가 등장했고, 이는 쇼드레스커 반응의 조건을 크게 단순화시켰습니다.
     waila: "시준기 | %fluid-bar% <white>| %time-remaining%"
 
@@ -2255,6 +2260,13 @@ guide:
     building: "<white>건축"
     creative_items: "<light_purple>크리에이티브 아이템 <#ff0000>(관리자 전용)</#ff0000>"
     magic: "<white>마법"
+    info: "<white>파일론 정보"
+    info_progression: "<white>파일론 진행"
+    info_pit_kiln: "<white>가마 101"
+    info_fluid_handling: "<white>유체 처리 101"
+    info_hydraulics: "<white>유압 101"
+    info_bloomery: "<white>제련 101: 수로"
+    info_smeltery: "<white>제련 102: 제련소"
   recipe:
     grindstone:
       time: "<attr>소요 시간:</attr> %time%"
@@ -2266,6 +2278,64 @@ guide:
     drilling: "<attr>주기 횟수:</attr> %time%"
     molding: "<attr>성형 주기:</attr> %molding-cycles%"
     hammer: "<attr>확률:</attr> %chance%"
+  button:
+    info:
+      loupe:
+        name: "루페로 연구하기"
+        lore: |-
+          <arrow> 루페로 바닐라 아이템/블록/엔티티를 조사하여 연구 포인트를 얻을 수 있습니다
+          <arrow> 떨어진 아이템과 블록을 조사하면 소모되니(부숴지지 않는 블록 제외) 주의해서 사용하세요
+      research_packs:
+        name: "연구 팩"
+        lore: |-
+          <arrow> 더 많은 연구 포인트가 필요할 때, 루페로는 더 이상 충분하지 않을 수 있습니다
+          <arrow> 연구 팩은 제작하여 소비하여 고정된 수의 연구 포인트를 얻을 수 있으며, 재사용 대기시간이 있습니다
+      progression:
+        manual_core:
+          name: "수동 코어 드릴"
+          lore: ""
+        pit_kiln:
+          name: "가마"
+          lore: ""
+        bronze_age:
+          name: "청동 시대"
+          lore: ""
+        hydraulic_machines:
+          name: "유압 기계"
+          lore: ""
+        cargo_machines:
+          name: "화물 기계"
+          lore: ""
+        gypsum:
+          name: "석고"
+          lore: ""
+        steel_age:
+          name: "강철 시대"
+          lore: ""
+        diesel_machines:
+          name: "디젤 기계"
+          lore: ""
+        palladium:
+          name: "팔라듐 시대"
+          lore: ""
+        palladium_flight_ring:
+          name: "팔라듐 비행 반지"
+          lore: ""
+      pit_kiln:
+        kiln:
+          name: "가마"
+          lore: |-
+            <arrow> 가마는 고급 주조를 할 수 있는 가장 원시적인 형태입니다
+        construction:
+          name: "가마 건설"
+          lore: ""
+        crafting:
+          name: "가마로 제작하기"
+          lore: ""
+      bloomery:
+        bloomer:
+          name: "수로"
+          lore: ""
 
 message:
   assembly_table:
