@@ -140,7 +140,7 @@ public class PylonUtils {
         return Component.translatable("pylon.gui.progress_bar.text").arguments(
                 RebarArgument.of("filled_bars", Component.text("|".repeat(filledBars)).color(color)),
                 RebarArgument.of("empty_bars", "|".repeat(bars - filledBars)),
-                RebarArgument.of("progress", UnitFormat.PERCENT.format(progress * 100))
+                RebarArgument.of("progress", UnitFormat.PERCENT.format(progress * 100).significantFigures(2))
         );
     }
 
@@ -294,8 +294,8 @@ public class PylonUtils {
             if (priority == EventPriority.NORMAL) {
                 event.setUseItemInHand(Event.Result.DENY);
             } else {
-                tank.removeFluid(1000.0);
                 newItemStack = new ItemStack(tank.getFluidType() == PylonFluids.WATER ? Material.WATER_BUCKET : Material.LAVA_BUCKET);
+                tank.removeFluid(1000.0);
             }
             triggered = true;
         }
