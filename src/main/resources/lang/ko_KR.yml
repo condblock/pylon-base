@@ -294,6 +294,7 @@ item:
       <arrow> <attr>한계 온도:</attr> %temperatures%
     waila: "구리 휴대용 유체 탱크 %info%"
 
+
   portable_fluid_tank_tin:
     name: "주석 휴대용 유체 탱크"
     lore: |-
@@ -800,7 +801,7 @@ item:
       <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.pylonbase.item.smeltery_controller.name></yellow>
       <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_input_hatch.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_output_hatch.name> 해치</yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_output_hatch.name></yellow>
       <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_hopper.name></yellow>
       <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_caster.name></yellow>
       <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_burner.name></yellow>
@@ -2049,6 +2050,9 @@ item:
       <arrow> <attr>응집성 유닛당 흑요액:</attr> %obscyra-per-cohesive-unit%
       <arrow> <attr>응집성 유닛당 소요 시간:</attr> %time-per-cohesive-unit%
       
+      <u>구성 요소</u>
+      <diamond> 3x <yellow><lang:pylon.item.collimator_pillar.name/></yellow>
+
       <story>쇼드레스커의 14번째 실험이 마침내 결과물을 냈지만 그 결과물은 예상치 못하게 라이버 모델의 남은 부분을 붕괴시켰습니다. 그 이후로 몇 가지 개선을 통해 시준기가 등장했고, 이는 쇼드레스커 반응의 조건을 크게 단순화시켰습니다.
     waila: "시준기 | %fluid-bar% <white>| %time-remaining%"
 
@@ -2108,6 +2112,9 @@ item:
 
   palladium_hoe:
     name: "팔라듐 괭이"
+
+  fine_sediment:
+    name: "고운 퇴적물"
 
 fluid:
   castable:
@@ -2190,6 +2197,7 @@ research:
   talismans_1: "<#ce6625>부적 I"
   talismans_2: "<#ce6625>부적 II"
   talismans_3: "<#ce6625>부적 III"
+  talismans_4: "<#ce6625>부적 IV"
   smelting_1: "<#ff6b0f>제련 I"
   smelting_2: "<#ff6b0f>제련 II"
   smelting_3: "<#ff6b0f>제련 III"
