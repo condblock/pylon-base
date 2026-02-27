@@ -1,4 +1,4 @@
-addon: "Pylon"
+addon: "파일론"
 
 item:
   bandage:
@@ -2269,7 +2269,7 @@ guide:
     creative_items: "<light_purple>크리에이티브 아이템 <#ff0000>(관리자 전용)</#ff0000>"
     magic: "<white>마법"
     info: "<white>파일론 정보"
-    info_progression: "<white>파일론 진행"
+    info_progression: "<white>파일론 진행 과정"
     info_pit_kiln: "<white>가마 101"
     info_fluid_handling: "<white>유체 처리 101"
     info_hydraulics: "<white>유압 101"
