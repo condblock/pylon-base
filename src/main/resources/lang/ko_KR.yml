@@ -67,7 +67,7 @@ item:
   covalent_binder:
     name: "공유 결합제"
     lore: |-
-      <arrow> 알 수 없는 힘에 의해 결합된 끈적한 물질
+      <arrow> 손에서 변형되었다가 돌아오기를 반복하는 끈적한 물질
 
   crushed_raw_copper:
     name: "분쇄된 구리 원석"
@@ -144,13 +144,16 @@ item:
     lore: |-
       <star> 멀티블록
       <arrow> 강철을 녹여 해면철을 만드는 장치입니다
-      <arrow> <insn>석고 가루를 뿌린 석탄 블록에 불을 붙여</insn> 만듭니다
+      <arrow> 제작 방법:
+      <arrow> 1 - <insn>석탄 블록 설치</insn>
+      <arrow> 2 - <insn>석고 가루 1개 던지기</insn>
+      <arrow> 3 - <insn>블록 위에 불 붙이기</insn>
       <arrow> <insn>오른쪽 클릭</insn>으로 아이템을 삽입합니다
       <arrow> <insn>집게를 들고 오른쪽 클릭</insn>으로 아이템을 안전하게 꺼냅니다
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.bloomery.name/></yellow>
-      <diamond> 4x <yellow><lang:pylon.pylonbase.item.refractory_bricks.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.bloomery.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.item.refractory_bricks.name/></yellow>
 
   bronze_anvil:
     name: "청동 모루"
@@ -159,9 +162,9 @@ item:
       <arrow> 목표는 블룸을 "일반적인" 모양이 되도록 두드리는 것입니다
       <arrow> <insn>오른쪽 클릭</insn>으로 모루에 아이템을 놓습니다
       <arrow> 망치를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 짧게/넓게 만듭니다
-      <arrow> <lang:pylon.pylonbase.item.tongs.name>를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 더 길게/좁게 만듭니다
+      <arrow> <lang:pylon.item.tongs.name>를 들고 <insn>왼쪽 클릭</insn>으로 블룸을 더 길게/좁게 만듭니다
       <arrow> 모양의 변화 정도는 온도에 비례합니다
-      <arrow> 온도가 0이고 블룸의 모양이 충분히 잡히면 <lang:pylon.pylonbase.item.wrought_iron>이 튀어나옵니다
+      <arrow> 온도가 0이고 블룸의 모양이 충분히 잡히면 <lang:pylon.item.wrought_iron>이 튀어나옵니다
 
   bronze_axe:
     name: "청동 도끼"
@@ -200,6 +203,7 @@ item:
     name: "나무 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -208,6 +212,7 @@ item:
     name: "구리 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -216,6 +221,7 @@ item:
     name: "주석 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -224,6 +230,7 @@ item:
     name: "철 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -232,6 +239,7 @@ item:
     name: "청동 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -240,6 +248,7 @@ item:
     name: "내열 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -248,6 +257,7 @@ item:
     name: "강철 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -256,6 +266,7 @@ item:
     name: "팔라듐 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -264,6 +275,7 @@ item:
     name: "<#ff00ff>크리에이티브 유체 파이프"
     lore: |-
       <arrow> <insn>유른쪽 클릭</insn>으로 연결 지점, 다른 파이프, 블록을 지정하여 배치를 시작합니다
+      <arrow> 설치된 파이프에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 같은 종류의 파이프끼리만 연결할 수 있습니다
       <arrow> <attr>유량:</attr> %fluid_per_second%
       <arrow> <attr>온도:</attr> %temperatures%
@@ -512,8 +524,8 @@ item:
       <arrow> 맷돌 손잡이를 <insn>오른쪽 클릭</insn>하여 아이템을 갈 수 있습니다
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.grindstone.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.grindstone_handle.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.grindstone.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.grindstone_handle.name></yellow>
 
   grindstone_handle:
     name: "맷돌 손잡이"
@@ -577,8 +589,8 @@ item:
       <arrow> 받침대에 아이템을 추가하고 촉매로 오른쪽 클릭하여 의식을 시작할 수 있습니다
       
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.shimmer_altar.name></yellow>
-      <diamond> 8x <yellow><lang:pylon.pylonbase.item.shimmer_pedestal.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.shimmer_altar.name/></yellow>
+      <diamond> 8x <yellow><lang:pylon.item.shimmer_pedestal.name/></yellow>
 
   shimmer_pedestal:
     name: "광채 받침대"
@@ -642,7 +654,7 @@ item:
       <arrow> <attr>제련 시간:</attr> %smelting_time%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.pit_kiln.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.pit_kiln.name/></yellow>
       <diamond> 8x <yellow>석탄 블록</yellow>
       <diamond> 20x <yellow>거친 흙</yellow>
       <diamond> 1x <yellow>모닥불</yellow> (%campfire%x <attr>제련 속도</attr>) 
@@ -678,8 +690,8 @@ item:
       <arrow> 해골이 %chargedskulls%
       <arrow> <attr>해골 속도:</attr> %skullspeed%
     charged:
-      "true": 충전되었습니다
-      "false": 충전되지 않았습니다
+      true: "충전되었습니다"
+      false: "충전되지 않았습니다"
 
   hyper_activated_wither_skull:
     name: "<white>활성화된 강력 위더 해골"
@@ -799,13 +811,13 @@ item:
       <arrow> <insn>오른쪽 클릭</insn>으로 제련소 메뉴 열기
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.smeltery_controller.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_input_hatch.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_output_hatch.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_hopper.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_caster.name></yellow>
-      <diamond> 1개 이상의 <yellow><lang:pylon.pylonbase.item.smeltery_burner.name></yellow>
-      <diamond> 25개 이상의 <yellow><lang:pylon.pylonbase.item.refractory_bricks.name></yellow> (크기와 구성 요소에 따라 달라짐)
+      <diamond> 1x <yellow><lang:pylon.item.smeltery_controller.name></yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.item.smeltery_input_hatch.name></yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.item.smeltery_output_hatch.name></yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.item.smeltery_hopper.name></yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.item.smeltery_caster.name></yellow>
+      <diamond> 1개 이상의 <yellow><lang:pylon.item.smeltery_burner.name></yellow>
+      <diamond> 25개 이상의 <yellow><lang:pylon.item.refractory_bricks.name></yellow> (크기와 구성 요소에 따라 달라짐)
 
   smeltery_hopper:
     name: "제련소 호퍼"
@@ -906,7 +918,7 @@ item:
       <arrow> 작물, 묘목, 사탕수수, 선인장이 빠르게 자라게 합니다
       <arrow> <insn>오른쪽 클릭</insn>으로 물 주기
       <arrow> <attr>범위:</attr> %range%
-
+  
   health_talisman_simple:
     name: "단순한 체력 부적"
     lore: |-
@@ -1069,10 +1081,10 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.solar_purification_tower_1.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 3x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
-      <diamond> 16x <yellow><lang:pylon.pylonbase.item.solar_lens.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.solar_purification_tower_1.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
+      <diamond> 16x <yellow><lang:pylon.item.solar_lens.name></yellow>
     waila: "태양열 정화탑 I | %input-bar% | %output-bar%"
 
   solar_purification_tower_2:
@@ -1087,10 +1099,10 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.solar_purification_tower_2.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 3x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
-      <diamond> 48x <yellow><lang:pylon.pylonbase.item.solar_lens.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.solar_purification_tower_2.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
+      <diamond> 48x <yellow><lang:pylon.item.solar_lens.name></yellow>
     waila: "태양열 정화탑 II | %input-bar% | %output-bar%"
 
   solar_purification_tower_3:
@@ -1105,10 +1117,10 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.solar_purification_tower_3.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 3x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
-      <diamond> 96x <yellow><lang:pylon.pylonbase.item.solar_lens.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.solar_purification_tower_3.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
+      <diamond> 96x <yellow><lang:pylon.item.solar_lens.name></yellow>
     waila: "태양열 정화탑 III | %input-bar% | %output-bar%"
 
   solar_purification_tower_4:
@@ -1123,10 +1135,10 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.solar_purification_tower_4.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 3x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
-      <diamond> 160x <yellow><lang:pylon.pylonbase.item.solar_lens.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.solar_purification_tower_4.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
+      <diamond> 160x <yellow><lang:pylon.item.solar_lens.name></yellow>
     waila: "태양열 정화탑 IV | %input-bar% | %output-bar%"
 
   solar_purification_tower_5:
@@ -1141,10 +1153,10 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.solar_purification_tower_5.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 3x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
-      <diamond> 240x <yellow><lang:pylon.pylonbase.item.solar_lens.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.solar_purification_tower_5.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
+      <diamond> 240x <yellow><lang:pylon.item.solar_lens.name></yellow>
     waila: "태양열 정화탑 V | %input-bar% | %output-bar%"
 
   coal_fired_purification_tower:
@@ -1158,9 +1170,9 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.coal_fired_purification_tower.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.purification_tower_cap.name></yellow>
-      <diamond> 5x <yellow><lang:pylon.pylonbase.item.purification_tower_glass.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.coal_fired_purification_tower.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.purification_tower_cap.name></yellow>
+      <diamond> 5x <yellow><lang:pylon.item.purification_tower_glass.name></yellow>
     waila: "화력 정화탑 | %input-bar% | %output-bar%"
     progress_item:
       running: "<green>작동 중"
@@ -1169,7 +1181,7 @@ item:
   fireproof_rune:
     name: "내화의 룬"
     lore: |-
-      <arrow> <lang:pylon.pylonbase.item.enriched_soul_soil.name>의 원리를 반대로 적용해서 아이템이 타지 않게 합니다
+      <arrow> 농축된 영혼 흙의 원리를 반대로 적용해서 아이템이 타지 않게 합니다
       <arrow> <insn>룬과 아이템을 떨어뜨려서</insn> 룬을 아이템에 적용합니다
 
   fluid_tank:
@@ -1181,7 +1193,7 @@ item:
       <arrow> <attr>최대 높이:</attr> %max-height%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_tank.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_tank.name></yellow>
       <diamond> 1개 이상의 <yellow>유체 탱크 케이싱</yellow>
     waila: "유체 탱크 | %bars% (%fluid%)"
 
@@ -1251,13 +1263,13 @@ item:
     name: "수동 코어 드릴"
     lore: |-
       <star> 멀티블록
-      <arrow> 표층 코어 덩어리를 채굴합니다
-      <arrow> <attr>채굴 주기:</attr> %cycle-time%
+      <arrow> 천층 코어 조각를 채굴합니다
+      <arrow> <attr>주기 시간:</attr> %cycle-time%
       <arrow> <attr>출력물:</attr> %cycle-output%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.manual_core_drill.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.manual_core_drill_lever.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.manual_core_drill.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.manual_core_drill_lever.name></yellow>
       <diamond> 9x <yellow>조약돌 담장</yellow>
     waila: "수동 코어 드릴 %duration_if_any%"
     waila_format: "| %duration%"
@@ -1266,13 +1278,13 @@ item:
     name: "개선된 수동 코어 드릴"
     lore: |-
       <star> 멀티블록
-      <arrow> 중층 코어 덩어리를 채굴합니다
-      <arrow> <attr>채굴 주기:</attr> %cycle-time%
+      <arrow> 표층 코어 조각를 채굴합니다
+      <arrow> <attr>주기 시간:</attr> %cycle-time%
       <arrow> <attr>출력물:</attr> %cycle-output%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.improved_manual_core_drill.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.manual_core_drill_lever.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.improved_manual_core_drill.name></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.manual_core_drill_lever.name></yellow>
       <diamond> 9x <yellow>윤나는 심층암 담장</yellow>
     waila: "개선된 수동 코어 드릴 %duration_if_any%"
     waila_format: "| %duration%"
@@ -1281,22 +1293,53 @@ item:
     name: "유압 코어 드릴"
     lore: |-
       <star> 멀티블록
-      <arrow> 유압유를 사용해 심층 코어 덩어리를 채굴합니다
+      <arrow> 유압유를 사용해 중층 코어 조각를 채굴합니다
       <arrow> 오염된 유압유를 출력합니다
-      <arrow> <attr>채굴 주기:</attr> %cycle-time%
+      <arrow> <attr>주기 시간:</attr> %cycle-time%
       <arrow> <attr>출력물:</attr> %cycle-output%
       <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
       
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill.name></yellow>
-      <diamond> 1x <yellow>Cauldron</yellow>
-      <diamond> 1x <yellow>Chest</yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill_input_hatch.name></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.hydraulic_core_drill_output_hatch.name></yellow>
-      <diamond> 6x <yellow>철 창살</yellow>
-      <diamond> 12x <yellow>윤나는 심층암 담장</yellow>
+      <diamond> 1x <yellow><lang:pylon.item.hydraulic_core_drill.name/></yellow>
+      <diamond> 1x <yellow>가마솥</yellow>
+      <diamond> 1x <yellow><lang:pylon.item.item_output_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_output_hatch.name/></yellow>
+      <diamond> 6x <yellow><lang:pylon.item.bronze_grating.name/></yellow>
+      <diamond> 12x <yellow><lang:pylon.item.iron_support_beam.name/></yellow>
     waila: "유압 코어 드릴 %duration_if_any%"
     waila_format: "| %duration%"
+
+  diesel_core_drill:
+    name: "디젤 코어 드릴"
+    lore: |-
+      <star> 멀티블록
+      <arrow> 디젤을 소모하여 심층 코어 조각를 채굴합니다
+      <arrow> <attr>주기 시간:</attr> %cycle-time%
+      <arrow> <attr>출력물:</attr> %cycle-output%
+      <arrow> <attr>디젤 소모량:</attr> %diesel-usage%
+
+      <u>구성 요소</u>
+      <diamond> 1x <yellow><lang:pylon.item.diesel_core_drill.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.item_output_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.smokestack_cap.name/></yellow>
+      <diamond> 3x <yellow><lang:pylon.item.smokestack_ring.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.item.bronze_foundation.name/></yellow>
+      <diamond> 9x <yellow><lang:pylon.item.steel_support_beam.name/></yellow>
+      <diamond> 10x <yellow><lang:pylon.item.bronze_grating.name/></yellow>
+    waila: "디젤 코어 드릴 %duration_if_any%"
+    waila_format: "| %duration%"
+
+  iron_support_beam:
+    name: "철 빔"
+    lore: |-
+      <star> Multiblock component
+
+  steel_support_beam:
+    name: "강철 빔"
+    lore: |-
+      <star> Multiblock component
 
   fluid_input_hatch:
     name: "유체 입력 해치"
@@ -1329,19 +1372,24 @@ item:
     waila: "아이템 출력 해치"
 
   shallow_core_chunk:
-    name: "표층 코어 덩어리"
+    name: "천층 코어 조각"
     lore: |-
-      <arrow> 표층의 광물이 뭉친 덩어리입니다
+      <arrow> 지면 바로 아래의 광물이 뭉친 덩어리입니다
 
   subsurface_core_chunk:
-    name: "중층 코어 덩어리"
+    name: "표층 코어 조각"
     lore: |-
-      <arrow> 중층의 광물이 뭉친 덩어리입니다
+      <arrow> 지면 아래의 광물이 뭉친 덩어리입니다
 
   intermediate_core_chunk:
-    name: "심층 코어 덩어리"
+    name: "중층 코어 조각"
     lore: |-
-      <arrow> 심층의 광물이 뭉친 덩어리입니다
+      <arrow> 지면 아래 몇 층 밑의 광물이 뭉친 덩어리입니다
+
+  deep_core_chunk:
+    name: "심층 코어 조각"
+    lore: |-
+      <arrow> 지면 아래 많은 층 밑의 광물이 뭉친 덩어리입니다
 
   igneous_composite:
     name: "내열성 복합재"
@@ -1360,6 +1408,9 @@ item:
 
   backflow_valve:
     name: "역류 밸브"
+
+  leaf_valve:
+    name: "단방향 벨브"
 
   analogue_display:
     name: "아날로그 디스플레이"
@@ -1387,6 +1438,9 @@ item:
 
   bronze_drill_bit:
     name: "청동 드릴 비트"
+
+  steel_drill_bit:
+    name: "강철 드릴 비트"
 
   gypsum:
     name: "석고"
@@ -1440,7 +1494,7 @@ item:
     name: "유압 대포"
     lore: |-
       <arrow> 유압유를 사용하여 주석 탄알을 발사합니다
-      <arrow> <white>유압유 주유기<gray>에서 주유하세요
+      <arrow> <white>유압유 주유기</white>에서 주유하세요
       <arrow> <insn>오른쪽 클릭</insn>으로 발사
       <arrow> <attr>재사용 대기시간:</attr> %cooldown%
       <arrow> <attr>공격 피해: </attr> %damage%
@@ -1471,17 +1525,17 @@ item:
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 수확기 | %input-bar% | %output-bar%"
 
-  hydraulic_excavator:
-    name: "유압 굴착기"
+  hydraulic_miner:
+    name: "유압 채굴기"
     lore: |-
-      <arrow> 저장된 도구로 범위 내 블록을 굴착합니다
+      <arrow> 저장된 도구로 범위 내 블록을 채굴합니다
       <arrow> 저장된 도구로 부술 수 있는 블록만 파괴합니다
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <attr>속도:</attr> %speed%
-      <arrow> <attr>굴착 범위:</attr> %mining-area%
+      <arrow> <attr>채굴 범위:</attr> %mining-area%
       <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
       <arrow> <attr>버퍼:</attr> %buffer%
-    waila: "유압 굴착기 | %input-bar% | %output-bar%"
+    waila: "유압 채굴기 | %input-bar% | %output-bar%"
 
   diesel_pipe_bender:
     name: "디젤 파이프 밴딩기"
@@ -1587,27 +1641,27 @@ item:
       <arrow> <attr>최대 에탄올 출력 속도:</attr> %max-ethanol-output-rate%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fermenter.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
-      <diamond> 2x <yellow>철 블록</yellow>
-      <diamond> 4x <yellow>윤나는 심층암 담장</yellow>
-      <diamond> 4x <yellow><lang:pylon.pylonbase.item.fermenter_core.name/></yellow>
-      <diamond> 31x <yellow><lang:pylon.pylonbase.item.fermenter_casing.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fermenter.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_output_hatch.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.item.bronze_foundation.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.item.steel_support_beam.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.item.reinforced_glass.name/></yellow>
+      <diamond> 31x <yellow><lang:pylon.item.reinforced_glass_casing.name/></yellow>
     waila: "발효기 | %sugarcane-bar% %sugarcane-amount% sugarcane"
 
-  fermenter_core:
-    name: "발효기 코어"
+  reinforced_glass:
+    name: "강화 유리"
     lore: |-
       <star> 발효기 멀티블록 구성 요소
 
-  fermenter_casing:
-    name: "발효기 케이싱"
+  reinforced_glass_casing:
+    name: "강화 유리 케이싱"
     lore: |-
       <star> 발효기 멀티블록 구성 요소
 
   biorefinery:
-    name: "바이오 정제소"
+    name: "바이오 정유소"
     lore: |-
       <star> 멀티블록
       <arrow> 식물성 기름과 에탄올을 바이오디젤로 정제합니다
@@ -1618,44 +1672,50 @@ item:
       <arrow> <attr>바이오디젤 1mb당 식물성 기름:</attr> %plant-oil-per-mb-of-biodiesel%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.item_input_hatch.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.pylonbase.item.fluid_output_hatch.name/></yellow>
-      <diamond> 2x <yellow><lang:pylon.pylonbase.item.fluid_input_hatch.name/></yellow>
-      <diamond> 6x <yellow><lang:pylon.pylonbase.item.biorefinery_foundation.name/></yellow>
-      <diamond> 4x <yellow><lang:pylon.pylonbase.item.biorefinery_tower_ring.name/></yellow>
-      <diamond> 9x <yellow><lang:pylon.pylonbase.item.biorefinery_smokestack_ring.name/></yellow>
-      <diamond> 2x <yellow><lang:pylon.pylonbase.item.biorefinery_smokestack_cap.name/></yellow>
-      <diamond> 24x <yellow><lang:pylon.pylonbase.item.biorefinery_plating.name/></yellow>
-    waila: "바이오 정제소 | %info%"
+      <diamond> 1x <yellow><lang:pylon.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_output_hatch.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.item.fluid_input_hatch.name/></yellow>
+      <diamond> 6x <yellow><lang:pylon.item.bronze_foundation.name/></yellow>
+      <diamond> 4x <yellow><lang:pylon.item.distillation_tower_ring.name/></yellow>
+      <diamond> 9x <yellow><lang:pylon.item.smokestack_ring.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.item.smokestack_cap.name/></yellow>
+      <diamond> 24x <yellow><lang:pylon.item.reinforced_plating.name/></yellow>
+    waila: "바이오 정유소 | %info%"
 
-  biorefinery_foundation:
-    name: "바이오 정제소 토대"
+  bronze_foundation:
+    name: "청동 토대"
     lore: |-
-      <star> 바이오 정제소 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
 
-  biorefinery_plating:
-    name: "바이오 정제소 판금"
+  bronze_grating:
+    name: "청동 격자"
     lore: |-
-      <star> 바이오 정제소 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
 
-  biorefinery_tower_ring:
-    name: "바이오 정제소 탑 고리"
+  reinforced_plating:
+    name: "강화 판금"
     lore: |-
-      <star> 바이오 정제소 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
 
-  biorefinery_smokestack_ring:
-    name: "바이오 정제소 굴뚝 고리"
+  distillation_tower_ring:
+    name: "정유탑 고리"
     lore: |-
-      <star> 바이오 정제소 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
 
-  biorefinery_smokestack_cap:
-    name: "바이오 정제소 굴뚝 덮개"
+  smokestack_ring:
+    name: "굴뚝 고리"
     lore: |-
-      <star> 바이오 정제소 멀티블록 구성 요소
+      <star> 멀티블록 구성 요소
+
+  smokestack_cap:
+    name: "굴뚝 덮개"
+    lore: |-
+      <star> 멀티블록 구성 요소
 
   cargo_duct:
     name: "<white>화물 도관"
     lore: |-
+      <arrow> 설치된 화물 도관에 블록을 들고 <insn>오른쪽 클릭</insn>하여 파이프를 해당 블록으로 보이게 합니다
       <arrow> 화물 블록들을 연결합니다
       <arrow> 인접한 화물 도관은 자동으로 연결됩니다
 
@@ -1988,8 +2048,8 @@ item:
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
-  palladium_flight_ring:
-    name: "<white>팔라듐 비행 반지"
+  flight_ring:
+    name: "<white>반중력 반지"
     lore: |-
       <arrow> 크리에이티브 모드처럼 비행할 수 있습니다
 
@@ -2116,6 +2176,29 @@ item:
   fine_sediment:
     name: "고운 퇴적물"
 
+  palladium_condenser:
+    name: "팔라듐 압축기"
+    lore: |-
+      <arrow> 디젤유와 유압유를 사용하여 광채 가루 II를 팔라듐 가루로 압축합니다
+      <arrow> 오염된 유압유를 출력합니다
+      <arrow> <attr>주기 시간:</attr> %cycle-duration%
+      <arrow> <attr>주기당 광채 가루 II 소모량:</attr> %shimmer-dust-per-cycle%
+      <arrow> <attr>디젤유 소모량:</attr> %diesel-usage%
+      <arrow> <attr>유압유 소모량:</attr> %hydraulic-fluid-usage%
+      
+      <u>구성 요소</u>
+      <diamond> 1x <yellow><lang:pylon.item.palladium_condenser.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.item_output_hatch.name/></yellow>
+      <diamond> 1x <yellow><lang:pylon.item.fluid_output_hatch.name/></yellow>
+      <diamond> 2x <yellow><lang:pylon.item.fluid_input_hatch.name/></yellow>
+      <diamond> 6x <yellow><lang:pylon.item.bronze_foundation.name/></yellow>
+      <diamond> 8x <yellow><lang:pylon.item.steel_support_beam.name/></yellow>
+      <diamond> 8x <yellow><lang:pylon.item.collimator_pillar.name/></yellow>
+      <diamond> 16x <yellow><lang:pylon.item.bronze_grating.name/></yellow>
+    waila: "팔라듐 압축기 | %duration-if-any%"
+    waila_format: "| %duration%"
+
 fluid:
   castable:
     display-text: "<arrow> <white>%result%<gray>(으)로 주조 가능"
@@ -2239,13 +2322,16 @@ research:
   assembling: "<#846e5a>조립"
   palladium_tools: "<#2937e3>팔라듐 도구"
   palladium_armor: "<#2937e3>팔라듐 도구"
+  palladium_protection: "<#2937e3>팔라듐 보호"
+  creative_flight: "<#2937e3>크리에이티브 비행"
+  palladium_production: "<#2937e3>팔라듐 생산"
 
 guide:
   page:
     science: "<white>과학"
     resources_metals: "<white>금속"
-    resources_core_chunks: "<white>코어 덩어리"
-    resources_shimmer: "<white>마법"
+    resources_core_chunks: "<white>코어 조각"
+    resources_magic: "<white>마법"
     resources_miscellaneous: "<white>기타"
     resources: "<white>자원"
     components: "<white>구성 요소"
@@ -2283,7 +2369,7 @@ guide:
     magic-altar: "<attr>소요 시간:</attr> %time%"
     melting: "<attr>온도:</attr> %temperature%"
     casting: "<attr>온도:</attr> %temperature%"
-    drilling: "<attr>주기 횟수:</attr> %time%"
+    drilling: "<attr>주기 시간:</attr> %time%"
     molding: "<attr>성형 주기:</attr> %molding-cycles%"
     hammer: "<attr>확률:</attr> %chance%"
   button:
@@ -2328,7 +2414,7 @@ guide:
           name: "팔라듐 시대"
           lore: ""
         palladium_flight_ring:
-          name: "팔라듐 비행 반지"
+          name: "팔라듐 반중력 반지"
           lore: ""
       pit_kiln:
         kiln:
@@ -2396,6 +2482,16 @@ message:
   soulbound_rune:
     tooltip: "<dark_purple>영혼 결속"
     soulbind-message: "<dark_purple>아이템이 영혼에 결속되었습니다"
+  hammer:
+    too-low-tier: "<red>망치의 등급이 %item_name% 제작에 필요한 등급(%tier_needed%)보다 낮습니다"
+    tier:
+      any: "아무 망치"
+      wood: "나무"
+      gold: "금"
+      stone: "돌"
+      iron: "철"
+      diamond: "다이아몬드"
+      netherite: "네더라이트"
 
 gui:
   fluid-selector-title: "유체를 선택하세요"
