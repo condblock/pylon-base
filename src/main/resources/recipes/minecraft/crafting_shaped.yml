@@ -1,3 +1,13 @@
+pylon:raw_tin_block_from_raw_tin:
+  pattern:
+    - "NNN"
+    - "NNN"
+    - "NNN"
+  key:
+    N: pylon:raw_tin
+  result: pylon:raw_tin_block
+  category: misc
+
 pylon:tin_ingot_from_tin_nuggets:
   pattern:
     - "NNN"
@@ -91,6 +101,26 @@ pylon:charcoal_block_from_charcoal:
   key:
     N: minecraft:charcoal
   result: pylon:charcoal_block
+  category: building
+
+pylon:sulfur_block_from_sulfur:
+  pattern:
+    - "NNN"
+    - "NNN"
+    - "NNN"
+  key:
+    N: pylon:sulfur
+  result: pylon:sulfur_block
+  category: building
+
+pylon:gypsum_block_from_gypsum:
+  pattern:
+    - "NNN"
+    - "NNN"
+    - "NNN"
+  key:
+    N: pylon:gypsum
+  result: pylon:gypsum_block
   category: building
 
 pylon:bronze_sword:
@@ -694,7 +724,7 @@ pylon:rotor:
     - "ISI"
     - " I "
   key:
-    I: minecraft:iron_ingot
+    I: pylon:tin_sheet
     S: pylon:iron_sheet
   result: pylon:rotor
   category: misc
@@ -707,7 +737,7 @@ pylon:leaf_valve:
   key:
     N: minecraft:iron_nugget
     P: pylon:fluid_pipe_iron
-    S: pylon:iron_sheet
+    S: pylon:tin_sheet
   result:
     pylon:leaf_valve: 3
   category: misc
@@ -719,7 +749,7 @@ pylon:backflow_valve:
     - " S "
   key:
     P: pylon:fluid_pipe_iron
-    S: pylon:iron_sheet
+    S: pylon:tin_sheet
     R: minecraft:redstone
   result:
     pylon:backflow_valve: 2
@@ -746,7 +776,8 @@ pylon:filter_mesh:
   key:
     F: pylon:fiber
     B: minecraft:iron_bars
-  result: pylon:filter_mesh
+  result:
+    pylon:filter_mesh: 3
   category: misc
 
 pylon:nozzle:
@@ -1144,36 +1175,33 @@ pylon:immobilizer:
 pylon:elevator_1:
   pattern:
     - " S "
-    - "QPQ"
+    - "SQS"
     - " S "
   key:
     Q: minecraft:quartz_block
     S: pylon:shimmer_dust_1
-    P: minecraft:ender_pearl
   result: pylon:elevator_1
   category: misc
 
 pylon:elevator_2:
   pattern:
     - " S "
-    - "PEP"
+    - "SES"
     - " S "
   key:
     E: pylon:elevator_1
     S: pylon:shimmer_dust_2
-    P: minecraft:ender_pearl
   result: pylon:elevator_2
   category: building
 
 pylon:elevator_3:
   pattern:
     - " S "
-    - "PEP"
+    - "SES"
     - " S "
   key:
     E: pylon:elevator_2
     S: pylon:shimmer_dust_3
-    P: minecraft:ender_pearl
   result: pylon:elevator_3
   category: building
 
@@ -1687,6 +1715,17 @@ pylon:hunting_talisman_simple:
     S: minecraft:iron_sword
     R: minecraft:rotten_flesh
   result: pylon:hunting_talisman_simple
+  category: equipment
+
+pylon:experience_talisman_simple:
+  pattern:
+    - "LLL"
+    - "LGL"
+    - "LLL"
+  key:
+    L: minecraft:lapis_lazuli
+    G: pylon:gold_dust
+  result: pylon:experience_talisman_simple
   category: equipment
 
 pylon:enchanting_talisman_simple:
@@ -2353,6 +2392,110 @@ pylon:diesel_smeltery_heater:
     F: minecraft:flint_and_steel
   result: pylon:diesel_smeltery_heater
   category: building
+
+pylon:steel_helmet:
+  pattern:
+    - "PPP"
+    - "P P"
+    - "   "
+  key:
+    P: pylon:steel_ingot
+  result:
+    pylon:steel_helmet: 1
+  category: equipment
+
+pylon:steel_chestplate:
+  pattern:
+    - "P P"
+    - "PPP"
+    - "PPP"
+  key:
+    P: pylon:steel_ingot
+  result:
+    pylon:steel_chestplate: 1
+  category: equipment
+
+pylon:steel_leggings:
+  pattern:
+    - "PPP"
+    - "P P"
+    - "P P"
+  key:
+    P: pylon:steel_ingot
+  result:
+    pylon:steel_leggings: 1
+  category: equipment
+
+pylon:steel_boots:
+  pattern:
+    - "P P"
+    - "P P"
+    - "   "
+  key:
+    P: pylon:steel_ingot
+  result:
+    pylon:steel_boots: 1
+  category: equipment
+
+pylon:steel_sword:
+  pattern:
+    - " P "
+    - " P "
+    - " S "
+  key:
+    P: pylon:steel_ingot
+    S: minecraft:stick
+  result:
+    pylon:steel_sword: 1
+  category: equipment
+
+pylon:steel_axe:
+  pattern:
+    - "PP "
+    - "PS "
+    - " S "
+  key:
+    P: pylon:steel_ingot
+    S: minecraft:stick
+  result:
+    pylon:steel_axe: 1
+  category: equipment
+
+pylon:steel_pickaxe:
+  pattern:
+    - "PPP"
+    - " S "
+    - " S "
+  key:
+    P: pylon:steel_ingot
+    S: minecraft:stick
+  result:
+    pylon:steel_pickaxe: 1
+  category: equipment
+
+pylon:steel_shovel:
+  pattern:
+    - " P "
+    - " S "
+    - " S "
+  key:
+    P: pylon:steel_ingot
+    S: minecraft:stick
+  result:
+    pylon:steel_shovel: 1
+  category: equipment
+
+pylon:steel_hoe:
+  pattern:
+    - "PP "
+    - " S "
+    - " S "
+  key:
+    P: pylon:steel_ingot
+    S: minecraft:stick
+  result:
+    pylon:steel_hoe: 1
+  category: equipment
 
 pylon:palladium_helmet:
   pattern:

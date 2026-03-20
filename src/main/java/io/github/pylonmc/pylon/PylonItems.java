@@ -2,6 +2,7 @@ package io.github.pylonmc.pylon;
 
 import io.github.pylonmc.pylon.content.armor.BronzeArmor;
 import io.github.pylonmc.pylon.content.armor.PalladiumArmor;
+import io.github.pylonmc.pylon.content.armor.SteelArmor;
 import io.github.pylonmc.pylon.content.assembling.RedstoneSolderingIron;
 import io.github.pylonmc.pylon.content.assembling.Screwdriver;
 import io.github.pylonmc.pylon.content.building.Elevator;
@@ -82,7 +83,6 @@ public final class PylonItems {
     }
 
     public static final ItemStack RESEARCH_PACK_1 = ItemStackBuilder.rebar(Material.RED_BANNER, PylonKeys.RESEARCH_PACK_1)
-            .useCooldown(Settings.get(PylonKeys.RESEARCH_PACK_1).getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER), PylonKeys.RESEARCH_PACK_1)
             .set(DataComponentTypes.MAX_STACK_SIZE, 3)
             .build();
     static {
@@ -91,7 +91,6 @@ public final class PylonItems {
     }
 
     public static final ItemStack RESEARCH_PACK_2 = ItemStackBuilder.rebar(Material.LIME_BANNER, PylonKeys.RESEARCH_PACK_2)
-            .useCooldown(Settings.get(PylonKeys.RESEARCH_PACK_2).getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER), PylonKeys.RESEARCH_PACK_2)
             .set(DataComponentTypes.MAX_STACK_SIZE, 3)
             .build();
     static {
@@ -100,7 +99,6 @@ public final class PylonItems {
     }
 
     public static final ItemStack RESEARCH_PACK_3 = ItemStackBuilder.rebar(Material.GRAY_BANNER, PylonKeys.RESEARCH_PACK_3)
-            .useCooldown(Settings.get(PylonKeys.RESEARCH_PACK_3).getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER), PylonKeys.RESEARCH_PACK_3)
             .set(DataComponentTypes.MAX_STACK_SIZE, 3)
             .build();
     static {
@@ -109,7 +107,6 @@ public final class PylonItems {
     }
 
     public static final ItemStack RESEARCH_PACK_4 = ItemStackBuilder.rebar(Material.LIGHT_BLUE_BANNER, PylonKeys.RESEARCH_PACK_4)
-            .useCooldown(Settings.get(PylonKeys.RESEARCH_PACK_4).getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER), PylonKeys.RESEARCH_PACK_4)
             .set(DataComponentTypes.MAX_STACK_SIZE, 3)
             .build();
     static {
@@ -174,6 +171,13 @@ public final class PylonItems {
     static {
         RebarItem.register(RebarItem.class, RAW_TIN);
         PylonPages.METALS.addItem(RAW_TIN);
+    }
+
+    public static final ItemStack RAW_TIN_BLOCK = ItemStackBuilder.rebar(Material.RAW_IRON_BLOCK, PylonKeys.RAW_TIN_BLOCK)
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, RAW_TIN_BLOCK, PylonKeys.RAW_TIN_BLOCK);
+        PylonPages.METALS.addItem(RAW_TIN_BLOCK);
     }
 
     public static final ItemStack TIN_INGOT = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.TIN_INGOT)
@@ -495,7 +499,8 @@ public final class PylonItems {
         PylonPages.MISCELLANEOUS.addItem(EMERALD_DUST);
     }
 
-    public static final ItemStack FIBER = ItemStackBuilder.rebar(Material.BAMBOO_MOSAIC, PylonKeys.FIBER)
+    public static final ItemStack FIBER = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.FIBER)
+            .set(DataComponentTypes.ITEM_MODEL, Material.BAMBOO_MOSAIC.getKey())
             .build();
     static {
         RebarItem.register(RebarItem.class, FIBER);
@@ -539,11 +544,25 @@ public final class PylonItems {
         PylonPages.MISCELLANEOUS.addItem(SULFUR);
     }
 
+    public static final ItemStack SULFUR_BLOCK = ItemStackBuilder.rebar(Material.YELLOW_TERRACOTTA, PylonKeys.SULFUR_BLOCK)
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, SULFUR_BLOCK, PylonKeys.SULFUR_BLOCK);
+        PylonPages.MISCELLANEOUS.addItem(SULFUR_BLOCK);
+    }
+
     public static final ItemStack GYPSUM = ItemStackBuilder.rebar(Material.QUARTZ, PylonKeys.GYPSUM)
             .build();
     static {
         RebarItem.register(RebarItem.class, GYPSUM);
         PylonPages.MISCELLANEOUS.addItem(GYPSUM);
+    }
+
+    public static final ItemStack GYPSUM_BLOCK = ItemStackBuilder.rebar(Material.QUARTZ_BLOCK, PylonKeys.GYPSUM_BLOCK)
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, GYPSUM_BLOCK, PylonKeys.GYPSUM_BLOCK);
+        PylonPages.MISCELLANEOUS.addItem(GYPSUM_BLOCK);
     }
 
     public static final ItemStack GYPSUM_DUST = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.GYPSUM_DUST)
@@ -917,7 +936,7 @@ public final class PylonItems {
         PylonPages.TOOLS.addItem(DIAMOND_HAMMER);
     }
 
-    public static final ItemStack BRONZE_AXE = ItemStackBuilder.rebarToolWeapon(Material.CLAY_BALL, PylonKeys.BRONZE_AXE, RebarUtils.axeMineable(), true, false, true)
+    public static final ItemStack BRONZE_AXE = ItemStackBuilder.rebarToolWeapon(Material.STONE_AXE, PylonKeys.BRONZE_AXE, RebarUtils.axeMineable(), true, false, true)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_AXE.getKey())
             .build();
     static {
@@ -925,7 +944,7 @@ public final class PylonItems {
         PylonPages.TOOLS.addItem(BRONZE_AXE);
     }
 
-    public static final ItemStack BRONZE_PICKAXE = ItemStackBuilder.rebarToolWeapon(Material.CLAY_BALL, PylonKeys.BRONZE_PICKAXE, RebarUtils.pickaxeMineable(), true, false, false)
+    public static final ItemStack BRONZE_PICKAXE = ItemStackBuilder.rebarToolWeapon(Material.STONE_PICKAXE, PylonKeys.BRONZE_PICKAXE, RebarUtils.pickaxeMineable(), true, false, false)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_PICKAXE.getKey())
             .build();
     static {
@@ -933,7 +952,7 @@ public final class PylonItems {
         PylonPages.TOOLS.addItem(BRONZE_PICKAXE);
     }
 
-    public static final ItemStack BRONZE_SHOVEL = ItemStackBuilder.rebarToolWeapon(Material.CLAY_BALL, PylonKeys.BRONZE_SHOVEL, RebarUtils.shovelMineable(), true, false, false)
+    public static final ItemStack BRONZE_SHOVEL = ItemStackBuilder.rebarToolWeapon(Material.STONE_SHOVEL, PylonKeys.BRONZE_SHOVEL, RebarUtils.shovelMineable(), true, false, false)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_SHOVEL.getKey())
             .build();
     static {
@@ -941,13 +960,46 @@ public final class PylonItems {
         PylonPages.TOOLS.addItem(BRONZE_SHOVEL);
     }
 
-    public static final ItemStack BRONZE_HOE = ItemStackBuilder.rebarToolWeapon(Material.CLAY_BALL, PylonKeys.BRONZE_HOE, RebarUtils.hoeMineable(), true, false, false)
+    public static final ItemStack BRONZE_HOE = ItemStackBuilder.rebarToolWeapon(Material.STONE_HOE, PylonKeys.BRONZE_HOE, RebarUtils.hoeMineable(), true, false, false)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_HOE.getKey())
             .build();
     static {
         RebarItem.register(RebarItem.class, BRONZE_HOE);
         PylonPages.TOOLS.addItem(BRONZE_HOE);
     }
+
+    public static final ItemStack STEEL_AXE = ItemStackBuilder.rebarToolWeapon(Material.DIAMOND_AXE, PylonKeys.STEEL_AXE, RebarUtils.axeMineable(), true, false, true)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_AXE.getKey())
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, STEEL_AXE);
+        PylonPages.TOOLS.addItem(STEEL_AXE);
+    }
+
+    public static final ItemStack STEEL_PICKAXE = ItemStackBuilder.rebarToolWeapon(Material.DIAMOND_PICKAXE, PylonKeys.STEEL_PICKAXE, RebarUtils.pickaxeMineable(), true, false, false)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_PICKAXE.getKey())
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, STEEL_PICKAXE);
+        PylonPages.TOOLS.addItem(STEEL_PICKAXE);
+    }
+
+    public static final ItemStack STEEL_SHOVEL = ItemStackBuilder.rebarToolWeapon(Material.DIAMOND_SHOVEL, PylonKeys.STEEL_SHOVEL, RebarUtils.shovelMineable(), true, false, false)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_SHOVEL.getKey())
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, STEEL_SHOVEL);
+        PylonPages.TOOLS.addItem(STEEL_SHOVEL);
+    }
+
+    public static final ItemStack STEEL_HOE = ItemStackBuilder.rebarToolWeapon(Material.DIAMOND_HOE, PylonKeys.STEEL_HOE, RebarUtils.hoeMineable(), true, false, false)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_HOE.getKey())
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, STEEL_HOE);
+        PylonPages.TOOLS.addItem(STEEL_HOE);
+    }
+
 
     public static final ItemStack WATERING_CAN = ItemStackBuilder.rebar(Material.BUCKET, PylonKeys.WATERING_CAN)
             .build();
@@ -1117,13 +1169,22 @@ public final class PylonItems {
 
     //<editor-fold desc="Combat" defaultstate=collapsed>
 
-    public static final ItemStack BRONZE_SWORD = ItemStackBuilder.rebarWeapon(Material.CLAY_BALL, PylonKeys.BRONZE_SWORD, true, false, false)
+    public static final ItemStack BRONZE_SWORD = ItemStackBuilder.rebarWeapon(Material.STONE_SWORD, PylonKeys.BRONZE_SWORD, true, false, false)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_SWORD.getKey())
             .build();
     static {
         RebarItem.register(RebarItem.class, BRONZE_SWORD);
         PylonPages.COMBAT.addItem(BRONZE_SWORD);
     }
+
+    public static final ItemStack STEEL_SWORD = ItemStackBuilder.rebarWeapon(Material.DIAMOND_SWORD, PylonKeys.STEEL_SWORD, true, false, false)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_SWORD.getKey())
+            .build();
+    static {
+        RebarItem.register(RebarItem.class, STEEL_SWORD);
+        PylonPages.COMBAT.addItem(STEEL_SWORD);
+    }
+
 
     public static final ItemStack BEHEADING_SWORD = ItemStackBuilder.rebar(Material.DIAMOND_SWORD, PylonKeys.BEHEADING_SWORD)
             .durability(Settings.get(PylonKeys.BEHEADING_SWORD).getOrThrow("durability", ConfigAdapter.INTEGER)) // todo: weapon stats?
@@ -1524,11 +1585,43 @@ public final class PylonItems {
         PylonPages.TALISMANS.addItem(HUNTING_TALISMAN_PALLADIUM);
     }
 
+    public static final ItemStack EXPERIENCE_TALISMAN_SIMPLE = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.EXPERIENCE_TALISMAN_SIMPLE)
+            .set(DataComponentTypes.ITEM_MODEL, Material.EXPERIENCE_BOTTLE.getKey())
+            .build();
+    static {
+        RebarItem.register(ExperienceTalisman.class, EXPERIENCE_TALISMAN_SIMPLE);
+        PylonPages.TALISMANS.addItem(EXPERIENCE_TALISMAN_SIMPLE);
+    }
+
+    public static final ItemStack EXPERIENCE_TALISMAN_ADVANCED = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.EXPERIENCE_TALISMAN_ADVANCED)
+            .set(DataComponentTypes.ITEM_MODEL, Material.EXPERIENCE_BOTTLE.getKey())
+            .build();
+    static {
+        RebarItem.register(ExperienceTalisman.class, EXPERIENCE_TALISMAN_ADVANCED);
+        PylonPages.TALISMANS.addItem(EXPERIENCE_TALISMAN_ADVANCED);
+    }
+
+    public static final ItemStack EXPERIENCE_TALISMAN_ULTIMATE = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.EXPERIENCE_TALISMAN_ULTIMATE)
+            .set(DataComponentTypes.ITEM_MODEL, Material.EXPERIENCE_BOTTLE.getKey())
+            .build();
+    static {
+        RebarItem.register(ExperienceTalisman.class, EXPERIENCE_TALISMAN_ULTIMATE);
+        PylonPages.TALISMANS.addItem(EXPERIENCE_TALISMAN_ULTIMATE);
+    }
+
+    public static final ItemStack EXPERIENCE_TALISMAN_PALLADIUM = ItemStackBuilder.rebar(Material.CLAY_BALL, PylonKeys.EXPERIENCE_TALISMAN_PALLADIUM)
+            .set(DataComponentTypes.ITEM_MODEL, Material.EXPERIENCE_BOTTLE.getKey())
+            .build();
+    static {
+        RebarItem.register(ExperienceTalisman.class, EXPERIENCE_TALISMAN_PALLADIUM);
+        PylonPages.TALISMANS.addItem(EXPERIENCE_TALISMAN_PALLADIUM);
+    }
+
     //</editor-fold>
 
     //<editor-fold desc="Armour" defaultstate=collapsed>
 
-    public static final ItemStack BRONZE_HELMET = ItemStackBuilder.rebarHelmet(Material.CLAY_BALL, PylonKeys.BRONZE_HELMET, true)
+    public static final ItemStack BRONZE_HELMET = ItemStackBuilder.rebarHelmet(Material.LEATHER_HELMET, PylonKeys.BRONZE_HELMET, true)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_HELMET.getKey())
             .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.HEAD)
                     .assetId(Key.key("gold"))
@@ -1539,7 +1632,7 @@ public final class PylonItems {
         PylonPages.ARMOUR.addItem(BRONZE_HELMET);
     }
 
-    public static final ItemStack BRONZE_CHESTPLATE = ItemStackBuilder.rebarChestplate(Material.CLAY_BALL, PylonKeys.BRONZE_CHESTPLATE, true)
+    public static final ItemStack BRONZE_CHESTPLATE = ItemStackBuilder.rebarChestplate(Material.LEATHER_CHESTPLATE, PylonKeys.BRONZE_CHESTPLATE, true)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_CHESTPLATE.getKey())
             .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.CHEST)
                     .assetId(Key.key("gold"))
@@ -1550,7 +1643,7 @@ public final class PylonItems {
         PylonPages.ARMOUR.addItem(BRONZE_CHESTPLATE);
     }
 
-    public static final ItemStack BRONZE_LEGGINGS = ItemStackBuilder.rebarLeggings(Material.CLAY_BALL, PylonKeys.BRONZE_LEGGINGS, true)
+    public static final ItemStack BRONZE_LEGGINGS = ItemStackBuilder.rebarLeggings(Material.LEATHER_LEGGINGS, PylonKeys.BRONZE_LEGGINGS, true)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_LEGGINGS.getKey())
             .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.LEGS)
                     .assetId(Key.key("gold"))
@@ -1561,7 +1654,7 @@ public final class PylonItems {
         PylonPages.ARMOUR.addItem(BRONZE_LEGGINGS);
     }
 
-    public static final ItemStack BRONZE_BOOTS = ItemStackBuilder.rebarBoots(Material.GOLDEN_BOOTS, PylonKeys.BRONZE_BOOTS, true)
+    public static final ItemStack BRONZE_BOOTS = ItemStackBuilder.rebarBoots(Material.LEATHER_BOOTS, PylonKeys.BRONZE_BOOTS, true)
             .set(DataComponentTypes.ITEM_MODEL, Material.GOLDEN_BOOTS.getKey())
             .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.FEET)
                     .assetId(Key.key("gold"))
@@ -1570,6 +1663,78 @@ public final class PylonItems {
     static {
         RebarItem.register(BronzeArmor.class, BRONZE_BOOTS);
         PylonPages.ARMOUR.addItem(BRONZE_BOOTS);
+    }
+
+    public static final ItemStack STEEL_HELMET = ItemStackBuilder.rebarHelmet(Material.DIAMOND_HELMET, PylonKeys.STEEL_HELMET, true)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_HELMET.getKey())
+            .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.HEAD)
+                    .assetId(Key.key("netherite"))
+                    .equipSound(Key.key("item.armor.equip_netherite"))
+                    .build())
+            .addAttributeModifier(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(
+                    pylonKey("steel_helmet_knockback_resistance"),
+                    Settings.get(PylonKeys.STEEL_HELMET).getOrThrow("knockback-resistance", ConfigAdapter.DOUBLE),
+                    AttributeModifier.Operation.ADD_NUMBER,
+                    EquipmentSlotGroup.HEAD
+            ))
+            .build();
+    static {
+        RebarItem.register(SteelArmor.class, STEEL_HELMET);
+        PylonPages.ARMOUR.addItem(STEEL_HELMET);
+    }
+
+    public static final ItemStack STEEL_CHESTPLATE = ItemStackBuilder.rebarChestplate(Material.DIAMOND_CHESTPLATE, PylonKeys.STEEL_CHESTPLATE, true)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_CHESTPLATE.getKey())
+            .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.CHEST)
+                    .assetId(Key.key("netherite"))
+                    .equipSound(Key.key("item.armor.equip_netherite"))
+                    .build())
+            .addAttributeModifier(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(
+                    pylonKey("steel_chestplate_knockback_resistance"),
+                    Settings.get(PylonKeys.STEEL_CHESTPLATE).getOrThrow("knockback-resistance", ConfigAdapter.DOUBLE),
+                    AttributeModifier.Operation.ADD_NUMBER,
+                    EquipmentSlotGroup.CHEST
+            ))
+            .build();
+    static {
+        RebarItem.register(SteelArmor.class, STEEL_CHESTPLATE);
+        PylonPages.ARMOUR.addItem(STEEL_CHESTPLATE);
+    }
+
+    public static final ItemStack STEEL_LEGGINGS = ItemStackBuilder.rebarLeggings(Material.DIAMOND_LEGGINGS, PylonKeys.STEEL_LEGGINGS, true)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_LEGGINGS.getKey())
+            .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.LEGS)
+                    .assetId(Key.key("netherite"))
+                    .equipSound(Key.key("item.armor.equip_netherite"))
+                    .build())
+            .addAttributeModifier(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(
+                    pylonKey("steel_leggings_knockback_resistance"),
+                    Settings.get(PylonKeys.STEEL_LEGGINGS).getOrThrow("knockback-resistance", ConfigAdapter.DOUBLE),
+                    AttributeModifier.Operation.ADD_NUMBER,
+                    EquipmentSlotGroup.LEGS
+            ))
+            .build();
+    static {
+        RebarItem.register(SteelArmor.class, STEEL_LEGGINGS);
+        PylonPages.ARMOUR.addItem(STEEL_LEGGINGS);
+    }
+
+    public static final ItemStack STEEL_BOOTS = ItemStackBuilder.rebarBoots(Material.DIAMOND_BOOTS, PylonKeys.STEEL_BOOTS, true)
+            .set(DataComponentTypes.ITEM_MODEL, Material.NETHERITE_BOOTS.getKey())
+            .set(DataComponentTypes.EQUIPPABLE, Equippable.equippable(EquipmentSlot.FEET)
+                    .assetId(Key.key("netherite"))
+                    .equipSound(Key.key("item.armor.equip_netherite"))
+                    .build())
+            .addAttributeModifier(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(
+                    pylonKey("steel_boots_knockback_resistance"),
+                    Settings.get(PylonKeys.STEEL_BOOTS).getOrThrow("knockback-resistance", ConfigAdapter.DOUBLE),
+                    AttributeModifier.Operation.ADD_NUMBER,
+                    EquipmentSlotGroup.FEET
+            ))
+            .build();
+    static {
+        RebarItem.register(SteelArmor.class, STEEL_BOOTS);
+        PylonPages.ARMOUR.addItem(STEEL_BOOTS);
     }
 
     public static final ItemStack PALLADIUM_HELMET = ItemStackBuilder.rebarHelmet(Material.DIAMOND_HELMET, PylonKeys.PALLADIUM_HELMET, true)
@@ -2042,6 +2207,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_WOOD
             = ItemStackBuilder.rebar(Material.BROWN_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_WOOD)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2055,6 +2221,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_COPPER
             = ItemStackBuilder.rebar(Material.ORANGE_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_COPPER)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2068,6 +2235,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_TIN
             = ItemStackBuilder.rebar(Material.GREEN_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_TIN)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2081,6 +2249,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_IRON
             = ItemStackBuilder.rebar(Material.LIGHT_GRAY_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_IRON)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2094,6 +2263,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_BRONZE
             = ItemStackBuilder.rebar(Material.ORANGE_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_BRONZE)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2107,6 +2277,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_IGNEOUS_COMPOSITE
             = ItemStackBuilder.rebar(Material.BLACK_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_IGNEOUS_COMPOSITE)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2120,6 +2291,7 @@ public final class PylonItems {
     public static final ItemStack PORTABLE_FLUID_TANK_STEEL
             = ItemStackBuilder.rebar(Material.GRAY_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_STEEL)
             .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(
@@ -2131,6 +2303,8 @@ public final class PylonItems {
     }
 
     public static final ItemStack PORTABLE_FLUID_TANK_PALLADIUM = ItemStackBuilder.rebar(Material.BLUE_STAINED_GLASS, PylonKeys.PORTABLE_FLUID_TANK_PALLADIUM)
+            .editPdc(pdc -> pdc.set(PortableFluidTank.Item.FLUID_AMOUNT_KEY, RebarSerializers.DOUBLE, 0.0))
+            .addCustomModelDataString("pylon:fluid:empty")
             .build();
     static {
         RebarItem.register(PortableFluidTank.Item.class, PORTABLE_FLUID_TANK_PALLADIUM, PylonKeys.PORTABLE_FLUID_TANK_PALLADIUM);
