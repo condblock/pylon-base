@@ -526,6 +526,7 @@ item:
       <u>구성 요소</u>
       <diamond> 1x <yellow><lang:pylon.item.grindstone.name></yellow>
       <diamond> 1x <yellow><lang:pylon.item.grindstone_handle.name></yellow>
+    waila: "맷돌%contents%%processing%"
 
   grindstone_handle:
     name: "맷돌 손잡이"
