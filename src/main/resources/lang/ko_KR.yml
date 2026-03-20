@@ -143,10 +143,10 @@ item:
     name: "수로"
     lore: |-
       <star> 멀티블록
-      <arrow> 강철을 녹여 해면철을 만드는 장치입니다
-      <arrow> 제작 방법:
+      <arrow> 해면철을 녹여 강철을 만드는 장치입니다
+      <arrow> 제작 과정:
       <arrow> 1 - <insn>석탄 블록 설치</insn>
-      <arrow> 2 - <insn>석고 가루 1개 던지기</insn>
+      <arrow> 2 - <insn>블록 위에 석고 가루 1개 던지기</insn>
       <arrow> 3 - <insn>블록 위에 불 붙이기</insn>
       <arrow> <insn>오른쪽 클릭</insn>으로 아이템을 삽입합니다
       <arrow> <insn>집게를 들고 오른쪽 클릭</insn>으로 아이템을 안전하게 꺼냅니다
@@ -728,28 +728,24 @@ item:
     lore: |-
       <arrow> <insn>오른쪽 클릭</insn>으로 열기
       <arrow> <attr>연구 포인트:</attr> %points%
-      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   research_pack_2:
     name: "연구 팩 II"
     lore: |-
       <arrow> <insn>오른쪽 클릭</insn>으로 열기
       <arrow> <attr>연구 포인트:</attr> %points%
-      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   research_pack_3:
     name: "연구 팩 III"
     lore: |-
       <arrow> <insn>오른쪽 클릭</insn>으로 열기
       <arrow> <attr>연구 포인트:</attr> %points%
-      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   research_pack_4:
     name: "연구 팩 IV"
     lore: |-
       <arrow> <insn>오른쪽 클릭</insn>으로 열기
       <arrow> <attr>연구 포인트:</attr> %points%
-      <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
   rock_dust:
     name: "돌가루"
@@ -897,6 +893,9 @@ item:
   sulfur:
     name: "황"
 
+  sulfur_block:
+    name: "황 블록"
+
   tin_dust:
     name: "주석 가루"
 
@@ -920,7 +919,7 @@ item:
       <arrow> <attr>범위:</attr> %range%
   
   health_talisman_simple:
-    name: "단순한 체력 부적"
+    name: "기본 체력 부적"
     lore: |-
       <arrow> 최대 체력이 증가합니다
       <arrow> 중첩되지 않습니다
@@ -971,7 +970,7 @@ item:
     lore: |-
       <arrow> 식물을 압착해 식물성 기름으로 만듭니다
       <arrow> 식물을 던지고 <insn>오른쪽 클릭</insn>해서 압착합니다
-      <arrow> <attr>압착 속도:</attr> %time_per_item%
+      <arrow> <attr>압착 속도:</attr> %time-per-item%
       <arrow> <attr>용량:</attr> %capacity%
     waila: "압착기 | %bar%"
 
@@ -985,14 +984,14 @@ item:
     waila: "유압 맷돌 회전기 | %input-bar% | %output-bar%"
 
   hydraulic_mixing_attachment:
-    name: "유압 혼합 장치"
+    name: "유압 혼합기"
     lore: |-
       <arrow> 혼합용 가마솥 위에 한 칸 간격을 두고 설치하세요
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <attr>재사용 대기시간:</attr> %cooldown%
       <arrow> <attr>유압유 사용량:</attr> 제작당 %hydraulic-fluid-per-craft%
       <arrow> <attr>버퍼:</attr> %buffer%
-    waila: "유압 혼합 장치 | %input-bar% | %output-bar%"
+    waila: "유압 혼합기 | %input-bar% | %output-bar%"
 
   hydraulic_press_piston:
     name: "유압 압착 피스톤"
@@ -1041,7 +1040,7 @@ item:
       <arrow> 저장된 도구를 사용하여 바로 앞의 블록을 파괴합니다
       <arrow> 저장된 도구로 파괴할 수 있는 블록만 파괴합니다
       <arrow> <attr>속도:</attr> %speed%
-      <arrow> <attr>유압유 소비량:</attr> %hydraulic-fluid-per-block% per block
+      <arrow> <attr>유압유 소비량:</attr> 블록당 %hydraulic-fluid-per-block%
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 파괴기 | %input-bar% | %output-bar%"
 
@@ -1334,12 +1333,12 @@ item:
   iron_support_beam:
     name: "철 빔"
     lore: |-
-      <star> Multiblock component
+      <star> 멀티블록 구성 요소
 
   steel_support_beam:
     name: "강철 빔"
     lore: |-
-      <star> Multiblock component
+      <star> 멀티블록 구성 요소
 
   fluid_input_hatch:
     name: "유체 입력 해치"
@@ -1347,7 +1346,7 @@ item:
       <star> 멀티블록 구성 요소
       <arrow> 멀티블록 기계의 유체 입력부입니다
       <arrow> 위에 유체 케이싱이 필요합니다
-    waila: "유체 입력 해치 | %bars%"
+    waila: "유체 입력 해치 | %info%"
 
   fluid_output_hatch:
     name: "유체 출력 해치"
@@ -1355,7 +1354,7 @@ item:
       <star> 멀티블록 구성 요소
       <arrow> 멀티블록 기계의 유체 출력부입니다
       <arrow> 위에 유체 케이싱이 필요합니다
-    waila: "유체 출력 해치 | %bars%"
+    waila: "유체 출력 해치 | %info%"
 
   item_input_hatch:
     name: "아이템 입력 해치"
@@ -1445,12 +1444,15 @@ item:
   gypsum:
     name: "석고"
 
+  gypsum_block:
+    name: "석고 블록"
+
   gypsum_dust:
     name: "석고 가루"
 
   brick_mold:
     name: "벽돌 틀"
-    lore: |-
+    lore: |- 
       <arrow> 벽돌로 만들 블록을 <insn>오른쪽 클릭</insn>하세요
       <arrow> <attr>재사용 대기시간:</attr> %cooldown%
 
@@ -1533,7 +1535,7 @@ item:
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <attr>속도:</attr> %speed%
       <arrow> <attr>채굴 범위:</attr> %mining-area%
-      <arrow> <attr>유압유 사용량:</attr> %hydraulic-fluid-usage%
+      <arrow> <attr>유압유 사용량:</attr> 블록당 %hydraulic-fluid-per-block%
       <arrow> <attr>버퍼:</attr> %buffer%
     waila: "유압 채굴기 | %input-bar% | %output-bar%"
 
@@ -1594,7 +1596,7 @@ item:
   diesel_mixing_attachment:
     name: "디젤 혼합 부착물"
     lore: |-
-      <arrow> 혼합기 위에 배치하고, 한 블록 간격을 유지하세요
+      <arrow> 혼합기 위에 한 블록 간격을 두고 배치하세요
       <arrow> <attr>대기 시간:</attr> %cooldown%
       <arrow> <attr>디젤유 사용량:</attr> %diesel-per-craft% per craft
       <arrow> <attr>디젤유 버퍼:</attr> %diesel-buffer%
@@ -1821,7 +1823,7 @@ item:
       <arrow> 입력받은 모든 아이템을 파괴합니다
 
   hunger_talisman_simple:
-    name: "간단한 허기 부적"
+    name: "기본 허기 부적"
     lore: |-
       <arrow> %period%마다 포만감과 허기를 채웁니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1853,7 +1855,7 @@ item:
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
 
   farming_talisman_simple:
-    name: "간단한 농부 부적"
+    name: "기본 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1881,7 +1883,7 @@ item:
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
   bartering_talisman_simple:
-    name: "간단한 거래 부적"
+    name: "기본 거래 부적"
     lore: |-
       <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1909,7 +1911,7 @@ item:
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   water_breathing_talisman_simple:
-    name: "<white>간단한 수중 호흡 부적"
+    name: "<white>기본 수중 호흡 부적"
     lore: |-
       <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1937,7 +1939,7 @@ item:
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
   luck_talisman_simple:
-    name: "간단한 행운 부적"
+    name: "기본 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1965,7 +1967,7 @@ item:
       <arrow> <attr>추가 행운:</attr> %bonus_luck%
 
   breeding_talisman_simple:
-    name: "간단한 번식 부적"
+    name: "기본 번식 부적"
     lore: |-
       <arrow> 번식된 동물이 즉시 성장합니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -1993,7 +1995,7 @@ item:
       <arrow> <attr>성공률:</attr> %adult_chance%
 
   enchanting_talisman_simple:
-    name: "<white>간단한 마법 부여 부적"
+    name: "<white>기본 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -2021,7 +2023,7 @@ item:
       <arrow> <attr>성공률:</attr> %bonus_level_chance%
 
   hunting_talisman_simple:
-    name: "<white>간단한 사냥 부적"
+    name: "<white>기본 사냥 부적"
     lore: |-
       <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
@@ -2050,6 +2052,37 @@ item:
 
   flight_ring:
     name: "<white>반중력 반지"
+
+  experience_talisman_simple:
+    name: "기본 경험치 부적"
+    lore: |-
+      <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
+
+  experience_talisman_advanced:
+    name: "고급 경험치 부적"
+    lore: |-
+      <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
+
+  experience_talisman_ultimate:
+    name: "궁극 경험치 부적"
+    lore: |-
+      <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
+
+  experience_talisman_palladium:
+    name: "팔라듐 경험치 부적"
+    lore: |-
+      <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 인벤토리에 있을 때만 작동합니다
+      <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
+
+  palladium_flight_ring:
+    name: "<white>팔라듐 반중력 반지"
     lore: |-
       <arrow> 크리에이티브 모드처럼 비행할 수 있습니다
 
@@ -2146,6 +2179,33 @@ item:
   cargo_controller:
     name: "화물 제어기"
 
+  steel_helmet:
+    name: "강철 투구"
+
+  steel_chestplate:
+    name: "강철 흉갑"
+
+  steel_leggings:
+    name: "강철 레깅스"
+
+  steel_boots:
+    name: "강철 부츠"
+
+  steel_sword:
+    name: "강철 검"
+
+  steel_axe:
+    name: "강철 도끼"
+
+  steel_pickaxe:
+    name: "강철 곡괭이"
+
+  steel_shovel:
+    name: "강철 삽"
+
+  steel_hoe:
+    name: "강철 괭이"
+
   palladium_helmet:
     name: "팔라듐 투구"
 
@@ -2225,7 +2285,7 @@ fluid:
   palladium: "<#b642f5>액체 팔라듐"
   plant_oil: "<#c4b352>식물성 기름"
   hydraulic_fluid: "<#212d99>유압유"
-  dirty_hydraulic_fluid: "<#212d99>유압유 <#48459b>(오염됨)"
+  dirty_hydraulic_fluid: "<#48459b>오염된 유압유"
   obscyra: "<#5c4a66>흑요액"
   reflector_fluid: "<#d1c9ab>반사제"
   sugarcane: "<#a3ed2d>사탕수수"
@@ -2234,17 +2294,22 @@ fluid:
 
 waila:
   fluid_tank:
-    empty: "(empty)"
-    filled: "| %fluid% %amount%/%capacity%"
+    empty: "(비어 있음)"
+    filled: "| %fluid% %bar%/%capacity%"
   crucible:
     item:
-      empty: "| 비어 있음 |"
-      stored: "| %type% x%amount%  |"
+      empty: "| 아이템 없음 |"
+      stored: "| x%amount% %type% |"
     liquid:
       empty: "비어 있음"
       filled: "%bar% (%fluid%)"
   fluid_strainer:
-    straining: " | 여과 중 %item%: %progress%"
+    straining: " | 여과 중 %item% | %bars%"
+  grindstone:
+    empty: ""
+    not-empty: " | %item% x%amount%"
+    idle: ""
+    processing: " | %bars%"
   cargo_splitter:
     left: "<#efae15>왼쪽"
     right: "<#2386c4>오른쪽"
@@ -2320,9 +2385,10 @@ research:
   diesel_machines: "<#e8c888>디젤 기계"
   diesel_production: "<#ce8c77>디젤유 생산"
   assembling: "<#846e5a>조립"
+  steel_tools: "<#2937e3>강철 도구"
+  steel_armor: "<#2937e3>강철 갑옷"
   palladium_tools: "<#2937e3>팔라듐 도구"
-  palladium_armor: "<#2937e3>팔라듐 도구"
-  palladium_protection: "<#2937e3>팔라듐 보호"
+  palladium_armor: "<#2937e3>팔라듐 갑옷"
   creative_flight: "<#2937e3>크리에이티브 비행"
   palladium_production: "<#2937e3>팔라듐 생산"
 
@@ -2420,7 +2486,7 @@ guide:
         kiln:
           name: "가마"
           lore: |-
-            <arrow> 가마는 고급 주조를 할 수 있는 가장 원시적인 형태입니다
+            <arrow> 가마는 가장 원시적인 고급 제련 방법입니다
         construction:
           name: "가마 건설"
           lore: ""
