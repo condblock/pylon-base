@@ -684,6 +684,9 @@ item:
   raw_tin:
     name: "주석 원석"
 
+  raw_tin_block:
+    name: "주석 원석 블록"
+
   reactivated_wither_skull:
     name: "<white>활성화된 위더 해골"
     lore: |-
@@ -1018,7 +1021,7 @@ item:
   hydraulic_pipe_bender:
     name: "유압 파이프 밴딩기"
     lore: |-
-      <arrow> 효율적으로 재료를 파이프로 구부립니다
+      <arrow> 재료를 구부려서 효율적으로 파이프를 만듭니다
       <arrow> 오염된 유압유를 출력합니다
       <arrow> <insn>오른쪽 클릭</insn>으로 아이템 입력
       <arrow> <attr>유압유 사용량:</attr> 제작당 %hydraulic-fluid-usage%
