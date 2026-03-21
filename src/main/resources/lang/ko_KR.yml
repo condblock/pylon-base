@@ -294,7 +294,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "나무 휴대용 유체 탱크 %info%"
+    waila: "나무 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_copper:
     name: "구리 휴대용 유체 탱크"
@@ -304,7 +304,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "구리 휴대용 유체 탱크 %info%"
+    waila: "구리 휴대용 유체 탱크 | %bars% (%fluid%)"
 
 
   portable_fluid_tank_tin:
@@ -315,7 +315,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "주석 휴대용 유체 탱크 %info%"
+    waila: "주석 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_iron:
     name: "철 휴대용 유체 탱크"
@@ -325,7 +325,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "철 휴대용 유체 탱크 %info%"
+    waila: "철 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_bronze:
     name: "청동 휴대용 유체 탱크"
@@ -335,7 +335,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "청동 휴대용 유체 탱크 %info%"
+    waila: "청동 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_igneous_composite:
     name: "내열 휴대용 유체 탱크"
@@ -345,7 +345,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "내열 휴대용 유체 탱크 %info%"
+    waila: "내열 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_steel:
     name: "강철 휴대용 유체 탱크"
@@ -355,7 +355,7 @@ item:
       <arrow> 양동이로 <insn>오른쪽 클릭</insn>하여 유체를 추가/제거할 수 있습니다 (물과 용암만 작동합니다)
       <arrow> <attr>유체:</attr> %amount%/%capacity% (%fluid%)
       <arrow> <attr>한계 온도:</attr> %temperatures%
-    waila: "강철 휴대용 유체 탱크 %info%"
+    waila: "강철 휴대용 유체 탱크 | %bars% (%fluid%)"
 
   portable_fluid_tank_palladium:
     name: "팔라듐 휴대용 유체 탱크"
@@ -664,7 +664,7 @@ item:
       ...또는 1x <yellow>영혼 불</yellow> (%soul_fire%x <attr>제련 속도</attr>) 
       <diamond> 9x <yellow>회백토</yellow> (%podzol%x <attr>생산량</attr>) 
       ...또는 9x <yellow>거친 흙</yellow> (%coarse_dirt%x <attr>생산량</attr>)
-    waila: "가마 | %info%"
+    waila: "가마 | | %info% | 아이템 %nitems%"
 
   portability_catalyst:
     name: "휴대성 촉매"
@@ -1830,6 +1830,7 @@ item:
     name: "기본 허기 부적"
     lore: |-
       <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
@@ -1838,6 +1839,7 @@ item:
     name: "고급 허기 부적"
     lore: |-
       <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
@@ -1846,6 +1848,7 @@ item:
     name: "궁극 허기 부적"
     lore: |-
       <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
@@ -1854,6 +1857,7 @@ item:
     name: "팔라듐 허기 부적"
     lore: |-
       <arrow> %period%마다 포만감과 허기를 채웁니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>포만감 증가량:</attr> %saturation_increase%
       <arrow> <attr>허기 증가량:</attr> %hunger_increase%
@@ -1862,6 +1866,7 @@ item:
     name: "기본 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
@@ -1869,6 +1874,7 @@ item:
     name: "고급 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
@@ -1876,6 +1882,7 @@ item:
     name: "궁극 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
@@ -1883,34 +1890,39 @@ item:
     name: "팔라듐 농부 부적"
     lore: |-
       <arrow> 작물 수확 시 작물을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %extra_crop_chance%
 
   bartering_talisman_simple:
-    name: "기본 거래 부적"
+    name: "기본 협상 부적"
     lore: |-
-      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 피글린과 거래할 때 아이템을 소모하지 않습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   bartering_talisman_advanced:
-    name: "고급 거래 부적"
+    name: "고급 협상 부적"
     lore: |-
-      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 피글린과 거래할 때 아이템을 소모하지 않습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   bartering_talisman_ultimate:
-    name: "궁극 거래 부적"
+    name: "궁극 협상 부적"
     lore: |-
-      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 피글린과 거래할 때 아이템을 소모하지 않습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
   bartering_talisman_palladium:
-    name: "팔라듐 거래 부적"
+    name: "팔라듐 협상 부적"
     lore: |-
-      <arrow> 피글린과 교환할 때 아이템을 소모하지 않습니다
+      <arrow> 피글린과 거래할 때 아이템을 소모하지 않습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %chance_to_not_consume_input%
 
@@ -1918,6 +1930,7 @@ item:
     name: "<white>기본 수중 호흡 부적"
     lore: |-
       <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
@@ -1925,6 +1938,7 @@ item:
     name: "<white>고급 수중 호흡 부적"
     lore: |-
       <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
@@ -1932,6 +1946,7 @@ item:
     name: "<white>궁극 수중 호흡 부적"
     lore: |-
       <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
@@ -1939,6 +1954,7 @@ item:
     name: "<white>팔라듐 수중 호흡 부적"
     lore: |-
       <arrow> 수중에서 더 오래 숨을 쉴 수 있게 합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 산소:</attr> %bonus_oxygen%
 
@@ -1946,6 +1962,7 @@ item:
     name: "기본 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 행운:</attr> %bonus_luck%
 
@@ -1953,6 +1970,7 @@ item:
     name: "고급 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 행운:</attr> %bonus_luck%
 
@@ -1960,6 +1978,7 @@ item:
     name: "궁극 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 행운:</attr> %bonus_luck%
 
@@ -1967,6 +1986,7 @@ item:
     name: "팔라듐 행운 부적"
     lore: |-
       <arrow> 더 높은 품질의 아이템을 얻을 확률을 높입니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 행운:</attr> %bonus_luck%
 
@@ -1974,6 +1994,7 @@ item:
     name: "기본 번식 부적"
     lore: |-
       <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %adult_chance%
 
@@ -1981,6 +2002,7 @@ item:
     name: "고급 번식 부적"
     lore: |-
       <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %adult_chance%
 
@@ -1988,6 +2010,7 @@ item:
     name: "궁극 번식 부적"
     lore: |-
       <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %adult_chance%
 
@@ -1995,6 +2018,7 @@ item:
     name: "팔라듐 번식 부적"
     lore: |-
       <arrow> 번식된 동물이 즉시 성장합니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %adult_chance%
 
@@ -2002,6 +2026,7 @@ item:
     name: "<white>기본 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_level_chance%
 
@@ -2009,6 +2034,7 @@ item:
     name: "<white>고급 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_level_chance%
 
@@ -2016,6 +2042,7 @@ item:
     name: "<white>궁극 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_level_chance%
 
@@ -2023,6 +2050,7 @@ item:
     name: "<white>팔라듐 마법 부여 부적"
     lore: |-
       <arrow> 마법 부여대에서 부여되는 마법의 레벨을 1 올립니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_level_chance%
 
@@ -2030,6 +2058,7 @@ item:
     name: "<white>기본 사냥 부적"
     lore: |-
       <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
@@ -2037,6 +2066,7 @@ item:
     name: "<white>고급 사냥 부적"
     lore: |-
       <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
@@ -2044,6 +2074,7 @@ item:
     name: "<white>궁극 사냥 부적"
     lore: |-
       <arrow> 몹을 죽이면 전리품을 추가로 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
@@ -2051,16 +2082,21 @@ item:
     name: "<white>팔라듐 사냥 부적"
     lore: |-
       <arrow> 몹을 죽일 때마다 추가 전리품을 얻습니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>성공률:</attr> %bonus_item_chance%
 
   flight_ring:
     name: "<white>반중력 반지"
+    lore: |-
+      <arrow> 크리에이티브 모드처럼 비행할 수 있습니다
+      <arrow> 중첩되지 않습니다
 
   experience_talisman_simple:
     name: "기본 경험치 부적"
     lore: |-
       <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
 
@@ -2068,6 +2104,7 @@ item:
     name: "고급 경험치 부적"
     lore: |-
       <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
 
@@ -2075,6 +2112,7 @@ item:
     name: "궁극 경험치 부적"
     lore: |-
       <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
 
@@ -2082,13 +2120,9 @@ item:
     name: "팔라듐 경험치 부적"
     lore: |-
       <arrow> 경험치 획득량을 증가시킵니다
+      <arrow> 중첩되지 않습니다
       <arrow> 인벤토리에 있을 때만 작동합니다
       <arrow> <attr>추가 경험치 획득량:</attr> %xp-boost%
-
-  palladium_flight_ring:
-    name: "<white>팔라듐 반중력 반지"
-    lore: |-
-      <arrow> 크리에이티브 모드처럼 비행할 수 있습니다
 
   assembly_table:
     name: "<white>조립대"
