@@ -14,7 +14,7 @@ item:
     lore: |-
       <arrow> 죽인 몬스터를 참수합니다
       <arrow> %default-chance%% 확률로 플레이어, 크리퍼, 피글린, 엔더 드래곤, 스켈레톤, 좀비의 머리를 떨어뜨립니다
-      <arrow> +%wither-skeleton-chance%% 확률로 위더 스켈레톤의 머리를 떨어뜨립니다.
+      <arrow> +%wither-skeleton-chance%% 확률로 위더 스켈레톤 해골을 떨어뜨립니다.
 
   bronze_dust:
     name: "청동 가루"
