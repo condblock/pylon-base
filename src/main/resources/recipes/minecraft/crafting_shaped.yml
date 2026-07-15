@@ -348,7 +348,7 @@ pylon:diesel_booster:
     - "CFC"
     - " N "
   key:
-    T: pylon:portable_fluid_tank_steel
+    T: pylon:portable_fluid_tank_copper
     C: pylon:steel_cylinder
     K: pylon:kinetic_control_mechanism
     F: minecraft:flint_and_steel
@@ -2953,3 +2953,14 @@ pylon:experience_drain:
     P: minecraft:ender_pearl
   result: pylon:experience_drain
   category: building
+
+pylon:tape_measure:
+  pattern:
+    - " SS"
+    - "SNS"
+    - " S "
+  key:
+    S: minecraft:string
+    N: minecraft:iron_nugget
+  result: pylon:tape_measure
+  category: equipment

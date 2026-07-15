@@ -1,6 +1,7 @@
 package io.github.pylonmc.pylon;
 
 import io.github.pylonmc.pylon.content.assembling.AssemblyTable;
+import io.github.pylonmc.pylon.content.blocks.SleepingBag;
 import io.github.pylonmc.pylon.content.building.*;
 import io.github.pylonmc.pylon.content.components.*;
 import io.github.pylonmc.pylon.content.machines.cargo.*;
@@ -197,5 +198,6 @@ public final class PylonBlocks {
         RebarBlock.register(PylonKeys.EXPERIENCE_FOUNTAIN_SPOUT, Material.END_ROD, RebarBlock.class);
         RebarBlock.register(PylonKeys.HYDRAULIC_EXPERIENCE_BOTTLER, Material.BREWING_STAND, FluidExperienceBottler.class);
         RebarBlock.register(PylonKeys.DIESEL_EXPERIENCE_BOTTLER, Material.BREWING_STAND, FluidExperienceBottler.class);
+        // RebarBlock.register(PylonKeys.SLEEPING_BAG, Material.RED_BED, SleepingBag.class);
     }
 }

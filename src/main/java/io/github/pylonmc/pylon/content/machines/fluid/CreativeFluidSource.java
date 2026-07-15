@@ -2,9 +2,9 @@ package io.github.pylonmc.pylon.content.machines.fluid;
 
 import io.github.pylonmc.pylon.content.machines.fluid.gui.FluidSelector;
 import io.github.pylonmc.rebar.block.RebarBlock;
-import io.github.pylonmc.rebar.block.base.RebarDirectionalBlock;
-import io.github.pylonmc.rebar.block.base.RebarFluidBlock;
-import io.github.pylonmc.rebar.block.base.RebarInventoryBlock;
+import io.github.pylonmc.rebar.block.interfaces.DirectionalRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.FluidRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.GuiRebarBlock;
 import io.github.pylonmc.rebar.block.context.BlockCreateContext;
 import io.github.pylonmc.rebar.datatypes.RebarSerializers;
 import io.github.pylonmc.rebar.entity.display.ItemDisplayBuilder;
@@ -33,9 +33,9 @@ import java.util.List;
 import static io.github.pylonmc.pylon.util.PylonUtils.pylonKey;
 
 public class CreativeFluidSource extends RebarBlock implements
-        RebarFluidBlock,
-        RebarDirectionalBlock,
-        RebarInventoryBlock {
+        FluidRebarBlock,
+        DirectionalRebarBlock,
+        GuiRebarBlock {
 
     public static final NamespacedKey FLUID_KEY = pylonKey("fluid");
 
@@ -98,7 +98,7 @@ public class CreativeFluidSource extends RebarBlock implements
     public @NotNull Gui createGui() {
         return (FluidSelector.make(() -> fluid, fluid -> {
             this.fluid = fluid;
-            ItemStack stack = fluid == null ? new ItemStack(Material.RED_TERRACOTTA) : fluid.getItem();
+            ItemStack stack = fluid == null ? ItemStack.of(Material.RED_TERRACOTTA) : fluid.getItem();
             getHeldEntityOrThrow(ItemDisplay.class, "fluid-1").setItemStack(stack);
             getHeldEntityOrThrow(ItemDisplay.class, "fluid-2").setItemStack(stack);
             getHeldEntityOrThrow(ItemDisplay.class, "fluid-3").setItemStack(stack);
@@ -107,11 +107,10 @@ public class CreativeFluidSource extends RebarBlock implements
 
     @Override
     public @Nullable WailaDisplay getWaila(@NotNull Player player) {
-        return new WailaDisplay(getDefaultWailaTranslationKey().arguments(
-                RebarArgument.of("fluid", fluid == null
-                        ? Component.translatable("pylon.fluid.none")
+        return WailaDisplay.of(this, player)
+                .add(fluid == null
+                        ? Component.translatable("rebar.fluid.none")
                         : fluid.getName()
-                )
-        ));
+                );
     }
 }

@@ -4,6 +4,7 @@ import static io.github.pylonmc.pylon.util.PylonUtils.pylonKey;
 
 import com.destroystokyo.paper.ParticleBuilder;
 
+import io.github.pylonmc.rebar.item.interfaces.InteractRebarItemHandler;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
@@ -37,16 +38,13 @@ import io.github.pylonmc.pylon.PylonKeys;
 import io.github.pylonmc.pylon.api.event.LoupeCompleteScanningEvent;
 import io.github.pylonmc.pylon.api.event.LoupeStartScanningEvent;
 import io.github.pylonmc.rebar.block.BlockStorage;
-import io.github.pylonmc.rebar.config.Config;
 import io.github.pylonmc.rebar.config.ConfigSection;
-import io.github.pylonmc.rebar.config.Settings;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.datatypes.RebarSerializers;
 import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.RebarItem;
-import io.github.pylonmc.rebar.item.base.RebarConsumable;
-import io.github.pylonmc.rebar.item.base.RebarInteractor;
+import io.github.pylonmc.rebar.item.interfaces.ConsumeRebarItemHandler;
 import io.github.pylonmc.rebar.item.research.Research;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.registry.RegistryKey;
@@ -57,7 +55,7 @@ import io.papermc.paper.registry.tag.TagKey;
 
 
 @SuppressWarnings("UnstableApiUsage")
-public final class Loupe extends RebarItem implements RebarInteractor, RebarConsumable {
+public final class Loupe extends RebarItem implements InteractRebarItemHandler, ConsumeRebarItemHandler {
 
     public static final NamespacedKey CONSUMED_KEY = pylonKey("consumed");
     public static final PersistentDataType<PersistentDataContainer, Map<NamespacedKey, Integer>> CONSUMED_TYPE =
@@ -85,7 +83,7 @@ public final class Loupe extends RebarItem implements RebarInteractor, RebarCons
     private static final Map<UUID, RayTraceResult> SCANNING = new HashMap<>();
 
     static {
-        Config loupeConfig = Settings.get(PylonKeys.LOUPE);
+        ConfigSection loupeConfig = ConfigSection.fromSettings(PylonKeys.LOUPE);
 
         ConfigSection itemOverridesConfig = loupeConfig.getSection("item_overrides");
         Map<ItemRarity, EntryConfig> itemConfigs = new EnumMap<>(ItemRarity.class);
@@ -141,14 +139,14 @@ public final class Loupe extends RebarItem implements RebarInteractor, RebarCons
         ENTITY_OVERRIDES = Map.copyOf(entityOverrides);
     }
 
-    public final int cooldownTicks = getSettings().getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER);
+    public final int cooldownTicks = getSettingOrThrow("cooldown-ticks", ConfigAdapter.INTEGER);
 
     public Loupe(@NotNull ItemStack stack) {
         super(stack);
     }
 
     @Override @MultiHandler(priorities = { EventPriority.NORMAL, EventPriority.MONITOR })
-    public void onUsedToClick(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
+    public void onInteract(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
         Player player = event.getPlayer();
         if (!event.getAction().isRightClick() || event.useItemInHand() == Event.Result.DENY) {
             return;
@@ -211,7 +209,11 @@ public final class Loupe extends RebarItem implements RebarInteractor, RebarCons
             }
         } else if (scan.getHitBlock() != null) {
             Block hit = scan.getHitBlock();
-            Material type = hit.getType();
+            Material type = hit.getBlockData().getPlacementMaterial();
+            if (type == Material.AIR) {
+                return;
+            }
+
             if (BlockStorage.get(hit) != null) {
                 player.sendActionBar(message("is_pylon"));
             } else if (!hasUses(player, type)) {
@@ -288,7 +290,11 @@ public final class Loupe extends RebarItem implements RebarInteractor, RebarCons
             player.setCooldown(getStack(), cooldownTicks);
         } else if (scan.getHitBlock() != null) {
             Block hit = scan.getHitBlock();
-            Material type = hit.getType();
+            Material type = hit.getBlockData().getPlacementMaterial();
+            if (type == Material.AIR) {
+                return;
+            }
+
             if (BlockStorage.get(hit) != null || !hasUses(player, type)) {
                 player.sendMessage(message("examine_failed", RebarArgument.of("object", Component.translatable(type))));
                 return;

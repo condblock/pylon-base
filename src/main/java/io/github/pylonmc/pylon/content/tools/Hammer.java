@@ -7,13 +7,13 @@ import io.github.pylonmc.pylon.content.machines.smelting.BronzeAnvil;
 import io.github.pylonmc.pylon.recipes.HammerRecipe;
 import io.github.pylonmc.rebar.block.BlockStorage;
 import io.github.pylonmc.rebar.block.RebarBlock;
-import io.github.pylonmc.rebar.block.base.RebarInventoryBlock;
-import io.github.pylonmc.rebar.block.base.RebarNoVanillaInventoryBlock;
+import io.github.pylonmc.rebar.block.interfaces.GuiRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.NoVanillaInventoryRebarBlock;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
 import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.RebarItem;
-import io.github.pylonmc.rebar.item.base.RebarBlockInteractor;
+import io.github.pylonmc.rebar.item.interfaces.BlockInteractRebarItemHandler;
 import io.github.pylonmc.rebar.util.MiningLevel;
 import io.github.pylonmc.rebar.util.RandomizedSound;
 import io.github.pylonmc.rebar.util.RebarUtils;
@@ -50,7 +50,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class Hammer extends RebarItem implements RebarBlockInteractor {
+public class Hammer extends RebarItem implements BlockInteractRebarItemHandler {
     private static final Map<BlockPosition, Pair<HammerRecipe, UUID>> lastHammeredItems = new HashMap<>();
     public static final Random random = new Random();
 
@@ -61,9 +61,9 @@ public class Hammer extends RebarItem implements RebarBlockInteractor {
 
     public final Material baseBlock = getBaseBlock(getKey());
     public final MiningLevel miningLevel = getMiningLevel(getKey());
-    public final int cooldownTicks = getSettings().getOrThrow("cooldown-ticks", ConfigAdapter.INTEGER);
-    public final RandomizedSound sound = getSettings().getOrThrow("sound", ConfigAdapter.RANDOMIZED_SOUND);
-    public final RandomizedSound failSound = getSettings().getOrThrow("fail-sound", ConfigAdapter.RANDOMIZED_SOUND);
+    public final int cooldownTicks = getSettingOrThrow("cooldown-ticks", ConfigAdapter.INTEGER);
+    public final RandomizedSound sound = getSettingOrThrow("sound", ConfigAdapter.RANDOMIZED_SOUND);
+    public final RandomizedSound failSound = getSettingOrThrow("fail-sound", ConfigAdapter.RANDOMIZED_SOUND);
 
     public Hammer(@NotNull ItemStack stack) {
         super(stack);
@@ -150,7 +150,8 @@ public class Hammer extends RebarItem implements RebarBlockInteractor {
             return true; // recipe not finished
         }
 
-        lastHammeredItems.put(new BlockPosition(block), new Pair<>(recipe, item.getUniqueId()));
+        BlockPosition blockPos = new BlockPosition(block);
+        lastHammeredItems.put(blockPos, new Pair<>(recipe, item.getUniqueId()));
         remainingUseMap.remove(item.getUniqueId());
 
         int newAmount = item.getItemStack().getAmount() - recipe.input().getAmount();
@@ -160,9 +161,9 @@ public class Hammer extends RebarItem implements RebarBlockInteractor {
         block.getWorld().playSound(sound.create(), block.getX() + 0.5, block.getY() + 0.5, block.getZ() + 0.5);
 
         if (newAmount >= recipe.input().getAmount()) {
-            lastHammeredItems.put(new BlockPosition(block), new Pair<>(recipe, item.getUniqueId()));
+            lastHammeredItems.put(blockPos, new Pair<>(recipe, item.getUniqueId()));
         } else {
-            lastHammeredItems.remove(new BlockPosition(block));
+            lastHammeredItems.remove(blockPos);
         }
 
         return true;
@@ -170,7 +171,7 @@ public class Hammer extends RebarItem implements RebarBlockInteractor {
 
     @Override
     @MultiHandler(priorities = {EventPriority.NORMAL, EventPriority.MONITOR})
-    public void onUsedToClickBlock(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
+    public void onInteractWithBlock(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
         if (event.getHand() != EquipmentSlot.HAND
                 || event.getPlayer().isSneaking()
                 || event.useItemInHand() == Event.Result.DENY) {
@@ -185,7 +186,7 @@ public class Hammer extends RebarItem implements RebarBlockInteractor {
                 return;
             }
 
-            if ((rebarBlock instanceof RebarInventoryBlock && !(rebarBlock instanceof AssemblyTable)) || (clicked.getState(false) instanceof BlockInventoryHolder && !(rebarBlock instanceof RebarNoVanillaInventoryBlock))) {
+            if ((rebarBlock instanceof GuiRebarBlock && !(rebarBlock instanceof AssemblyTable)) || (clicked.getState(false) instanceof BlockInventoryHolder && !(rebarBlock instanceof NoVanillaInventoryRebarBlock))) {
                 return;
             }
 

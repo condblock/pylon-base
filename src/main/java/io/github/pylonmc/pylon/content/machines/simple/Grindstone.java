@@ -6,23 +6,26 @@ import io.github.pylonmc.pylon.PylonKeys;
 import io.github.pylonmc.pylon.recipes.GrindstoneRecipe;
 import io.github.pylonmc.pylon.util.PylonUtils;
 import io.github.pylonmc.rebar.block.RebarBlock;
-import io.github.pylonmc.rebar.block.base.*;
+import io.github.pylonmc.rebar.block.interfaces.BlockBreakRebarBlockHandler;
+import io.github.pylonmc.rebar.block.interfaces.InteractRebarBlockHandler;
+import io.github.pylonmc.rebar.block.interfaces.LogisticRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.SimpleRebarMultiblock;
+import io.github.pylonmc.rebar.block.interfaces.RecipeProcessorRebarBlock;
 import io.github.pylonmc.rebar.block.context.BlockBreakContext;
 import io.github.pylonmc.rebar.block.context.BlockCreateContext;
-import io.github.pylonmc.rebar.config.Settings;
+import io.github.pylonmc.rebar.config.ConfigSection;
 import io.github.pylonmc.rebar.config.adapter.ConfigAdapter;
 import io.github.pylonmc.rebar.entity.display.ItemDisplayBuilder;
 import io.github.pylonmc.rebar.entity.display.transform.TransformBuilder;
 import io.github.pylonmc.rebar.event.PreRebarBlockPlaceEvent;
 import io.github.pylonmc.rebar.event.api.annotation.MultiHandler;
-import io.github.pylonmc.rebar.i18n.RebarArgument;
 import io.github.pylonmc.rebar.item.builder.ItemStackBuilder;
 import io.github.pylonmc.rebar.logistics.LogisticGroupType;
 import io.github.pylonmc.rebar.logistics.slot.ItemDisplayLogisticSlot;
+import io.github.pylonmc.rebar.util.ProgressBar;
 import io.github.pylonmc.rebar.util.position.BlockPosition;
 import io.github.pylonmc.rebar.waila.WailaDisplay;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -49,13 +52,13 @@ import java.util.Map;
 
 
 public class Grindstone extends RebarBlock implements
-        RebarSimpleMultiblock,
-        RebarInteractBlock,
-        RebarBreakHandler,
-        RebarLogisticBlock,
-        RebarRecipeProcessor<GrindstoneRecipe> {
+        SimpleRebarMultiblock,
+        InteractRebarBlockHandler,
+        BlockBreakRebarBlockHandler,
+        LogisticRebarBlock,
+        RecipeProcessorRebarBlock<GrindstoneRecipe> {
 
-    public static final int CYCLE_DURATION_TICKS = Settings.get(PylonKeys.GRINDSTONE)
+    public static final int CYCLE_DURATION_TICKS = ConfigSection.fromSettings(PylonKeys.GRINDSTONE)
             .getOrThrow("cycle-duration-ticks",ConfigAdapter.INTEGER);
 
     @SuppressWarnings("unused")
@@ -104,7 +107,7 @@ public class Grindstone extends RebarBlock implements
     }
 
     @Override @MultiHandler(priorities = { EventPriority.NORMAL, EventPriority.MONITOR })
-    public void onInteract(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
+    public void onInteractedWith(@NotNull PlayerInteractEvent event, @NotNull EventPriority priority) {
         if (!isFormedAndFullyLoaded()
                 || event.getHand() != EquipmentSlot.HAND
                 || event.getAction() != Action.RIGHT_CLICK_BLOCK
@@ -154,7 +157,7 @@ public class Grindstone extends RebarBlock implements
     }
 
     @Override
-    public void onBreak(@NotNull List<ItemStack> drops, @NotNull BlockBreakContext context) {
+    public void onBlockBreak(@NotNull List<ItemStack> drops, @NotNull BlockBreakContext context) {
         drops.add(getItemDisplay().getItemStack());
     }
 
@@ -201,7 +204,7 @@ public class Grindstone extends RebarBlock implements
                 double translation = isLast ? 0.8 : 0.5;
                 double rotation = (j / 4.0) * 2.0 * Math.PI;
                 Bukkit.getScheduler().runTaskLater(Pylon.getInstance(), () -> {
-                    if (!new BlockPosition(getBlock()).getChunk().isLoaded()) {
+                    if (!isChunkLoaded()) {
                         return;
                     }
 
@@ -231,33 +234,23 @@ public class Grindstone extends RebarBlock implements
 
     @Override
     public @Nullable WailaDisplay getWaila(@NotNull Player player) {
+        WailaDisplay display = WailaDisplay.of(this, player);
+        
         ItemStack stack = getItemDisplay().getItemStack();
-        return new WailaDisplay(getDefaultWailaTranslationKey().arguments(
-                RebarArgument.of("contents",
-                        stack.isEmpty()
-                                ? Component.translatable("pylon.waila.grindstone.empty")
-                                : Component.translatable("pylon.waila.grindstone.not-empty")
-                                .arguments(
-                                        RebarArgument.of("item", stack.effectiveName()),
-                                        RebarArgument.of("amount", stack.getAmount())
-                                )
-                ),
-                RebarArgument.of("processing",
-                        getCurrentRecipe() == null
-                                ? !stack.isEmpty() && getNextRecipe() == null
-                                        ? Component.translatable("pylon.waila.grindstone.invalid_recipe")
-                                        : Component.translatable("pylon.waila.grindstone.idle")
-                                : Component.translatable("pylon.waila.grindstone.processing")
-                                .arguments(
-                                        RebarArgument.of("bars", PylonUtils.createProgressBar(
-                                                getCurrentRecipe().timeTicks() - getRecipeTicksRemaining(),
-                                                getCurrentRecipe().timeTicks(),
-                                                20,
-                                                TextColor.color(100, 255, 100)
-                                        ))
-                                )
-                )
-        ));
+        if (!stack.isEmpty()) {
+            display.add( stack.effectiveName()
+                    .append(Component.text(" x"))
+                    .append(Component.text(stack.getAmount()))
+            );
+        }
+        
+        if (isProcessingRecipe()) {
+            display.add(ProgressBar.recipeProgress(getRecipeProgress()));
+        } else if (!stack.isEmpty() && getNextRecipe() == null) {
+            display.add(Component.translatable("pylon.message.invalid_recipe"));
+        }
+        
+        return display;
     }
 
     public @NotNull ItemDisplay getItemDisplay() {

@@ -2,10 +2,10 @@ package io.github.pylonmc.pylon.content.machines.smelting;
 
 import io.github.pylonmc.pylon.recipes.CastingRecipe;
 import io.github.pylonmc.rebar.block.RebarBlock;
-import io.github.pylonmc.rebar.block.base.RebarDirectionalBlock;
-import io.github.pylonmc.rebar.block.base.RebarFluidBlock;
-import io.github.pylonmc.rebar.block.base.RebarInventoryBlock;
-import io.github.pylonmc.rebar.block.base.RebarVirtualInventoryBlock;
+import io.github.pylonmc.rebar.block.interfaces.DirectionalRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.FluidRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.GuiRebarBlock;
+import io.github.pylonmc.rebar.block.interfaces.VirtualInventoryRebarBlock;
 import io.github.pylonmc.rebar.block.context.BlockBreakContext;
 import io.github.pylonmc.rebar.block.context.BlockCreateContext;
 import io.github.pylonmc.rebar.datatypes.RebarSerializers;
@@ -41,10 +41,10 @@ import xyz.xenondevs.invui.item.ItemProvider;
 import static io.github.pylonmc.pylon.util.PylonUtils.pylonKey;
 
 public final class CastingUnit extends RebarBlock implements
-        RebarFluidBlock,
-        RebarDirectionalBlock,
-        RebarInventoryBlock,
-        RebarVirtualInventoryBlock {
+        FluidRebarBlock,
+        DirectionalRebarBlock,
+        GuiRebarBlock,
+        VirtualInventoryRebarBlock {
 
     private static final NamespacedKey QUEUED_CASTS_KEY = pylonKey("queued_casts");
     private static final NamespacedKey AUTO_CAST_KEY = pylonKey("auto_cast");
@@ -97,7 +97,7 @@ public final class CastingUnit extends RebarBlock implements
         castInv.addPreUpdateHandler(event -> {
             if (event.getNewItem() == null) return;
             for (CastingRecipe recipe : CastingRecipe.RECIPE_TYPE) {
-                if (recipe.mold().isSimilar(event.getNewItem())) {
+                if (recipe.mold().matches(event.getNewItem())) {
                     return;
                 }
             }
@@ -109,9 +109,9 @@ public final class CastingUnit extends RebarBlock implements
     }
 
     @Override
-    public void onBreak(@NotNull List<@NotNull ItemStack> drops, @NotNull BlockBreakContext context) {
-        RebarFluidBlock.super.onBreak(drops, context);
-        RebarVirtualInventoryBlock.super.onBreak(drops, context);
+    public void onBlockBreak(@NotNull List<@NotNull ItemStack> drops, @NotNull BlockBreakContext context) {
+        FluidRebarBlock.super.onBlockBreak(drops, context);
+        VirtualInventoryRebarBlock.super.onBlockBreak(drops, context);
     }
 
     @Override
@@ -195,9 +195,9 @@ public final class CastingUnit extends RebarBlock implements
         if (castItem == null) return 0;
 
         for (CastingRecipe recipe : CastingRecipe.RECIPE_TYPE) {
-            if (recipe.isInput(fluid) && castItem.isSimilar(recipe.mold())) {
+            if (recipe.isInput(fluid) && recipe.mold().matches(castItem)) {
                 if (outputInv.simulateSingleAdd(recipe.result()) > 0) return 0;
-                return recipe.input().amountMillibuckets() - fluidAmount;
+                return recipe.input().getAmount() - fluidAmount;
             }
         }
 
@@ -212,10 +212,10 @@ public final class CastingUnit extends RebarBlock implements
         if (castItem == null) throw new AssertionError("Should not happen");
 
         for (CastingRecipe recipe : CastingRecipe.RECIPE_TYPE) {
-            if (recipe.isInput(fluid) && castItem.isSimilar(recipe.mold())) {
+            if (recipe.isInput(fluid) && recipe.mold().matches(castItem)) {
                 fluidType = fluid;
                 fluidAmount += amount;
-                if (Math.abs(fluidAmount - recipe.input().amountMillibuckets()) < 1e-6) {
+                if (Math.abs(fluidAmount - recipe.input().getAmount()) < 1e-6) {
                     fluidType = null;
                     fluidAmount = 0;
                     outputInv.addItem(new MachineUpdateReason(), recipe.result());
