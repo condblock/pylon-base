@@ -820,8 +820,8 @@ item:
   smeltery_burner:
     name: "제련소 가열기"
     lore: |-
-      <star> 제련소 멀티블록 구성 요소
       <arrow> 연료를 태워 제련소의 온도를 높입니다
+      <arrow> 모든 바닐라 연료를 절반 효율로 태웁니다
 
   diesel_smeltery_heater:
     name: "디젤 제련소 가열기"
@@ -1274,7 +1274,7 @@ item:
       <arrow> <attr>최대 높이:</attr> %max-height%
 
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.item.fluid_tank.name/></yellow>
+      <diamond> 1x <yellow><item:pylon.item.fluid_tank.name/></yellow>
       <diamond> 1개 이상의 <yellow>유체 탱크 케이싱</yellow>
     waila: "유체 탱크 | %bars% (%fluid%)"
 
@@ -2337,11 +2337,11 @@ item:
       <arrow> 달궈지고 식는 것에 시간이 걸립니다
       
       <u>구성 요소</u>
-      <diamond> 1x <yellow><lang:pylon.item.kiln.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.item.bronze_grating.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.item.fluid_output_hatch.name/></yellow>
-      <diamond> 1x <yellow><lang:pylon.item.item_output_hatch.name/></yellow>
-      <diamond> 2x <yellow><lang:pylon.item.item_input_hatch.name/></yellow>
+      <diamond> 1x <yellow><item:pylon.item.kiln.name/></yellow>
+      <diamond> 1x <yellow><item:pylon.item.bronze_grating.name/></yellow>
+      <diamond> 1x <yellow><item:pylon.item.fluid_output_hatch.name/></yellow>
+      <diamond> 1x <yellow><item:pylon.item.item_output_hatch.name/></yellow>
+      <diamond> 2x <yellow><item:pylon.item.item_input_hatch.name/></yellow>
       <diamond> 6x <yellow>진흙 벽돌</yellow>
       <diamond> 12x <yellow>진흙 벽돌 담장</yellow>
 
@@ -2482,38 +2482,105 @@ item:
     lore: |-
       <arrow> 점토를 성형하여 아이템의 틀을 만듭니다
 
+  experience_drain:
+    name: "경험치 배수구"
+    lore: |-
+      <arrow> 위에 서서 <insn>웅크리기</insn>로 경험치 액화
+      <arrow> <attr>경험치 배수량:</attr> %xp-drain-rate%
+    waila: "경험치 배수구 | %bar%"
+
+  experience_fountain:
+    name: "경험치 분수"
+    lore: |-
+      <star> 멀티블록
+      <arrow> 액화 경험치를 경험 방울로 변환합니다
+      <arrow> <attr>경험치 변환 속도:</attr> %conversion-rate%
+      
+      <u>구성 요소</u>
+      <diamond> 1x <yellow><item:pylon:experience_fountain_spout/></yellow>
+    waila: "경험치 분수 | %bar%"
+
+  experience_fountain_spout:
+    name: "경험치 분수 분출구"
+
+  liquid_xp_bottle:
+    name: "액화 경험치 병"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 던져 저장된 경험치를 꺼냅니다
+      <arrow> <attr>저장된 경험치:</attr> %experience-amount%
+
+  liquid_xp_bottle_super:
+    name: "농축 액화 경험치 병"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 던져 저장된 경험치를 꺼냅니다
+      <arrow> <attr>저장된 경험치:</attr> %experience-amount%
+
+  liquid_xp_bottle_ultra:
+    name: "고농축 액화 경험치 병"
+    lore: |-
+      <arrow> <insn>오른쪽 클릭</insn>으로 던져 저장된 경험치를 꺼냅니다
+      <arrow> <attr>저장된 경험치:</attr> %experience-amount%
+
+  hydraulic_experience_bottler:
+    name: "유압 경험치 충진기"
+    lore: |-
+      <arrow> 빈 유리병에 <#1dc420>액화 경험치</#1dc420>를 채워 <item:pylon:liquid_xp_bottle/>으로 만듭니다
+      <arrow> <attr>충진 시간:</attr> %time-per-bottle%
+      <arrow> <attr>유압유 사용량:</attr> %fluid-input-consumption%
+      
+      <u>구성 요소</u>
+      <diamond> 2x <yellow><item:pylon:fluid_input_hatch/></yellow>
+      <diamond> 1x <yellow><item:pylon:fluid_output_hatch/></yellow>
+      <diamond> 1x <yellow>청금석 블록</yellow>
+      <diamond> 3x <yellow>윤나는 심층암 담장</yellow>
+    waila: "유압 경험치 충진기 | %progressbar%"
+
+  diesel_experience_bottler:
+    name: "디젤 경험치 충진기"
+    lore: |-
+      <arrow> 빈 유리병에 <#1dc420>액화 경험치</#1dc420>를 채워 <item:pylon:liquid_xp_bottle/>으로 만듭니다
+      <arrow> <attr>충진 시간:</attr> %time-per-bottle%
+      <arrow> <attr>디젤유 사용량:</attr> %fluid-input-consumption%
+
+      <u>Components</u>
+      <diamond> 2x <yellow><item:pylon:fluid_input_hatch/></yellow>
+      <diamond> 1x <yellow>청금석 블록</yellow>
+      <diamond> 3x <yellow>윤나는 심층암 담장</yellow>
+    waila: "디젤 경험치 충진기 | %progressbar%"
+
 fluid:
   tag:
     melting-point: "녹는점: %temperature%"
-  bronze: "<#8d6f64>액체 청동"
-  copper: "<#b5591b>액체 구리"
-  gold: "<gold>액체 금"
-  iron: "<gray>액체 철"
-  lava: "<#fc4e03>용암"
-  mercury: "<#dedede>수은"
   none: "없음"
-  slurry: "<gray>슬러리"
-  slurry_coal: "<gray>석탄 슬러리"
-  slurry_carbon: "<gray>탄소 슬러리"
-  slurry_sponge_iron: "<gray>해면철 슬러리"
-  slurry_redstone: "<red>레드스톤 슬러리"
-  slurry_raw_copper: "<#b5591b>구리 원석 슬러리"
-  slurry_raw_gold: "<gold>금 원석 슬러리"
-  slurry_raw_iron: "<gray>철 원석 슬러리"
-  slurry_raw_tin: "<gray>주석 원석 슬러리"
-  steel: "<gray>강철"
-  sulfur: "<yellow>황"
-  tin: "<gray>주석"
-  water: "<blue>물"
-  palladium: "<#b642f5>액체 팔라듐"
-  plant_oil: "<#c4b352>식물성 기름"
-  hydraulic_fluid: "<#212d99>유압유"
-  dirty_hydraulic_fluid: "<#48459b>오염된 유압유"
-  obscyra: "<#5c4a66>흑요액"
-  reflector_fluid: "<#d1c9ab>반사제"
-  sugarcane: "<#a3ed2d>사탕수수"
-  ethanol: "<#d8d8d8>에탄올"
-  biodiesel: "<#eaa627>바이오디젤"
+  water: "물"
+  lava: "용암"
+  plant_oil: "식물성 기름"
+  hydraulic_fluid: "유압유"
+  dirty_hydraulic_fluid: "오염된 유압유"
+  reflector_fluid: "반사제"
+  sugarcane: "사탕수수"
+  ethanol: "에탄올"
+  biodiesel: "바이오디젤"
+  obscyra: "흑요액"
+  sulfur: "황"
+  mercury: "수은"
+  tin: "용융 주석"
+  copper: "용융 구리"
+  iron: "용융 철"
+  bronze: "용융 청동"
+  gold: "용융 금"
+  steel: "용융 강철"
+  palladium: "액화 팔라듐"
+  slurry: "슬러리"
+  slurry_coal: "석탄 슬러리"
+  slurry_carbon: "탄소 슬러리"
+  slurry_raw_tin: "주석 원석 슬러리"
+  slurry_raw_copper: "구리 원석 슬러리"
+  slurry_raw_iron: "철 원석 슬러리"
+  slurry_raw_gold: "금 원석 슬러리"
+  slurry_redstone: "레드스톤 슬러리"
+  slurry_sponge_iron: "해면철 슬러리"
+  liquid_xp: "액화 경험치"
 
 waila:
   fluid_tank:
@@ -2623,6 +2690,7 @@ research:
   silos_2: "<#ea9335>창고 II"
   silos_3: "<#ea9335>창고 III"
   potion_magic: "<#e5c4ef>물약 마법"
+  experience_liquefaction: "<#1dc420>경험치 액화"
 
 guide:
   pressable_items: "<arrow> %plant-oil%"
@@ -2822,7 +2890,7 @@ gui:
   side-priority:
     name: "우선 순위: <light_purple>%priority%"
     lore: |-
-      <arrow> <lang:pylon.item.cargo_overflow_gate.name/>가 가득 차기 전까지 항상 선택된 방향으로 아이템을 보냅니다
+      <arrow> <item:pylon.item.cargo_overflow_gate.name/>가 가득 차기 전까지 항상 선택된 방향으로 아이템을 보냅니다
       <arrow> <insn>왼쪽 클릭</insn>으로 우선 순위 변경
   threshold_button:
     name: "임곗값: <light_purple>%threshold%"
